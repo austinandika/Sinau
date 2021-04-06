@@ -13,9 +13,7 @@
             <div class="logo">
                 <h1>SINAU</h1>
             </div>
-            <div>
-                THIS IS TESTING
-            </div>
+
         </div>
     </form>
 </body>
