@@ -1,0 +1,48 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="Sinau.View.Master" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title> 
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <link href="CSS/MasterStyle.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <asp:ScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="3600"></asp:ScriptManager>
+
+        <div class="header">
+                    <div class="logo">
+                        <h1>SINAU</h1>
+                    </div>
+
+                    <div class="navbar">
+                        <div class="menu">
+                            <a href="#">Home</a>
+                        </div>
+
+                        <div class="menu">
+                            <a href="#">Schedule</a>
+                        </div>
+
+                        <div class="menu">
+                            <a href="#">Grade</a>
+                        </div>
+
+                        <div class="menu">
+                            <a href="#">Assignment</a>
+                        </div>
+                    </div>
+                </div>
+
+        <div class="content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
