@@ -15,17 +15,18 @@ body {
 }
 
 .wrapper {
-    height: 100vh; /*100% view port*/
+    height: 100vh;  /*100% view port*/
+    margin-top: 50px;
+    margin-bottom: 50px;
 
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
 }
 
 .container {
-    width: 370px;
-    height: 500px;
+    width: 400px;
+    height: 820px;
     background-color: white;
     padding-top: 10px;
     padding-bottom: 20px;
@@ -54,22 +55,16 @@ body {
             border-bottom: 2px solid;
             border-bottom-color: gray;
         }
-            
-            /* To show icon in placeholder*/
-            .container .user-input .textbox::-webkit-input-placeholder {
-                font-family: FontAwesome, Righteous;
-                font-weight: normal;
-            }
 
-    .container .login-button {
+    .container .activate-button {
         text-align: center;
         padding-top: 40px;
     }
 
-        .container .login-button .button {
+        .container .activate-button .button {
             font-size: 20px;
             height: 40px;
-            width: 100px;
+            width: 150px;
             border-radius: 20px;
             border: none;
             color: white;
@@ -78,21 +73,51 @@ body {
             cursor: pointer;
         }
 
-            .container .login-button .button:hover {
+            .container .activate-button .button:hover {
                 transition: 1s;
                 background-color: #CE2BA9;
             }
 
-    .container .activate-account {
+    .container .login-account {
         padding-top: 40px;
         font-size: 15px;
         text-align: center;
         color: black;
     }
 
-        .container .activate-account a {
-
+        .container .login-account a {
         }
+
+    .container .validate-button {
+        padding-top: 40px;
+        text-align: center;
+    }
+
+#btnValidate {
+    font-size: 20px;
+    height: 40px;
+    width: 103%;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    background-color: #5E3EC5;
+    transition: 1s;
+    cursor: pointer;
+}
+
+    #btnValidate:hover {
+        transition: 1s;
+        background-color: #CE2BA9;
+    }
+
+
+
+#txtFullName {
+    background-color: lightgray;
+
+    border: none;
+    border-radius: 8px;
+}
 
 .title {
     font-size: 20px;

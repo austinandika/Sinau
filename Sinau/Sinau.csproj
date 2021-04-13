@@ -67,19 +67,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="View\ActivationForm.aspx" />
+    <Content Include="View\Assets\DefaultProfilePic.jpg" />
+    <Content Include="View\Assets\Logo\Logo.png" />
+    <Content Include="View\Assets\Test-Banner2.png" />
+    <Content Include="View\Assets\Test-Banner.jpg" />
+    <Content Include="View\CSS\ActivationFormStyle.css" />
+    <Content Include="View\CSS\Student\DashboardStyle.css" />
     <Content Include="View\CSS\LoginStyle.css" />
-    <Content Include="View\CSS\MasterStyle.css" />
-    <Content Include="View\Dashboard.aspx" />
+    <Content Include="View\CSS\Student\MasterStyle.css" />
+    <Content Include="View\Student\Dashboard.aspx" />
     <Content Include="View\Login.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\Dashboard.aspx.cs">
+    <Compile Include="View\ActivationForm.aspx.cs">
+      <DependentUpon>ActivationForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ActivationForm.aspx.designer.cs">
+      <DependentUpon>ActivationForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Student\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\Dashboard.aspx.designer.cs">
+    <Compile Include="View\Student\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Login.aspx.cs">
@@ -89,18 +103,20 @@
     <Compile Include="View\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="View\Master.Master.cs">
+    <Compile Include="View\Student\Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\Master.Master.designer.cs">
+    <Compile Include="View\Student\Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="View\Master.Master" />
-    <Content Include="View\Font\Righteous-Regular.ttf" />
+    <Content Include="View\Student\Master.Master" />
+    <Content Include="View\Assets\Font\Righteous-Regular.ttf" />
+    <Content Include="View\Assets\Font\Gilroy-ExtraBold.otf" />
+    <Content Include="View\Assets\Font\Gilroy-Light.otf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -110,6 +126,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="View\CSS\Teacher\" />
+    <Folder Include="View\Teacher\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

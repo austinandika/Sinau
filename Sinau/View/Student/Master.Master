@@ -1,0 +1,120 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="Sinau.View.Master" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <link href="../CSS/Student/MasterStyle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <asp:ScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="3600"></asp:ScriptManager>
+
+        <div class="header">
+            <div class="logo">
+                <h1>SINAU</h1>
+            </div>
+
+            <div class="navbar">
+                <div class="menu" id="dashboard">
+                    <a href="#"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Dashboard</a>
+                </div>
+
+                <div class="menu" id="schedule">
+                    <a href="#"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Schedule</a>
+                </div>
+
+                <div class="menu" id="grade">
+                    <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Grade</a>
+                </div>
+
+                <div class="menu" id="assignment">
+                    <a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Assignment</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-placeholder">
+            <div class="head-container">
+                <div class="left-container">
+                </div>
+
+                <div class="right-container">
+
+                    <div class="notification-container">
+                        <asp:LinkButton ID="btnNotif" runat="server" CssClass="link-button">
+                            <div class="notification">
+                                <i class="fa fa-bell-o" aria-hidden="true"></i>
+                            </div>
+                        </asp:LinkButton>
+                    </div>
+
+
+                    <div class="profile-container">
+
+                        <div class="profile" id="profile" onclick="dropBtn()">
+                            <div class="profile-picture">
+                                <img src="../Assets/DefaultProfilePic.jpg" alt="Alternate Text" />
+                            </div>
+
+                            <div class="profile-description">
+                                <div class="profile-name">
+                                    <asp:Label Text="Austin Andika Tanujaya" runat="server" ID="lblName" />
+                                </div>
+                                <div class="profile-role">
+                                    <asp:Label Text="Logged in as: Student" runat="server" ID="lblRole" />
+                                </div>
+                            </div>
+
+                            <div class="arrow-down">
+                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <div class="profile-dropdown-content" id="profile-dropdown">
+                            <ul>
+                                <li>
+                                    <asp:Button Text="LOGOUT" ID="btnLogout" runat="server" />
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <script>
+                /* When the user clicks on the button, 
+                toggle between hiding and showing the dropdown content */
+                function dropBtn() {
+                    document.getElementById("profile-dropdown").classList.toggle("show-dropdown");
+                }
+
+                // Close the dropdown if the user clicks outside of it
+                window.onclick = function (event) {
+                    if (!event.target.closest('.profile-container')) {
+                        var dropdowns = document.getElementsByClassName("profile-dropdown-content");
+                        var i;
+                        for (i = 0; i < dropdowns.length; i++) {
+                            var openDropdown = dropdowns[i];
+                            if (openDropdown.classList.contains('show-dropdown')) {
+                                openDropdown.classList.remove('show-dropdown');
+                            }
+                        }
+                    }
+                }
+            </script>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
