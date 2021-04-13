@@ -68,6 +68,14 @@
                     <div class="input-box">
                         <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" CssClass="textbox"></asp:TextBox>
                     </div>
+
+                    <div class="input-command">
+                        <asp:Label Text="Confirm Password" runat="server" ID="lblConfirmPassword" />
+                    </div>
+
+                    <div class="input-box">
+                        <asp:TextBox ID="TxtConfirmPassword" TextMode="Password" runat="server" CssClass="textbox"></asp:TextBox>
+                    </div>
                 </div>
 
                 <div class="activate-button">

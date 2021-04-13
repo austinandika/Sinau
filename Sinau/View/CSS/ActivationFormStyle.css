@@ -15,7 +15,7 @@ body {
 }
 
 .wrapper {
-    height: 100vh;  /*100% view port*/
+    /*height: 100vh;*/  /*100% view port*/
     margin-top: 50px;
     margin-bottom: 50px;
 
@@ -26,7 +26,7 @@ body {
 
 .container {
     width: 400px;
-    height: 820px;
+    height: 900px;
     background-color: white;
     padding-top: 10px;
     padding-bottom: 20px;
