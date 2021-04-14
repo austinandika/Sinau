@@ -75,9 +75,14 @@
     <Content Include="View\CSS\ActivationFormStyle.css" />
     <Content Include="View\CSS\Student\DashboardStyle.css" />
     <Content Include="View\CSS\LoginStyle.css" />
+    <Content Include="View\CSS\Student\GradeStyle.css" />
     <Content Include="View\CSS\Student\MasterStyle.css" />
+    <Content Include="View\CSS\Teacher\GradeStyle.css" />
+    <Content Include="View\CSS\Teacher\MasterStyle.css" />
     <Content Include="View\Student\Dashboard.aspx" />
     <Content Include="View\Login.aspx" />
+    <Content Include="View\Student\Grade.aspx" />
+    <Content Include="View\Teacher\Grade.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -103,11 +108,32 @@
     <Compile Include="View\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\Student\Grade.aspx.cs">
+      <DependentUpon>Grade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Student\Grade.aspx.designer.cs">
+      <DependentUpon>Grade.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\Student\Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="View\Student\Master.Master.designer.cs">
+      <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="View\Teacher\Grade.aspx.cs">
+      <DependentUpon>Grade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Teacher\Grade.aspx.designer.cs">
+      <DependentUpon>Grade.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Teacher\Master.Master.cs">
+      <DependentUpon>Master.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Teacher\Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -117,6 +143,7 @@
     <Content Include="View\Assets\Font\Righteous-Regular.ttf" />
     <Content Include="View\Assets\Font\Gilroy-ExtraBold.otf" />
     <Content Include="View\Assets\Font\Gilroy-Light.otf" />
+    <Content Include="View\Teacher\Master.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -126,8 +153,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
-    <Folder Include="View\CSS\Teacher\" />
-    <Folder Include="View\Teacher\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

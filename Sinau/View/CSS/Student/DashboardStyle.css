@@ -7,11 +7,11 @@ body {
 }
 
 /* Menu */
-#dashboard {
+#navbar-dashboard {
     background-color: white;
 }
 
-    #dashboard a {
+    #navbar-dashboard a {
         color: #5E3EC5;
     }
 

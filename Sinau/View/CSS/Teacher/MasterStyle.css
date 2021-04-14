@@ -199,6 +199,6 @@ body {
                     border-color: transparent transparent #F1F1F1 transparent;
                 }
 
-            .head-container .right-container .profile-container .profile-dropdown-content.show-dropdown {
-                display: block;
-            }
+                .head-container .right-container .profile-container .profile-dropdown-content.show-dropdown {
+                    display: block;
+                }
