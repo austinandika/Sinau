@@ -24,3 +24,33 @@
 
     .title-container .title-name {
     }
+
+.score-table-container table{
+    
+}
+
+.score-table-container .rotated-th {
+    height: 200px;
+    white-space: nowrap;
+    vertical-align: bottom;
+}
+
+    .score-table-container .rotated-th div {
+        transform: 
+            translate(0px, -20px)
+            rotate(270deg);
+
+        width: 30px;
+    }
+
+.score-table-container #nisn-th {
+    width: 200px;
+}
+
+.score-table-container #student-name-th {
+    width: 300px;
+}
+
+.score-table-container tr,th {
+    border: 1px solid;
+}
