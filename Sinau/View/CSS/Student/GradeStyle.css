@@ -24,3 +24,84 @@
 
     .title-container .title-name {
     }
+
+.score-table-container {
+    margin-top: 20px;
+}
+
+    .score-table-container .score-table-header {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        color: darkgray;
+    }
+
+    .score-table-container .score-table-content {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        min-height: 50px;
+        border-left: 3px solid #5E3EC5;
+        box-shadow: 5px 5px 10px lightgray;
+        margin-top: 10px;
+        word-wrap: break-word;
+    }
+
+    .score-table-container .grade-column-no {
+        width: 50px;
+    }
+
+    .score-table-container .grade-column-class {
+        width: 90px;
+    }
+
+    .score-table-container .grade-column-subjectid {
+        width: 130px;
+    }
+
+    .score-table-container .grade-column-subjectname {
+        width: 150px;
+    }
+
+    .score-table-container .grade-column-teachername {
+        width: 200px;
+    }
+
+    .score-table-container .grade-column-category {
+        width: 90px;
+    }
+
+    .score-table-container .grade-column-component {
+        width: 250px;
+    }
+
+    .score-table-container .grade-column-minscore {
+        width: 70px;
+    }
+
+    .score-table-container .grade-column-score {
+        width: 70px;
+    }
+
+    .score-table-container .grade-column-grade {
+        width: 70px;
+    }
+
+    .score-table-container .score-table-content .grade-column-minscore {
+        color: red;
+    }
+
+    .score-table-container .score-table-content .grade-column-score {
+        background-color: whitesmoke;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .score-table-container .score-table-content .grade-column-grade {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
