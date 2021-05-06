@@ -23,19 +23,19 @@
 
             <div class="navbar">
                 <div class="menu" id="navbar-dashboard">
-                    <a href="#"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Dashboard</a>
+                    <a href="Dashboard.aspx"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Dashboard</a>
                 </div>
 
                 <div class="menu" id="navbar-schedule">
-                    <a href="#"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Schedule</a>
+                    <a href="Schedule.aspx"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Schedule</a>
                 </div>
 
                 <div class="menu" id="navbar-grade">
-                    <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Grade</a>
+                    <a href="Grade.aspx"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Grade</a>
                 </div>
 
                 <div class="menu" id="navbar-assignment">
-                    <a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Assignment</a>
+                    <a href="Assignment.aspx"><i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Assignment</a>
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@
                         <div class="profile-dropdown-content" id="profile-dropdown">
                             <ul>
                                 <li>
-                                    <asp:Button Text="LOGOUT" ID="btnLogout" runat="server" />
+                                    <asp:Button Text="LOGOUT" ID="btnLogout" runat="server" OnClick="btnLogout_Click"/>
                                 </li>
                             </ul>
                         </div>

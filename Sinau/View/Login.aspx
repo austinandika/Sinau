@@ -6,7 +6,6 @@
 <head runat="server">
     <title></title>
     <link href="CSS/LoginStyle.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <form id="form1" runat="server">

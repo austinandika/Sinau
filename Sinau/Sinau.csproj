@@ -77,6 +77,7 @@
     <Content Include="View\Assets\Test-Banner2.png" />
     <Content Include="View\Assets\Test-Banner.jpg" />
     <Content Include="View\CSS\ActivationFormStyle.css" />
+    <Content Include="View\CSS\Student\AssignmentStyle.css" />
     <Content Include="View\CSS\Student\DashboardStyle.css" />
     <Content Include="View\CSS\LoginStyle.css" />
     <Content Include="View\CSS\Student\GradeStyle.css" />
@@ -84,6 +85,7 @@
     <Content Include="View\CSS\Student\StudentScheduleStyle.css" />
     <Content Include="View\CSS\Teacher\GradeStyle.css" />
     <Content Include="View\CSS\Teacher\MasterStyle.css" />
+    <Content Include="View\Student\Assignment.aspx" />
     <Content Include="View\Student\Dashboard.aspx" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\Student\Grade.aspx" />
@@ -99,6 +101,13 @@
     </Compile>
     <Compile Include="View\ActivationForm.aspx.designer.cs">
       <DependentUpon>ActivationForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Student\Assignment.aspx.cs">
+      <DependentUpon>Assignment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Student\Assignment.aspx.designer.cs">
+      <DependentUpon>Assignment.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Student\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>

@@ -188,6 +188,7 @@ body {
                         .head-container .right-container .profile-container .profile-dropdown-content ul #btnLogout:hover {
                             transition: 1s;
                             background-color: #CE2BA9;
+                            cursor: pointer;
                         }
 
                 .head-container .right-container .profile-container .profile-dropdown-content:before {

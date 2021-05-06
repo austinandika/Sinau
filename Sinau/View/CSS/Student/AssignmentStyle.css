@@ -1,0 +1,105 @@
+﻿body {
+}
+
+/* Menu */
+#navbar-assignment {
+    background-color: white;
+}
+
+    #navbar-assignment a {
+        color: #5E3EC5;
+    }
+
+.title-container {
+    display: flex;
+    align-items: center;
+}
+
+    .title-container .vertical-line {
+        height: 40px;
+        border-left: 5px solid #ff6a00;
+        margin-right: 10px;
+    }
+
+    .title-container .title-name {
+    }
+
+.assignment-table-container {
+    margin-top: 20px;
+}
+
+    .assignment-table-container .assignment-table-header {
+        display: flex;
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #5E3EC5;
+        color: white;
+        border-radius: 10px;
+    }
+
+    .assignment-table-container .assignment-table-content {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        border:3px solid #5E3EC5;
+        border-radius: 10px;
+        margin-top: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        word-wrap: break-word;
+    }
+
+    .assignment-table-container .subject-column {
+        width: 150px;
+    }
+
+    .assignment-table-container .title-column {
+        width: 250px;
+    }
+
+    .assignment-table-container .download-question-column {
+        width: 50px;
+    }
+
+        .assignment-table-container .download-question-column .btn-download-question {
+            color: darkgray;
+        }
+
+    .assignment-table-container .date-column {
+        width: 150px;
+    }
+
+    .assignment-table-container .status-column {
+        width: 150px;
+    }
+
+    .assignment-table-container .action-column {
+        width: 100px;
+    }
+
+    .assignment-table-container .assignment-table-content .title-column {
+        text-align: left;
+    }
+
+    .assignment-table-container .assignment-table-content .action-column {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+        .assignment-table-container .assignment-table-content .action-column .upload-answer {
+            cursor: pointer;
+        }
+
+        .assignment-table-container .assignment-table-content .action-column .upload-answer input {
+            display: none;
+        }
+
+        .assignment-table-container .assignment-table-content .action-column .btn-download-answer {
+            color: darkgray;
+        }
+
+        .assignment-table-container .assignment-table-content .action-column .upload-answer {
+            color: darkgray;
+        }
+

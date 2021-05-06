@@ -1,88 +1,100 @@
 ﻿
-
-.title{
-    font-size:30px;
-    margin-bottom:5%;
-}
-    .title b{
-        color: #5E3EC5
-    }
-.left-container-content{
-
-    width:50%;
-    
-}
-.right-container-content{
-    width:50%;
+/* Menu */
+#navbar-schedule {
+    background-color: white;
 }
 
-    .ddl {
-        font-size: 25px;
-        border-radius: 5px;
-        margin-right:10%;
-        padding:5px;
+    #navbar-schedule a {
+        color: #5E3EC5;
     }
 
-.Accordion{
-
-    margin-top:2%;
+.title-container {
+    display: flex;
+    align-items: center;
 }
 
-    .AccordionHead {
-        font-size: 25px;
-        border-bottom: solid #6d53c2 2px;
-        width: 100%;
-        background-color: #6345c4;
-        color: white;
-        border-radius: 10px;
-        padding-left: 30px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        box-shadow: 0px 0px 7px 2px inset rgba(228, 233, 237,0.1);
+    .title-container .vertical-line {
+        height: 40px;
+        border-left: 5px solid #ff6a00;
+        margin-right: 10px;
     }
-    .SelectedHeader {
-        font-size: 25px;
-        border-bottom: solid #6d53c2 2px;
-        width: 100%;
-        background-color: #6345c4;
-        color: white;
-        border-radius: 10px;
-        padding-left: 30px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        
+
+    .title-container .title-name {
     }
+
+
+.left-container-content {
+    width: 50%;
+}
+
+.right-container-content {
+    width: 50%;
+}
+
+.ddl {
+    border-radius: 5px;
+    margin-right: 10%;
+    padding: 5px;
+}
+
+.Accordion {
+    margin-top: 2%;
+}
+
+.AccordionHead {
+    cursor: pointer;
+    border-bottom: solid #6d53c2 2px;
+    width: 100%;
+    background-color: #5E3EC5;
+    color: white;
+    border-radius: 10px;
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.SelectedHeader {
+    cursor: pointer;
+    border-bottom: solid #6d53c2 2px;
+    width: 100%;
+    background-color: #5E3EC5;
+    color: white;
+    border-radius: 10px;
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
 
 .AccordionContent {
     background-color: #dadada;
-    font-size: 20px;
     border-radius: 10px;
-    padding-top:10px;
-    padding-bottom:10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
 }
-    
-    
-    .tbl{
-        width:90%;
-        table-layout:fixed;
-        margin-left:auto;
-        margin-right:auto;
-        border-spacing: 2px;
-        
-            
+
+
+.tbl {
+    width: 90%;
+    table-layout: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 2px;
+}
+
+    .tbl tr {
+        height: 30px;
     }
-        .tbl tr {
-            height: 30px;
-            
-        }
-        .tbl td {
-            
-            text-align: center;
-        }
-        .tbl .coursename{
-            text-align:left;
-        }
+
+    .tbl td {
+        text-align: center;
+    }
+
+    .tbl .coursename {
+        text-align: left;
+    }
 
 .join-class-button {
     padding: 5px 10px;
@@ -92,5 +104,4 @@
     color: white;
     text-align: center;
     cursor: pointer;
-    font-size:20px;
 }
