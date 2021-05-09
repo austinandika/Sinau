@@ -25,32 +25,141 @@
     .title-container .title-name {
     }
 
-.score-table-container table{
-    
+.score-table-container {
+    margin-top: 20px;
+    overflow: auto;
+    width: 100%;
+    height: 500px;
 }
 
-.score-table-container .rotated-th {
-    height: 200px;
-    white-space: nowrap;
-    vertical-align: bottom;
-}
-
-    .score-table-container .rotated-th div {
-        transform: 
-            translate(0px, -20px)
-            rotate(270deg);
-
-        width: 30px;
+    .score-table-container table {
+        position: relative;
+        border-collapse: collapse;
     }
 
-.score-table-container #nisn-th {
-    width: 200px;
-}
+    .score-table-container table thead th {
+        border: 2px solid white;
+    }
 
-.score-table-container #student-name-th {
-    width: 300px;
-}
+    .score-table-container .rotated-th {
+        height: 200px;
+        white-space: nowrap;
+        vertical-align: bottom;
+    }
 
-.score-table-container tr,th {
-    border: 1px solid;
-}
+        .score-table-container .rotated-th div {
+            transform: translate(0px, -20px) rotate(270deg);
+            width: 50px;
+        }
+
+    .score-table-container .student-score-td {
+        min-width: 52.5px;
+    }
+
+    .score-table-container #no-th, .score-table-container .no-td {
+        min-width: 40px;
+    }
+
+    .score-table-container #nisn-th, .score-table-container .nisn-td {
+        min-width: 200px;
+    }
+
+    .score-table-container #student-name-th, .score-table-container .student-name-td {
+        min-width: 300px;
+    }
+
+    .score-table-container #min-score-th, .score-table-container .min-score-td {
+        min-width: 100px;
+    }
+
+    .score-table-container #total-th, .score-table-container .total-td {
+        min-width: 100px;
+    }
+
+
+    .score-table-container thead tr th {
+        background-color: #5E3EC5;
+        color: white;
+        font-weight: normal;
+    }
+
+    .score-table-container tbody {
+        margin-top: 10px;
+    }
+
+        .score-table-container tbody tr {
+            border-bottom: 2px solid lightgrey;
+        }
+
+    .score-table-container td {
+        height: 40px;
+        background-color: white;
+    }
+
+    .score-table-container td {
+        text-align: center;
+    }
+
+    .score-table-container .student-name-td {
+        text-align: left;
+    }
+
+    .score-table-container .min-score-td {
+        color: red;
+    }
+
+    .score-table-container .txt-score {
+        width: 40px;
+        text-align: center;
+        background-color: lightgray;
+        border: none;
+    }
+
+    /*Scrollable table*/
+
+    .score-table-container table th, .component-th {
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+
+    .score-table-container table .component-th {
+        text-align: center;
+        position: sticky;
+        top: 200px;
+        z-index: 2;
+    }
+
+    .score-table-container table #no-th {
+        left: 0;
+        z-index: 3;
+    }
+
+    .score-table-container #nisn-th {
+        left: 40px;
+        z-index: 3;
+    }
+
+    .score-table-container #student-name-th {
+        left: 240px;
+        z-index: 3;
+    }
+
+    .score-table-container table tbody tr .no-td {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+    }
+
+    .score-table-container table tbody tr .nisn-td {
+        position: sticky;
+        left: 40px;
+        z-index: 1;
+    }
+
+    .score-table-container table tbody tr .student-name-td {
+        position: sticky;
+        left: 240px;
+        z-index: 1;
+    }
