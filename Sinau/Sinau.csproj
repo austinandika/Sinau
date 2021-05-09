@@ -85,12 +85,14 @@
     <Content Include="View\CSS\Student\ScheduleStyle.css" />
     <Content Include="View\CSS\Teacher\GradeStyle.css" />
     <Content Include="View\CSS\Teacher\MasterStyle.css" />
+    <Content Include="View\CSS\Teacher\ScheduleStyle.css" />
     <Content Include="View\Student\Assignment.aspx" />
     <Content Include="View\Student\Dashboard.aspx" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\Student\Grade.aspx" />
     <Content Include="View\Student\Schedule.aspx" />
     <Content Include="View\Teacher\Grade.aspx" />
+    <Content Include="View\Teacher\Schedule.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +159,13 @@
     </Compile>
     <Compile Include="View\Teacher\Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="View\Teacher\Schedule.aspx.cs">
+      <DependentUpon>Schedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Teacher\Schedule.aspx.designer.cs">
+      <DependentUpon>Schedule.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,107 @@
+﻿
+/* Menu */
+#navbar-schedule {
+    background-color: white;
+}
+
+    #navbar-schedule a {
+        color: #5E3EC5;
+    }
+
+.title-container {
+    display: flex;
+    align-items: center;
+}
+
+    .title-container .vertical-line {
+        height: 40px;
+        border-left: 5px solid #ff6a00;
+        margin-right: 10px;
+    }
+
+    .title-container .title-name {
+    }
+
+
+.left-container-content {
+    width: 50%;
+}
+
+.right-container-content {
+    width: 50%;
+}
+
+.ddl {
+    border-radius: 5px;
+    margin-right: 10%;
+    padding: 5px;
+}
+
+.Accordion {
+    margin-top: 2%;
+}
+
+.AccordionHead {
+    cursor: pointer;
+    border-bottom: solid #6d53c2 2px;
+    width: 100%;
+    background-color: #5E3EC5;
+    color: white;
+    border-radius: 10px;
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.SelectedHeader {
+    cursor: pointer;
+    border-bottom: solid #6d53c2 2px;
+    width: 100%;
+    background-color: #5E3EC5;
+    color: white;
+    border-radius: 10px;
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+.AccordionContent {
+    background-color: #dadada;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+
+.tbl {
+    width: 90%;
+    table-layout: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 2px;
+}
+
+    .tbl tr {
+        height: 30px;
+    }
+
+    .tbl td {
+        text-align: center;
+    }
+
+    .tbl .coursename {
+        text-align: left;
+    }
+
+.join-class-button {
+    padding: 5px 10px;
+    background-color: #5E3EC5;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
