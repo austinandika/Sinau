@@ -83,6 +83,7 @@
     <Content Include="View\CSS\Student\GradeStyle.css" />
     <Content Include="View\CSS\Student\MasterStyle.css" />
     <Content Include="View\CSS\Student\ScheduleStyle.css" />
+    <Content Include="View\CSS\Teacher\DashboardStyle.css" />
     <Content Include="View\CSS\Teacher\GradeStyle.css" />
     <Content Include="View\CSS\Teacher\MasterStyle.css" />
     <Content Include="View\CSS\Teacher\ScheduleStyle.css" />
@@ -91,6 +92,7 @@
     <Content Include="View\Login.aspx" />
     <Content Include="View\Student\Grade.aspx" />
     <Content Include="View\Student\Schedule.aspx" />
+    <Content Include="View\Teacher\Dashboard.aspx" />
     <Content Include="View\Teacher\Grade.aspx" />
     <Content Include="View\Teacher\Schedule.aspx" />
     <Content Include="Web.config" />
@@ -146,6 +148,13 @@
     <Compile Include="View\Student\Schedule.aspx.designer.cs">
       <DependentUpon>Schedule.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\Teacher\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Teacher\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\Teacher\Grade.aspx.cs">
       <DependentUpon>Grade.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -175,6 +184,7 @@
     <Content Include="View\Assets\Font\Gilroy-ExtraBold.otf" />
     <Content Include="View\Assets\Font\Gilroy-Light.otf" />
     <Content Include="View\Teacher\Master.Master" />
+    <Content Include="View\Javascript\jquery-3.5.1.min.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
