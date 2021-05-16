@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="menu" id="navbar-assignment">
-                    <a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Assignment</a>
+                    <a href="Assignment.aspx"><i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Assignment</a>
                 </div>
             </div>
         </div>

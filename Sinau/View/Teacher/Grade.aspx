@@ -13,52 +13,60 @@
         </div>
     </div>
 
-    <div class="grade-filter-container">
-        <table>
-            <tr>
-                <td>Course</td>
-                <td>
-                    <asp:DropDownList runat="server" ID="ddlGrade">
-                        <asp:ListItem Text="Biology" />
-                        <asp:ListItem Text="Mathematics" />
-                    </asp:DropDownList>
-                </td>
+    <div class="upper-container">
+        <div class="grade-filter-container">
+            <table>
+                <tr>
+                    <td>Course</td>
+                    <td>
+                        <asp:DropDownList runat="server" ID="ddlGrade" CssClass="ddl">
+                            <asp:ListItem Text="Biology" />
+                            <asp:ListItem Text="Mathematics" />
+                        </asp:DropDownList>
+                    </td>
 
-                <td>Class</td>
-                <td>
-                    <asp:DropDownList runat="server" ID="DropDownList1">
-                        <asp:ListItem Text="11-A" />
-                        <asp:ListItem Text="12-A" />
-                    </asp:DropDownList>
-                </td>
-            </tr>
+                    <td>Class</td>
+                    <td>
+                        <asp:DropDownList runat="server" ID="ddlClass" CssClass="ddl">
+                            <asp:ListItem Text="11-A" />
+                            <asp:ListItem Text="12-A" />
+                        </asp:DropDownList>
+                    </td>
+                </tr>
 
-            <tr>
-                <td>Category</td>
-                <td>
-                    <asp:DropDownList runat="server" ID="ddlSemester">
-                        <asp:ListItem Text="Assignment" />
-                        <asp:ListItem Text="Mid Exam" />
-                    </asp:DropDownList>
-                </td>
+                <tr>
+                    <td>Category</td>
+                    <td>
+                        <asp:DropDownList runat="server" ID="ddlSemester" CssClass="ddl">
+                            <asp:ListItem Text="Assignment" />
+                            <asp:ListItem Text="Mid Exam" />
+                        </asp:DropDownList>
+                    </td>
 
-                <td>Academic Year</td>
-                <td>
-                    <asp:DropDownList runat="server" ID="DropDownList2">
-                        <asp:ListItem Text="2019-20" />
-                        <asp:ListItem Text="2020-21" />
-                    </asp:DropDownList>
-                </td>
-            </tr>
-        </table>
+                    <td>Academic Year</td>
+                    <td>
+                        <asp:DropDownList runat="server" ID="ddlAcademicYear" CssClass="ddl">
+                            <asp:ListItem Text="2019-20" />
+                            <asp:ListItem Text="2020-21" />
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="edit-score-container">
+            <asp:Button Text="Edit Score" ID="btnEdit" CssClass="btn-modify-score" OnClick="btnEdit_Click" runat="server" />
+            <asp:Button Text="Submit Changes" ID="btnSubmit" CssClass="btn-modify-score hide-button" OnClick="btnSubmit_Click" runat="server" />
+        </div>
     </div>
+
 
     <div class="score-table-container">
         <table>
             <thead>
                 <tr>
                     <th rowspan="2" id="no-th">No</th>
-                    <th rowspan="2" id="nisn-th"">NISN</th>
+                    <th rowspan="2" id="nisn-th">NISN</th>
                     <th rowspan="2" id="student-name-th" class="fixed-header">Student Name</th>
 
                     <th class="rotated-th">

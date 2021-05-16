@@ -13,5 +13,21 @@ namespace Sinau.View.Teacher
         {
 
         }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            btnSubmit.CssClass = btnSubmit.CssClass.Replace("hide-button", "");
+            btnEdit.CssClass += " hide-button";
+
+            TxtScore.ReadOnly = false;
+            TxtScore.CssClass += " edit-mode";
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            btnSubmit.CssClass += " hide-button";
+            btnEdit.CssClass = btnEdit.CssClass.Replace("hide-button", "");
+            TxtScore.CssClass = TxtScore.CssClass.Replace("edit-mode", "");
+        }
     }
 }

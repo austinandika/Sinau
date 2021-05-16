@@ -1,10 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Student/Master.Master" AutoEventWireup="true" CodeBehind="Assignment.aspx.cs" Inherits="Sinau.View.Student.Assignmennt" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Teacher/Master.Master" AutoEventWireup="true" CodeBehind="Assignment.aspx.cs" Inherits="Sinau.View.Teacher.Assignment" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="../CSS/Student/AssignmentStyle.css" rel="stylesheet" />
+    <link href="../CSS/Teacher/AssignmentStyle.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    
     <div class="title-container">
         <div class="vertical-line">
         </div>
@@ -14,19 +13,26 @@
         </div>
     </div>
 
-    <div class="assignment-filter-container">
-        <table>
-            <tr>
-                <td>Subject</td>
-                <td>
-                    <asp:DropDownList runat="server" ID="ddlSubjectFilter" CssClass="ddl">
-                        <asp:ListItem Text="All" />
-                        <asp:ListItem Text="Biology" />
-                    </asp:DropDownList>
-                </td>
-            </tr>
-        </table>
+    <div class="upper-container">
+        <div class="assignment-filter-container">
+            <table>
+                <tr>
+                    <td>Subject</td>
+                    <td>
+                        <asp:DropDownList runat="server" ID="ddlSubjectFilter" CssClass="ddl">
+                            <asp:ListItem Text="All" />
+                            <asp:ListItem Text="Biology" />
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="edit-score-container">
+            <asp:Button Text="Add Assignment" ID="btnAddAssignment" CssClass="btn-add-assignment" OnClick="btnAddAssignment_Click" runat="server" />
+        </div>
     </div>
+    
 
     <div class="assignment-table-container">
         <div class="assignment-table-header">
@@ -35,7 +41,6 @@
             <div class="download-question-column"></div>
             <div class="date-column">Assign Date</div>
             <div class="date-column">Due Date</div>
-            <div class="date-column">Submission Date</div>
             <div class="status-column">Status</div>
             <div class="action-column">Action</div>
         </div>
@@ -67,24 +72,14 @@
                 <asp:Label Text="May 7, 2021" runat="server" ID="lblDueDate" />
             </div>
 
-            <%-- Submission Date --%>
-            <div class="date-column">
-                <asp:Label Text="-" runat="server" ID="lblSubmissionDate" />
-            </div>
-
             <div class="status-column">
                 <asp:Label Text="Waiting" runat="server" ID="lblStatus" />
             </div>
 
             <div class="action-column">
-                <label class="upload-answer">
-                    <i class="fa fa-upload" aria-hidden="true" title="Upload your answer"></i>
-                    <asp:FileUpload ID="fuAnswer" runat="server" />
-                </label>
-
                 <asp:LinkButton ID="btnDownloadAnswer" runat="server">
                     <div class="btn-download-answer">
-                        <i class="fa fa-download" aria-hidden="true" title="Download your last submitted answer"></i>
+                        <i class="fa fa-download" aria-hidden="true" title="Download all of the students answer"></i>
                     </div>
                 </asp:LinkButton>
             </div>
@@ -117,24 +112,14 @@
                 <asp:Label Text="May 7, 2021" runat="server" ID="Label4" />
             </div>
 
-            <%-- Submission Date --%>
-            <div class="date-column">
-                <asp:Label Text="May 1, 2021" runat="server" ID="Label5" />
-            </div>
-
             <div class="status-column">
                 <asp:Label Text="Submitted" runat="server" ID="Label6" />
             </div>
 
             <div class="action-column">
-                <label class="upload-answer">
-                    <i class="fa fa-upload" aria-hidden="true"></i>
-                    <asp:FileUpload ID="FileUpload1" runat="server" />
-                </label>
-
                 <asp:LinkButton ID="LinkButton2" runat="server">
                     <div class="btn-download-answer">
-                        <i class="fa fa-download" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true" title="Download all of the students answer"></i>
                     </div>
                 </asp:LinkButton>
             </div>
@@ -167,24 +152,14 @@
                 <asp:Label Text="June 5, 2021" runat="server" ID="Label10" />
             </div>
 
-            <%-- Submission Date --%>
-            <div class="date-column">
-                <asp:Label Text="-" runat="server" ID="Label11" />
-            </div>
-
             <div class="status-column">
                 <asp:Label Text="Waiting" runat="server" ID="Label12" />
             </div>
 
             <div class="action-column">
-                <label class="upload-answer">
-                    <i class="fa fa-upload" aria-hidden="true"></i>
-                    <asp:FileUpload ID="FileUpload2" runat="server" />
-                </label>
-
                 <asp:LinkButton ID="LinkButton4" runat="server">
                     <div class="btn-download-answer">
-                        <i class="fa fa-download" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true" title="Download all of the students answer"></i>
                     </div>
                 </asp:LinkButton>
             </div>

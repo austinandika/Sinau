@@ -24,23 +24,39 @@
     .title-container .title-name {
     }
 
-
-.assignment-filter-container tr {
-    height: 40px;
+.upper-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-    .assignment-filter-container tr td:nth-child(odd) {
-        width: 120px;
+    .upper-container tr {
+        height: 40px;
     }
 
-    .assignment-filter-container tr td:nth-child(even) {
-        width: 200px;
+        .upper-container tr td:nth-child(odd) {
+            width: 120px;
+        }
+
+        .upper-container tr td:nth-child(even) {
+            width: 200px;
+        }
+
+    .upper-container .ddl {
+        border-radius: 5px;
+        padding: 5px;
     }
 
-.assignment-filter-container .ddl {
-    border-radius: 5px;
-    padding: 5px;
-}
+    .upper-container .edit-score-container .btn-add-assignment {
+        padding: 10px 10px;
+        background-color: #5E3EC5;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        text-align: center;
+        cursor: pointer;
+    }
+
 
 .assignment-table-container {
     margin-top: 20px;
@@ -60,7 +76,7 @@
         display: flex;
         text-align: center;
         align-items: center;
-        border:3px solid #5E3EC5;
+        border: 3px solid #5E3EC5;
         border-radius: 10px;
         margin-top: 10px;
         padding-top: 5px;
@@ -69,7 +85,7 @@
     }
 
     .assignment-table-container .subject-column {
-        width: 150px;
+        width: 200px;
     }
 
     .assignment-table-container .title-column {
@@ -102,22 +118,10 @@
 
     .assignment-table-container .assignment-table-content .action-column {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
     }
 
-        .assignment-table-container .assignment-table-content .action-column .upload-answer {
-            cursor: pointer;
-        }
-
-        .assignment-table-container .assignment-table-content .action-column .upload-answer input {
-            display: none;
-        }
-
         .assignment-table-container .assignment-table-content .action-column .btn-download-answer {
-            color: darkgray;
-        }
-
-        .assignment-table-container .assignment-table-content .action-column .upload-answer {
             color: darkgray;
         }
 

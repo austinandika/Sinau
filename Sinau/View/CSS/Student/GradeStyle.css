@@ -25,6 +25,23 @@
     .title-container .title-name {
     }
 
+.grade-filter-container tr {
+    height: 40px;
+}
+
+    .grade-filter-container tr td:nth-child(odd) {
+        width: 120px;
+    }
+
+    .grade-filter-container tr td:nth-child(even) {
+        width: 200px;
+    }
+
+.grade-filter-container .ddl {
+    border-radius: 5px;
+    padding: 5px;
+}
+
 .score-table-container {
     margin-top: 20px;
 }

@@ -83,6 +83,7 @@
     <Content Include="View\CSS\Student\GradeStyle.css" />
     <Content Include="View\CSS\Student\MasterStyle.css" />
     <Content Include="View\CSS\Student\ScheduleStyle.css" />
+    <Content Include="View\CSS\Teacher\AssignmentStyle.css" />
     <Content Include="View\CSS\Teacher\DashboardStyle.css" />
     <Content Include="View\CSS\Teacher\GradeStyle.css" />
     <Content Include="View\CSS\Teacher\MasterStyle.css" />
@@ -92,6 +93,7 @@
     <Content Include="View\Login.aspx" />
     <Content Include="View\Student\Grade.aspx" />
     <Content Include="View\Student\Schedule.aspx" />
+    <Content Include="View\Teacher\Assignment.aspx" />
     <Content Include="View\Teacher\Dashboard.aspx" />
     <Content Include="View\Teacher\Grade.aspx" />
     <Content Include="View\Teacher\Schedule.aspx" />
@@ -147,6 +149,13 @@
     </Compile>
     <Compile Include="View\Student\Schedule.aspx.designer.cs">
       <DependentUpon>Schedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Teacher\Assignment.aspx.cs">
+      <DependentUpon>Assignment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Teacher\Assignment.aspx.designer.cs">
+      <DependentUpon>Assignment.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Teacher\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
