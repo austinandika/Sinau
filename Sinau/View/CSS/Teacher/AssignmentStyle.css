@@ -49,10 +49,8 @@
 
     .upper-container .edit-score-container .btn-add-assignment {
         padding: 10px 10px;
-        background-color: #5E3EC5;
         border: none;
         border-radius: 8px;
-        color: white;
         text-align: center;
         cursor: pointer;
     }

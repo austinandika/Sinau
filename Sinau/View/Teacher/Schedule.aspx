@@ -4,6 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../CSS/Teacher/ScheduleStyle.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/MainStyle.css" rel="stylesheet" type="text/css"/>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -78,7 +79,7 @@
                                 </td>
 
                                 <td>
-                                    <asp:Button Text="Join" runat="server" ID="btnJoinClass" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" ID="btnJoinClass" CssClass="join-class-button button-design" />
                                 </td>
 
                             </tr>
@@ -96,7 +97,7 @@
                                     <asp:Label ID="Label2" runat="server" Text="10:00-11:30"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
                                 </td>
                             </tr>
 
@@ -114,7 +115,7 @@
                                     <asp:Label ID="Label4" runat="server" Text="12:00-13:30"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
                                 </td>
 
                             </tr>
@@ -144,7 +145,7 @@
                                     <asp:Label ID="Label6" runat="server" Text="07:00-09:30"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
                                 </td>
 
                             </tr>
@@ -162,7 +163,7 @@
                                     <asp:Label ID="Label8" runat="server" Text="10:00-11:30"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
                                 </td>
                             </tr>
 
@@ -180,7 +181,7 @@
                                     <asp:Label ID="Label10" runat="server" Text="12:00-13:30"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
                                 </td>
 
                             </tr>
@@ -206,7 +207,7 @@
                                     <asp:Label ID="Label12" runat="server" Text="07:00-09:30"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
                                 </td>
 
                             </tr>
@@ -224,7 +225,7 @@
                                     <asp:Label ID="Label14" runat="server" Text="10:00-11:30"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
                                 </td>
                             </tr>
 
@@ -242,7 +243,7 @@
                                     <asp:Label ID="Label16" runat="server" Text="12:00-13:30"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
                                 </td>
 
                             </tr>
@@ -268,7 +269,7 @@
                                     <asp:Label ID="Label18" runat="server" Text="07:00-09:30"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
                                 </td>
 
                             </tr>
@@ -286,7 +287,7 @@
                                     <asp:Label ID="Label20" runat="server" Text="10:00-11:30"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
                                 </td>
                             </tr>
 
@@ -304,7 +305,7 @@
                                     <asp:Label ID="Label22" runat="server" Text="12:00-13:30"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
                                 </td>
 
                             </tr>
@@ -330,7 +331,7 @@
                                     <asp:Label ID="Label24" runat="server" Text="07:00-09:30"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
                                 </td>
 
                             </tr>
@@ -348,7 +349,7 @@
                                     <asp:Label ID="Label26" runat="server" Text="10:00-11:30"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
                                 </td>
                             </tr>
 
@@ -366,7 +367,7 @@
                                     <asp:Label ID="Label28" runat="server" Text="12:00-13:30"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
                                 </td>
 
                             </tr>

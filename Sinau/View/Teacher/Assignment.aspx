@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Teacher/Master.Master" AutoEventWireup="true" CodeBehind="Assignment.aspx.cs" Inherits="Sinau.View.Teacher.Assignment" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../CSS/Teacher/AssignmentStyle.css" rel="stylesheet" />
+    <link href="../CSS/MainStyle.css" rel="stylesheet" type="text/css"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
@@ -29,7 +30,7 @@
         </div>
 
         <div class="edit-score-container">
-            <asp:Button Text="Add Assignment" ID="btnAddAssignment" CssClass="btn-add-assignment" OnClick="btnAddAssignment_Click" runat="server" />
+            <asp:Button Text="Add Assignment" ID="btnAddAssignment" CssClass="btn-add-assignment button-design" OnClick="btnAddAssignment_Click" runat="server" />
         </div>
     </div>
     

@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Teacher/Master.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="Sinau.View.Teacher.Dashboard" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../CSS/Teacher/DashboardStyle.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/MainStyle.css" rel="stylesheet" type="text/css"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="greeting">
@@ -58,7 +59,7 @@
                                 </td>
 
                                 <td>
-                                    <asp:Button ID="btnViewAssignment" Text="View" runat="server" CssClass="view-assignment-button" />
+                                    <asp:Button ID="btnViewAssignment" Text="View" runat="server" CssClass="view-assignment-button button-design" />
                                 </td>
                             </tr>
 
@@ -83,7 +84,7 @@
                                 </td>
 
                                 <td>
-                                    <asp:Button ID="Button3" Text="View" runat="server" CssClass="view-assignment-button" />
+                                    <asp:Button ID="Button3" Text="View" runat="server" CssClass="view-assignment-button button-design" />
                                 </td>
                             </tr>
 
@@ -118,7 +119,7 @@
 
                             <tr>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" ID="btnJoinClass" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" ID="btnJoinClass" CssClass="join-class-button button-design" />
                                 </td>
                             </tr>
 
@@ -140,7 +141,7 @@
 
                             <tr>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" ID="Button2" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" ID="Button2" CssClass="join-class-button button-design" />
                                 </td>
                             </tr>
 
@@ -161,7 +162,7 @@
 
                             <tr>
                                 <td>
-                                    <asp:Button Text="Join" runat="server" ID="Button1" CssClass="join-class-button" />
+                                    <asp:Button Text="Join" runat="server" ID="Button1" CssClass="join-class-button button-design" />
                                 </td>
                             </tr>
                         </table>

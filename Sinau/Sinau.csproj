@@ -77,6 +77,7 @@
     <Content Include="View\Assets\Test-Banner2.png" />
     <Content Include="View\Assets\Test-Banner.jpg" />
     <Content Include="View\CSS\ActivationFormStyle.css" />
+    <Content Include="View\CSS\MainStyle.css" />
     <Content Include="View\CSS\Student\AssignmentStyle.css" />
     <Content Include="View\CSS\Student\DashboardStyle.css" />
     <Content Include="View\CSS\LoginStyle.css" />

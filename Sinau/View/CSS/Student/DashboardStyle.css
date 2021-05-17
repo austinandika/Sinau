@@ -159,10 +159,7 @@ body {
 
                     .content .left-content .upcoming-assignment-container .inside-container .assignment-table-container .view-assignment-button {
                         padding: 5px 10px;
-                        background-color: #5E3EC5;
-                        border: none;
                         border-radius: 8px;
-                        color: white;
                         text-align: center;
                         cursor: pointer;
                     }
@@ -217,10 +214,7 @@ body {
 
                     .content .right-content .upcoming-course-container .inside-container .course-table-container .join-class-button {
                         padding: 5px 10px;
-                        background-color: #5E3EC5;
-                        border: none;
                         border-radius: 8px;
-                        color: white;
                         text-align: center;
                         cursor: pointer;
                     }
