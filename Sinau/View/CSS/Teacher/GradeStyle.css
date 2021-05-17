@@ -32,16 +32,16 @@
 }
 
     .upper-container tr {
-       height: 40px;
+        height: 40px;
     }
 
-    .upper-container tr td:nth-child(odd) {
-        width: 120px;
-    }
+        .upper-container tr td:nth-child(odd) {
+            width: 120px;
+        }
 
-    .upper-container tr td:nth-child(even) {
-        width: 200px;
-    }
+        .upper-container tr td:nth-child(even) {
+            width: 200px;
+        }
 
     .upper-container .ddl {
         border-radius: 5px;
@@ -55,6 +55,15 @@
         text-align: center;
         cursor: pointer;
     }
+
+    .upper-container .edit-score-container #ContentPlaceHolder1_btnCancel {
+        background-color: gray;
+        margin-right: 5px;
+    }
+
+        .upper-container .edit-score-container #ContentPlaceHolder1_btnCancel:hover {
+            background-color: dimgray;
+        }
 
     .upper-container .edit-score-container .hide-button {
         display: none;
