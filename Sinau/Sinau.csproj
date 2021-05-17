@@ -84,7 +84,7 @@
     <Content Include="View\CSS\Student\GradeStyle.css" />
     <Content Include="View\CSS\Student\MasterStyle.css" />
     <Content Include="View\CSS\Student\ScheduleStyle.css" />
-    <Content Include="View\CSS\SuccessfullyRegisteredStyle.css" />
+    <Content Include="View\CSS\SuccessfullyActivatedStyle.css" />
     <Content Include="View\CSS\Teacher\AssignmentStyle.css" />
     <Content Include="View\CSS\Teacher\DashboardStyle.css" />
     <Content Include="View\CSS\Teacher\GradeStyle.css" />

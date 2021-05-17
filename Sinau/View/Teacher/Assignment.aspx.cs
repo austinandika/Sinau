@@ -13,10 +13,5 @@ namespace Sinau.View.Teacher
         {
 
         }
-
-        protected void btnAddAssignment_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -1,10 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Teacher/Master.Master" AutoEventWireup="true" CodeBehind="Assignment.aspx.cs" Inherits="Sinau.View.Teacher.Assignment" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="AjaxControlToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../CSS/Teacher/AssignmentStyle.css" rel="stylesheet" />
-    <link href="../CSS/MainStyle.css" rel="stylesheet" type="text/css"/>
+    <link href="../CSS/MainStyle.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+
     <div class="title-container">
         <div class="vertical-line">
         </div>
@@ -18,6 +22,16 @@
         <div class="assignment-filter-container">
             <table>
                 <tr>
+                    <td>Class</td>
+                    <td>
+                        <asp:DropDownList runat="server" ID="ddlClass" CssClass="ddl">
+                            <asp:ListItem Text="All" />
+                            <asp:ListItem Text="XII MIPA 1" />
+                            <asp:ListItem Text="XI MIPA 2" />
+                            <asp:ListItem Text="XI MIPA 3" />
+                        </asp:DropDownList>
+                    </td>
+
                     <td>Subject</td>
                     <td>
                         <asp:DropDownList runat="server" ID="ddlSubjectFilter" CssClass="ddl">
@@ -30,10 +44,10 @@
         </div>
 
         <div class="edit-score-container">
-            <asp:Button Text="Add Assignment" ID="btnAddAssignment" CssClass="btn-add-assignment button-design" OnClick="btnAddAssignment_Click" runat="server" />
+            <asp:Button Text="Add Assignment" ID="btnAddAssignment" CssClass="btn-add-assignment button-design" OnClientClick="return false;" runat="server" />
         </div>
     </div>
-    
+
 
     <div class="assignment-table-container">
         <div class="assignment-table-header">
@@ -167,4 +181,131 @@
         </div>
     </div>
 
+
+    <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="pnlAddAssignment" TargetControlID="btnAddAssignment"
+        CancelControlID="btnCancel" BackgroundCssClass="popup-background">
+    </cc1:ModalPopupExtender>
+
+    <asp:Panel ID="pnlAddAssignment" runat="server" align="center" Style="display: none">
+        <div class="popup-container">
+            <div class="user-input">
+                <div class="title">
+                    <h1>Add Assignment</h1>
+                </div>
+
+                <div class="form-table">
+                    <div class="row">
+                        <div class="input-command">
+                            <asp:Label Text="Class" runat="server" ID="lblClass" />
+                        </div>
+
+                        <div class="input-error-box">
+                            <div class="input-box">
+                                <asp:DropDownList runat="server" ID="DropDownList1" CssClass="ddl">
+                                    <asp:ListItem Text="XII MIPA 1" />
+                                    <asp:ListItem Text="XI MIPA 2" />
+                                    <asp:ListItem Text="XI MIPA 1" />
+                                </asp:DropDownList>
+                            </div>
+
+                            <div class="error-box">
+                                <asp:Label Text="" runat="server" ID="lblErrorClass" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-command">
+                            <asp:Label Text="Subject" runat="server" ID="Label5" />
+                        </div>
+
+                        <div class="input-error-box">
+                            <div class="input-box">
+                                <asp:DropDownList runat="server" ID="ddlSubject" CssClass="ddl">
+                                    <asp:ListItem Text="Biology" />
+                                </asp:DropDownList>
+                            </div>
+
+                            <div class="error-box">
+                                <asp:Label Text="" runat="server" ID="lblErrorSubject" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-command">
+                            <asp:Label Text="Assignment Title" runat="server" ID="Label11" />
+                        </div>
+
+                        <div class="input-error-box">
+                            <div class="input-box">
+                                <asp:TextBox ID="txtAssignmentTitle" CssClass="textbox" runat="server"></asp:TextBox>
+                            </div>
+
+                            <div class="error-box">
+                                <asp:Label Text="" runat="server" ID="lblErrorAssignmentTitle" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-command">
+                            <asp:Label Text="Assign Date" runat="server" ID="Label13" />
+                        </div>
+
+                        <div class="input-error-box">
+                            <div class="input-box">
+                                <asp:TextBox ID="txtAssignDate" CssClass="textbox" runat="server" placeholder="dd/MM/yyyy"></asp:TextBox>
+                                <AjaxControlToolkit:CalendarExtender runat="server" ID="ajCalendarAssignDate" PopupButtonID="txtAssignDate" TargetControlID="txtAssignDate" Format="dd/MM/yyyy"></AjaxControlToolkit:CalendarExtender>
+                            </div>
+
+                            <div class="error-box">
+                                <asp:Label Text="" runat="server" ID="lblErrorAssignDate" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-command">
+                            <asp:Label Text="Due Date" runat="server" ID="Label14" />
+                        </div>
+
+                        <div class="input-error-box">
+                            <div class="input-box">
+                                <asp:TextBox ID="txtDueDate" CssClass="textbox" runat="server" placeholder="dd/MM/yyyy"></asp:TextBox>
+                                <AjaxControlToolkit:CalendarExtender runat="server" ID="ajCalendarDueDate" PopupButtonID="txtDueDate" TargetControlID="txtDueDate" Format="dd/MM/yyyy"></AjaxControlToolkit:CalendarExtender>
+                            </div>
+
+                            <div class="error-box">
+                                <asp:Label Text="" runat="server" ID="lblErrorDueDate" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-command">
+                            <asp:Label Text="Add File" runat="server" ID="lblQuestionFile" />
+                        </div>
+
+                        <div class="input-error-box">
+                            <div class="input-box">
+                                <asp:FileUpload ID="fuQuestionFile" runat="server" />
+                            </div>
+
+                            <div class="error-box">
+                                <asp:Label Text="" runat="server" ID="lblErrorQuestionFile" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <asp:Button Text="Cancel" runat="server" ID="btnCancel" CssClass="button-create button-design" />
+                    <asp:Button Text="Create" runat="server" ID="btnCreate" CssClass="button-create button-design" />
+                </div>
+            </div>
+
+
+        </div>
+    </asp:Panel>
 </asp:Content>
