@@ -3,6 +3,17 @@
     src: local('Righteous-Regular'),url('../Assets/Font/Righteous-Regular.ttf') format('truetype');
 }
 
+@keyframes shakeAnim {
+    0% {left: 0}
+    1% {left: -3px}
+    2% {left: 5px}
+    3% {left: -8px}
+    4% {left: 8px}
+    5% {left: -5px}
+    6% {left: 3px}
+    7% {left: 0}
+}
+
 * {
     font-family: Righteous;
     box-sizing: border-box;
@@ -15,20 +26,19 @@ body {
 }
 
 .wrapper {
-    height: 100vh; /*100% view port*/
+    min-height: 100vh; /*100% view port*/
 
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
 }
 
 .container {
-    width: 370px;
-    height: 500px;
+    width: 400px;
+    height: fit-content();
     background-color: white;
     padding-top: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
     border-radius: 10px;
 }
 
@@ -41,6 +51,18 @@ body {
         width: 80%;
         margin: auto;
     }
+
+        .container .user-input .error-container {
+            margin-top: 5px;
+            font-size: smaller;
+            color: red;
+        }
+
+        .container .user-input .textbox.error {
+            transition: 0.3s;
+            border-bottom: 2px solid red;
+            background-color: lightpink;
+        }
 
         .container .user-input .input-command {
             padding-top: 30px;
@@ -76,7 +98,15 @@ body {
             background-color: #5E3EC5;
             transition: 1s;
             cursor: pointer;
+            position: relative;
         }
+
+            .container .login-button .button.error {
+                animation-name: shakeAnim;
+                animation-duration: 5s;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-in;
+            }
 
             .container .login-button .button:hover {
                 transition: 1s;

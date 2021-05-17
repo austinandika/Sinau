@@ -13,5 +13,20 @@ namespace Sinau.View
         {
 
         }
+
+        protected void btnValidate_Click(object sender, EventArgs e)
+        {
+            activationContainer.Style.Add("display", "block");
+            btnValidate.Style.Add("display", "none");
+            txtUserID.ReadOnly = true;
+            txtUserID.CssClass += " read-only";
+            txtActivationCode.ReadOnly = true;
+            txtActivationCode.CssClass += " read-only";
+        }
+
+        protected void btnActivate_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SuccessfullyActivated.aspx");
+        }
     }
 }

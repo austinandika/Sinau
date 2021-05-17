@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Sinau.View
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class SuccessfullyActivated : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -16,7 +16,7 @@ namespace Sinau.View
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Student/Dashboard.aspx");
+            Response.Redirect("Login.aspx");
         }
     }
 }

@@ -1,0 +1,90 @@
+﻿@font-face {
+    font-family: 'Righteous';
+    src: local('Righteous-Regular'),url('../Assets/Font/Righteous-Regular.ttf') format('truetype');
+}
+
+* {
+    font-family: Righteous;
+    box-sizing: border-box;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+body {
+    background-image: linear-gradient(to right top, #0066e6, #285fe1, #3a58db, #4751d5, #5249ce, #7143c8, #8a3cc1, #9e34b9, #c02eac, #db2e9e, #f03790, #ff4781);
+    margin: 0;
+    padding: 0;
+    animation-duration: 1s;
+    transition-timing-function: ease-in;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
+}
+
+.wrapper {
+    min-height: 100vh; /*100% view port*/
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 400px;
+    height: fit-content();
+    background-color: white;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 10px;
+}
+
+    .container .icon-success {
+        text-align: center;
+    }
+
+        .container .icon-success i {
+            font-size: 100px;
+            color: green;
+        }
+
+    .container .title h1 {
+        font-size: 20px;
+        color: black;
+        text-align: center;
+    }
+
+    .container .description {
+        font-size: 15px;
+        text-align: center;
+        color: black;
+    }
+
+    .container .login-button {
+        text-align: center;
+        padding-top: 20px;
+    }
+
+        .container .login-button .button {
+            font-size: 20px;
+            height: 40px;
+            width: 100px;
+            border-radius: 20px;
+            border: none;
+            color: white;
+            background-color: #5E3EC5;
+            transition: 1s;
+            cursor: pointer;
+            position: relative;
+        }
+
+            .container .login-button .button:hover {
+                transition: 1s;
+                background-color: #CE2BA9;
+            }

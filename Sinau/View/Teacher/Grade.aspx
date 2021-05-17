@@ -2,8 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../CSS/Teacher/GradeStyle.css" rel="stylesheet" />
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
+
     <div class="title-container">
         <div class="vertical-line">
         </div>
@@ -55,7 +58,7 @@
         </div>
 
         <div class="edit-score-container">
-            <asp:Button Text="Edit Score" ID="btnEdit" CssClass="btn-modify-score" OnClick="btnEdit_Click" runat="server" />
+            <asp:Button Text="Edit Score" ID="btnEdit" CssClass="btn-modify-score"  OnClientClick="return editScoreMode();" runat="server" />
             <asp:Button Text="Submit Changes" ID="btnSubmit" CssClass="btn-modify-score hide-button" OnClick="btnSubmit_Click" runat="server" />
         </div>
     </div>
@@ -561,4 +564,7 @@
 
         </table>
     </div>
+
+    <script src="../Javascript/Teacher/Grade-TableModification.js"></script>
+    
 </asp:Content>

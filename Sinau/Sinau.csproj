@@ -83,16 +83,22 @@
     <Content Include="View\CSS\Student\GradeStyle.css" />
     <Content Include="View\CSS\Student\MasterStyle.css" />
     <Content Include="View\CSS\Student\ScheduleStyle.css" />
+    <Content Include="View\CSS\SuccessfullyRegisteredStyle.css" />
     <Content Include="View\CSS\Teacher\AssignmentStyle.css" />
     <Content Include="View\CSS\Teacher\DashboardStyle.css" />
     <Content Include="View\CSS\Teacher\GradeStyle.css" />
     <Content Include="View\CSS\Teacher\MasterStyle.css" />
     <Content Include="View\CSS\Teacher\ScheduleStyle.css" />
+    <Content Include="View\Javascript\ActivationForm-Validation.js" />
+    <Content Include="View\Javascript\Dashboard-Slideshow.js" />
+    <Content Include="View\Javascript\Login-Validation.js" />
+    <Content Include="View\Javascript\Teacher\Grade-TableModification.js" />
     <Content Include="View\Student\Assignment.aspx" />
     <Content Include="View\Student\Dashboard.aspx" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\Student\Grade.aspx" />
     <Content Include="View\Student\Schedule.aspx" />
+    <Content Include="View\SuccessfullyActivated.aspx" />
     <Content Include="View\Teacher\Assignment.aspx" />
     <Content Include="View\Teacher\Dashboard.aspx" />
     <Content Include="View\Teacher\Grade.aspx" />
@@ -150,6 +156,13 @@
     <Compile Include="View\Student\Schedule.aspx.designer.cs">
       <DependentUpon>Schedule.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\SuccessfullyActivated.aspx.cs">
+      <DependentUpon>SuccessfullyActivated.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\SuccessfullyActivated.aspx.designer.cs">
+      <DependentUpon>SuccessfullyActivated.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\Teacher\Assignment.aspx.cs">
       <DependentUpon>Assignment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -203,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="View\Javascript\Student\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

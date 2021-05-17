@@ -81,7 +81,7 @@
                         <div class="profile-dropdown-content" id="profile-dropdown">
                             <ul>
                                 <li>
-                                    <asp:Button Text="LOGOUT" ID="btnLogout" runat="server" />
+                                    <asp:Button Text="LOGOUT" ID="btnLogout" runat="server" OnClick="btnLogout_Click" />
                                 </li>
                             </ul>
                         </div>

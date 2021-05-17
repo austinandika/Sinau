@@ -42,6 +42,15 @@ namespace Sinau.View
         protected global::System.Web.UI.WebControls.TextBox txtUserID;
 
         /// <summary>
+        /// lblErrorID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorID;
+
+        /// <summary>
         /// lblActivationCode control.
         /// </summary>
         /// <remarks>
@@ -60,6 +69,15 @@ namespace Sinau.View
         protected global::System.Web.UI.WebControls.TextBox txtActivationCode;
 
         /// <summary>
+        /// lblErrorActivationCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorActivationCode;
+
+        /// <summary>
         /// btnValidate control.
         /// </summary>
         /// <remarks>
@@ -67,6 +85,15 @@ namespace Sinau.View
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnValidate;
+
+        /// <summary>
+        /// activationContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl activationContainer;
 
         /// <summary>
         /// lblFullName control.
@@ -105,6 +132,15 @@ namespace Sinau.View
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
+        /// lblErrorEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorEmail;
+
+        /// <summary>
         /// lblPassword control.
         /// </summary>
         /// <remarks>
@@ -121,6 +157,15 @@ namespace Sinau.View
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
+
+        /// <summary>
+        /// lblErrorPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorPassword;
 
         /// <summary>
         /// lblConfirmPassword control.
@@ -141,12 +186,21 @@ namespace Sinau.View
         protected global::System.Web.UI.WebControls.TextBox TxtConfirmPassword;
 
         /// <summary>
-        /// btnLogin control.
+        /// lblErrorConfirmPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogin;
+        protected global::System.Web.UI.WebControls.Label lblErrorConfirmPassword;
+
+        /// <summary>
+        /// btnActivate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnActivate;
     }
 }

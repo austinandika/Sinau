@@ -3,6 +3,17 @@
     src: local('Righteous-Regular'),url('../Assets/Font/Righteous-Regular.ttf') format('truetype');
 }
 
+@keyframes shakeAnim {
+    0% {left: 0}
+    1% {left: -3px}
+    2% {left: 5px}
+    3% {left: -8px}
+    4% {left: 8px}
+    5% {left: -5px}
+    6% {left: 3px}
+    7% {left: 0}
+}
+
 * {
     font-family: Righteous;
     box-sizing: border-box;
@@ -15,10 +26,10 @@ body {
 }
 
 .wrapper {
-    /*height: 100vh;*/  /*100% view port*/
-    margin-top: 50px;
-    margin-bottom: 50px;
-
+    /*height: 100vh;*/ /*100% view port*/
+    min-height: 100vh;
+    padding-top: 50px;
+    padding-bottom: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,10 +37,10 @@ body {
 
 .container {
     width: 400px;
-    height: 900px;
+    height: fit-content();
     background-color: white;
     padding-top: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
     border-radius: 10px;
 }
 
@@ -43,6 +54,10 @@ body {
         margin: auto;
     }
 
+    .container .user-input .activation-container {
+        display: none;
+    }
+
         .container .user-input .input-command {
             padding-top: 30px;
             color: black;
@@ -54,6 +69,24 @@ body {
             border: none;
             border-bottom: 2px solid;
             border-bottom-color: gray;
+        }
+
+        .container .user-input .textbox.read-only {
+            background-color: lightgray;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .container .user-input .error-container {
+            margin-top: 5px;
+            font-size: smaller;
+            color: red;
+        }
+
+        .container .user-input .textbox.error {
+            transition: 0.3s;
+            border-bottom: 2px solid red;
+            background-color: lightpink;
         }
 
     .container .activate-button {
@@ -71,11 +104,19 @@ body {
             background-color: #5E3EC5;
             transition: 1s;
             cursor: pointer;
+            position: relative;
         }
 
             .container .activate-button .button:hover {
                 transition: 1s;
                 background-color: #CE2BA9;
+            }
+
+            .container .activate-button .button.error {
+                animation-name: shakeAnim;
+                animation-duration: 5s;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-in;
             }
 
     .container .login-account {
@@ -89,7 +130,6 @@ body {
         }
 
     .container .validate-button {
-        padding-top: 40px;
         text-align: center;
     }
 
@@ -103,6 +143,8 @@ body {
     background-color: #5E3EC5;
     transition: 1s;
     cursor: pointer;
+    position: relative;
+    margin-top: 40px;
 }
 
     #btnValidate:hover {
@@ -110,10 +152,16 @@ body {
         background-color: #CE2BA9;
     }
 
+.validate-button .button.error {
+    animation-name: shakeAnim;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+}
+
 
 #txtFullName {
     background-color: lightgray;
-
     border: none;
     border-radius: 8px;
 }
