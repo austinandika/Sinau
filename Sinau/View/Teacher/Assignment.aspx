@@ -181,7 +181,7 @@
         </div>
     </div>
 
-
+    <%-- POPUP ADD ASSIGNMENT --%>
     <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="pnlAddAssignment" TargetControlID="btnAddAssignment"
         CancelControlID="btnCancel" BackgroundCssClass="popup-background">
     </cc1:ModalPopupExtender>
@@ -191,6 +191,10 @@
             <div class="user-input">
                 <div class="title">
                     <h1>Add Assignment</h1>
+                </div>
+
+                <div class="error-server-container">
+                    <asp:Label Text="" runat="server" ID="lblErrorServer" />
                 </div>
 
                 <div class="form-table">
@@ -301,11 +305,13 @@
 
                 <div class="button-container">
                     <asp:Button Text="Cancel" runat="server" ID="btnCancel" CssClass="button-create button-design" />
-                    <asp:Button Text="Create" runat="server" ID="btnCreate" CssClass="button-create button-design" />
+                    <asp:Button Text="Create" runat="server" ID="btnCreate" CssClass="button-create button-design" OnClientClick="return validateCreateAssignment();"/>
                 </div>
             </div>
 
 
         </div>
     </asp:Panel>
+
+    <script src="../Javascript/Teacher/Assignment-AddAssignmentValidation.js"></script>
 </asp:Content>

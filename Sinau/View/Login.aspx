@@ -20,6 +20,10 @@
                         LOGIN
                     </div>
 
+                    <div class="error-server-container">
+                        <asp:Label Text="" runat="server" ID="lblErrorServer" />
+                    </div>
+
                     <div class="row">
                         <div class="input-command">
                             <asp:Label Text="Email" runat="server" ID="lblEmail" />

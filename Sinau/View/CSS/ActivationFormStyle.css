@@ -54,6 +54,24 @@ body {
         margin: auto;
     }
 
+        .container .user-input .error-server-container {
+            width: 100%;
+            height: fit-content();
+            padding: 10px 10px;
+            margin-top: 30px;
+            border: 2px solid lightpink;
+            border-radius: 8px;
+            background-color: #F8D7DA;
+            color: darkred;
+            font-size: 14px;
+            display: none;
+            text-align: left;
+        }
+
+            .container .user-input .error-server-container.active {
+                display: block;
+            }
+
     .container .user-input .activation-container {
         display: none;
     }
@@ -86,7 +104,7 @@ body {
         .container .user-input .textbox.error {
             transition: 0.3s;
             border-bottom: 2px solid red;
-            background-color: lightpink;
+            background-color: #F8D7DA;
         }
 
     .container .activate-button {

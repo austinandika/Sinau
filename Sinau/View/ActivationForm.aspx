@@ -24,6 +24,10 @@
                         ACTIVATION FORM
                     </div>
 
+                    <div class="error-server-container">
+                        <asp:Label Text="" runat="server" ID="lblErrorServer" />
+                    </div>
+
                     <div class="validation-container">
                         <div class="row">
                             <div class="input-command">

@@ -93,6 +93,7 @@
     <Content Include="View\Javascript\ActivationForm-Validation.js" />
     <Content Include="View\Javascript\Dashboard-Slideshow.js" />
     <Content Include="View\Javascript\Login-Validation.js" />
+    <Content Include="View\Javascript\Teacher\Assignment-AddAssignmentValidation.js" />
     <Content Include="View\Javascript\Teacher\Grade-TableModification.js" />
     <Content Include="View\Student\Assignment.aspx" />
     <Content Include="View\Student\Dashboard.aspx" />

@@ -1,6 +1,40 @@
 ﻿body {
 }
 
+@keyframes shakeAnim {
+    0% {
+        left: 0
+    }
+
+    1% {
+        left: -3px
+    }
+
+    2% {
+        left: 5px
+    }
+
+    3% {
+        left: -8px
+    }
+
+    4% {
+        left: 8px
+    }
+
+    5% {
+        left: -5px
+    }
+
+    6% {
+        left: 3px
+    }
+
+    7% {
+        left: 0
+    }
+}
+
 /* Menu */
 #navbar-assignment {
     background-color: white;
@@ -161,6 +195,25 @@
             text-align: center;
         }
 
+    .user-input .error-server-container {
+        width: 70%;
+        height: fit-content();
+        padding: 10px 10px;
+        margin-top: 10px;
+        margin-bottom: 30px;
+        border: 2px solid lightpink;
+        border-radius: 8px;
+        background-color: #F8D7DA;
+        color: darkred;
+        font-size: 14px;
+        display: none;
+        text-align: left;
+    }
+
+        .user-input .error-server-container.active {
+            display: block;
+        }
+
     .user-input .form-table {
         width: 95%;
         margin: auto;
@@ -191,6 +244,12 @@
                 border: 2px solid gray;
             }
 
+                .user-input .form-table .row .input-box .textbox.error {
+                    transition: 0.3s;
+                    border: 2px solid red;
+                    background-color: #F8D7DA;
+                }
+
 ::placeholder {
     color: lightgray;
     font-size: smaller;
@@ -212,7 +271,13 @@
         margin-top: 5px;
         font-size: smaller;
         color: red;
+        text-align: left;
+        width: 200px;
     }
+
+.ajax__calendar_container {
+    z-index: 10000;
+}
 
 .button-container {
     display: flex;
@@ -228,10 +293,18 @@
         cursor: pointer;
         margin-left: 10px;
         margin-right: 10px;
+        position: relative;
     }
 
     .button-container #ContentPlaceHolder1_btnCreate {
         width: 70px;
+    }
+
+    .button-container .button-create.error {
+        animation-name: shakeAnim;
+        animation-duration: 5s;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in;
     }
 
     .button-container #ContentPlaceHolder1_btnCancel {
