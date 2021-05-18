@@ -16,7 +16,7 @@ namespace Sinau.View
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Student/Dashboard.aspx");
+            Response.Redirect("~/View/Student/Dashboard.aspx");
         }
     }
 }

@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Login - SINAU</title>
     <link href="CSS/LoginStyle.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -60,6 +60,11 @@
 
                 <div class="activate-account">
                     Haven't activate your account? <a href="ActivationForm.aspx">Activate Now</a>
+                </div>
+
+                <%-- TEMPORARY (REDIRECT TO TEACHER PAGE) --%>
+                <div class="activate-account" id="temporaryMenu">
+                    TEMPORARY MENU (ONLY FOR DEVELOPMENT) <br /> -> <a href="Teacher/Dashboard.aspx">LOGIN AS TEACHER HERE</a> <-
                 </div>
             </div>
         </div>

@@ -26,7 +26,7 @@ namespace Sinau.View
 
         protected void btnActivate_Click(object sender, EventArgs e)
         {
-            Response.Redirect("SuccessfullyActivated.aspx");
+            Response.Redirect("~/View/SuccessfullyActivated.aspx");
         }
     }
 }

@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Activate Account - SINAU</title>
 
     <link href="CSS/ActivationFormStyle.css" rel="stylesheet" type="text/css" />
     <script src="Javascript/jquery-3.5.1.min.js"></script>
