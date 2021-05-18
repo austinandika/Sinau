@@ -6,6 +6,7 @@
 <head runat="server">
     <title>Login - SINAU</title>
     <link href="CSS/LoginStyle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -30,7 +31,7 @@
                         </div>
 
                         <div class="input-box">
-                            <asp:TextBox ID="txtEmail" runat="server" CssClass="textbox" placeholder="&#xf007;&nbsp;&nbsp;&nbsp;Type your email"></asp:TextBox>
+                            <asp:TextBox ID="txtEmail" runat="server" CssClass="textbox" Style="font-family: FontAwesome;" placeholder="&#xf007;&nbsp;&nbsp;&nbsp;Type your email"></asp:TextBox>
                         </div>
 
                         <div class="error-container">
@@ -44,7 +45,7 @@
                         </div>
 
                         <div class="input-box">
-                            <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" CssClass="textbox" placeholder="&#xf023;&nbsp;&nbsp;&nbsp;Type your password"></asp:TextBox>
+                            <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" Style="font-family: FontAwesome;" CssClass="textbox" placeholder="&#xf023;&nbsp;&nbsp;&nbsp;Type your password"></asp:TextBox>
                         </div>
 
                         <div class="error-container">
@@ -52,19 +53,23 @@
                         </div>
                     </div>
 
-                </div>
 
-                <div class="login-button">
-                    <asp:Button Text="Login" runat="server" ID="btnLogin" CssClass="button" OnClientClick="return validateLogin();" OnClick="btnLogin_Click" />
-                </div>
 
-                <div class="activate-account">
-                    Haven't activate your account? <a href="ActivationForm.aspx">Activate Now</a>
-                </div>
+                    <div class="login-button">
+                        <asp:Button Text="Login" runat="server" ID="btnLogin" CssClass="button" OnClientClick="return validateLogin();" OnClick="btnLogin_Click" />
+                    </div>
 
-                <%-- TEMPORARY (REDIRECT TO TEACHER PAGE) --%>
-                <div class="activate-account" id="temporaryMenu">
-                    TEMPORARY MENU (ONLY FOR DEVELOPMENT) <br /> -> <a href="Teacher/Dashboard.aspx">LOGIN AS TEACHER HERE</a> <-
+                    <div class="activate-account">
+                        Haven't activate your account? <a href="ActivationForm.aspx">Activate Now</a>
+                    </div>
+
+                    <%-- TEMPORARY (REDIRECT TO TEACHER PAGE) --%>
+                    <div class="activate-account" id="temporaryMenu">
+                        TEMPORARY MENU (ONLY FOR DEVELOPMENT)
+                        <br />
+                        -> <a href="Teacher/Dashboard.aspx">LOGIN AS TEACHER HERE</a> <-
+                    </div>
+
                 </div>
             </div>
         </div>

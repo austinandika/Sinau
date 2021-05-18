@@ -120,11 +120,10 @@
                         </div>
                     </div>
 
-                </div>
+                    <div class="login-account">
+                        Already activate your account? <a href="Login.aspx">Login</a>
+                    </div>
 
-
-                <div class="login-account">
-                    Already activate your account? <a href="Login.aspx">Login</a>
                 </div>
             </div>
         </div>
