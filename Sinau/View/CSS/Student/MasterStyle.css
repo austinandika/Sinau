@@ -99,6 +99,7 @@ body {
 
         .head-container .right-container .notification-container {
             margin-right: 40px;
+            position: relative;
         }
 
             .head-container .right-container .notification-container .notification {
@@ -111,6 +112,37 @@ body {
                     font-size: 20px;
                     color: black;
                 }
+
+            .head-container .right-container .notification-container .notification-dropdown-content {
+                font-size: smaller;
+            }
+
+                .head-container .right-container .notification-container .notification-dropdown-content .no-notification {
+                    display: none;
+                    text-align: center;
+                    margin: 20px 0;
+                }
+
+                .head-container .right-container .notification-container .notification-dropdown-content .new-notification {
+                    display: block;
+                    text-align: left;
+                }
+
+                    .head-container .right-container .notification-container .notification-dropdown-content .new-notification .user-notification {
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                        border-bottom: 1px solid black;
+                    }
+
+                        .head-container .right-container .notification-container .notification-dropdown-content .new-notification .user-notification .notification-description a {
+                            color: black;
+                        }
+
+                        .head-container .right-container .notification-container .notification-dropdown-content .new-notification .user-notification .notification-time {
+                            color: gray;
+                            margin-top: 3px;
+                            font-size: 12px;
+                        }
 
 
         .head-container .right-container .profile-container {
@@ -157,48 +189,82 @@ body {
                         font-weight: bold;
                     }
 
-            /* Second Level Menu (dropdown) */
-            .head-container .right-container .profile-container .profile-dropdown-content {
-                display: none;
-                position: absolute;
+        /* Notification Second Level Menu (dropdown) */
+        .head-container .right-container .notification-container .notification-dropdown-content {
+            display: none;
+            position: absolute;
+            list-style: none;
+            width: 300px;
+            background-color: #F1F1F1;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            top: 48px;
+            right: -7px;
+            z-index: 99999;
+        }
+
+            .head-container .right-container .notification-container .notification-dropdown-content ul {
+                display: table;
                 list-style: none;
-                min-width: 80%;
-                background-color: #F1F1F1;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                top: 48px;
-                right: 20px;
+                margin: 0;
+                padding: 12px 16px;
+                text-align: left;
             }
 
-                .head-container .right-container .profile-container .profile-dropdown-content ul {
-                    list-style: none;
-                    margin: 0;
-                    padding: 12px 16px;
-                    text-align: center;
+            .head-container .right-container .notification-container .notification-dropdown-content:before {
+                content: "";
+                position: absolute;
+                top: -20px;
+                right: 15px;
+                border: 10px solid;
+                border-color: transparent transparent #F1F1F1 transparent;
+            }
+
+            .head-container .right-container .notification-container .notification-dropdown-content.show-dropdown {
+                display: block;
+            }
+
+        /* Profile Second Level Menu (dropdown) */
+        .head-container .right-container .profile-container .profile-dropdown-content {
+            display: none;
+            position: absolute;
+            list-style: none;
+            min-width: 80%;
+            background-color: #F1F1F1;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            top: 48px;
+            right: 20px;
+        }
+
+            .head-container .right-container .profile-container .profile-dropdown-content ul {
+                list-style: none;
+                margin: 0;
+                padding: 12px 16px;
+                text-align: center;
+            }
+
+                .head-container .right-container .profile-container .profile-dropdown-content ul #btnLogout {
+                    height: 35px;
+                    width: 100%;
+                    border: none;
+                    color: white;
+                    background-color: #5E3EC5;
+                    transition: 1s;
                 }
 
-                    .head-container .right-container .profile-container .profile-dropdown-content ul #btnLogout {
-                        height: 35px;
-                        width: 100%;
-                        border: none;
-                        color: white;
-                        background-color: #5E3EC5;
+                    .head-container .right-container .profile-container .profile-dropdown-content ul #btnLogout:hover {
                         transition: 1s;
+                        background-color: #CE2BA9;
+                        cursor: pointer;
                     }
 
-                        .head-container .right-container .profile-container .profile-dropdown-content ul #btnLogout:hover {
-                            transition: 1s;
-                            background-color: #CE2BA9;
-                            cursor: pointer;
-                        }
-
-                .head-container .right-container .profile-container .profile-dropdown-content:before {
-                    content: "";
-                    position: absolute;
-                    top: -20px;
-                    right: 15px;
-                    border: 10px solid;
-                    border-color: transparent transparent #F1F1F1 transparent;
-                }
+            .head-container .right-container .profile-container .profile-dropdown-content:before {
+                content: "";
+                position: absolute;
+                top: -20px;
+                right: 15px;
+                border: 10px solid;
+                border-color: transparent transparent #F1F1F1 transparent;
+            }
 
             .head-container .right-container .profile-container .profile-dropdown-content.show-dropdown {
                 display: block;

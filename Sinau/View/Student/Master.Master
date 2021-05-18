@@ -49,27 +49,60 @@
                 <div class="right-container">
 
                     <div class="notification-container">
-                        <asp:LinkButton ID="btnNotif" runat="server" CssClass="link-button">
+                        <asp:LinkButton ID="btnNotif" runat="server" CssClass="link-button" OnClientClick="dropNotificationBtn(); return false;">
                             <div class="notification">
                                 <i class="fa fa-bell-o" aria-hidden="true"></i>
                             </div>
                         </asp:LinkButton>
+
+                        <div class="notification-dropdown-content" id="notification-dropdown">
+                            <div class="no-notification">
+                                No New Notification
+                            </div>
+
+                            <ul class="new-notification">
+                                <li>
+                                    <div class="user-notification">
+                                        <div class="notification-description">
+                                            <a href="#">New Assignment: Biology - Cell and Molecular Concept</a>
+                                        </div>
+
+                                        <div class="notification-time">
+                                            <asp:Label Text="May 18, 2021 (13:51)" runat="server" />
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="user-notification">
+                                        <div class="notification-description">
+                                            <a href="#">New Assignment: Biology - Human Body Anatomy</a>
+                                        </div>
+
+                                        <div class="notification-time">
+                                            <asp:Label Text="May 19, 2021 (10:01)" runat="server" />
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
 
                     <div class="profile-container">
 
-                        <div class="profile" id="profile" onclick="dropBtn()">
+                        <div class="profile" id="profile" onclick="dropProfileBtn()">
                             <div class="profile-picture">
                                 <img src="../Assets/DefaultProfilePic.jpg" alt="Alternate Text" />
                             </div>
 
                             <div class="profile-description">
                                 <div class="profile-name">
-                                    <asp:Label Text="Austin Andika Tanujaya" runat="server" ID="lblName" />
+                                    <asp:Label Text="Brian Samuel" runat="server" ID="lblName" />
                                 </div>
                                 <div class="profile-role">
-                                    <asp:Label Text="Logged in as: Student" runat="server" ID="lblRole" />
+                                    <asp:Label Text="Logged in as: Teacher" runat="server" ID="lblRole" />
                                 </div>
                             </div>
 
@@ -81,7 +114,7 @@
                         <div class="profile-dropdown-content" id="profile-dropdown">
                             <ul>
                                 <li>
-                                    <asp:Button Text="LOGOUT" ID="btnLogout" runat="server" OnClick="btnLogout_Click"/>
+                                    <asp:Button Text="LOGOUT" ID="btnLogout" runat="server" OnClick="btnLogout_Click" />
                                 </li>
                             </ul>
                         </div>
@@ -92,19 +125,40 @@
             </div>
 
             <script>
+                // PROFILE DROPDOWN
                 /* When the user clicks on the button, 
                 toggle between hiding and showing the dropdown content */
-                function dropBtn() {
+                function dropProfileBtn() {
                     document.getElementById("profile-dropdown").classList.toggle("show-dropdown");
+                }
+
+                // NOTIFICATION DROPDOWN
+                /* When the user clicks on the button, 
+                toggle between hiding and showing the dropdown content */
+                function dropNotificationBtn() {
+                    document.getElementById("notification-dropdown").classList.toggle("show-dropdown");
                 }
 
                 // Close the dropdown if the user clicks outside of it
                 window.onclick = function (event) {
-                    if (!event.target.closest('.profile-container')) {
-                        var dropdowns = document.getElementsByClassName("profile-dropdown-content");
-                        var i;
+                    var dropdowns;
+                    var i;
+                    var openDropdown;
+
+                    if (!event.target.closest('.notification-container')) {
+                        dropdowns = document.getElementsByClassName("notification-dropdown-content");
                         for (i = 0; i < dropdowns.length; i++) {
-                            var openDropdown = dropdowns[i];
+                            openDropdown = dropdowns[i];
+                            if (openDropdown.classList.contains('show-dropdown')) {
+                                openDropdown.classList.remove('show-dropdown');
+                            }
+                        }
+                    }
+
+                    if (!event.target.closest('.profile-container')) {
+                        dropdowns = document.getElementsByClassName("profile-dropdown-content");
+                        for (i = 0; i < dropdowns.length; i++) {
+                            openDropdown = dropdowns[i];
                             if (openDropdown.classList.contains('show-dropdown')) {
                                 openDropdown.classList.remove('show-dropdown');
                             }
