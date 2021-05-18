@@ -18,41 +18,6 @@
         </div>
     </div>
 
-
-
-    <div class="left-container-content">
-
-        <asp:DropDownList ID="ddlmonth" runat="server" CssClass="ddl">
-            <asp:ListItem Value="">Month</asp:ListItem>
-            <asp:ListItem>January</asp:ListItem>
-            <asp:ListItem>February</asp:ListItem>
-            <asp:ListItem>March</asp:ListItem>
-            <asp:ListItem>April</asp:ListItem>
-            <asp:ListItem>May</asp:ListItem>
-            <asp:ListItem>June</asp:ListItem>
-            <asp:ListItem>July</asp:ListItem>
-            <asp:ListItem>August</asp:ListItem>
-            <asp:ListItem>September</asp:ListItem>
-            <asp:ListItem>October</asp:ListItem>
-            <asp:ListItem>November</asp:ListItem>
-            <asp:ListItem>December</asp:ListItem>
-
-        </asp:DropDownList>
-
-        <asp:DropDownList ID="ddlWeek" runat="server" CssClass="ddl">
-            <asp:ListItem Value="">Week</asp:ListItem>
-            <asp:ListItem Value="1">Week 1</asp:ListItem>
-            <asp:ListItem Value="2">Week 2</asp:ListItem>
-            <asp:ListItem Value="3">Week 3</asp:ListItem>
-            <asp:ListItem Value="3">Week 4</asp:ListItem>
-
-        </asp:DropDownList>
-
-
-    </div>
-    <div class="right-container-content">
-    </div>
-
     <div class="Accordion">
         <ajaxToolkit:Accordion ID="Accordion1" runat="server" HeaderCssClass="AccordionHead"
             ContentCssClass="AccordionContent" HeaderSelectedCssClass="SelectedHeader"
