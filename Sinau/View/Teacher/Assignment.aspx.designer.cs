@@ -258,49 +258,49 @@ namespace Sinau.View.Teacher
         protected global::System.Web.UI.WebControls.Label lblErrorServer;
 
         /// <summary>
-        /// lblClass control.
+        /// lblClassPopup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblClass;
+        protected global::System.Web.UI.WebControls.Label lblClassPopup;
 
         /// <summary>
-        /// DropDownList1 control.
+        /// ddlClassPopup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlClassPopup;
 
         /// <summary>
-        /// lblErrorClass control.
+        /// lblErrorPopup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorClass;
+        protected global::System.Web.UI.WebControls.Label lblErrorPopup;
 
         /// <summary>
-        /// Label5 control.
+        /// lblSubjectPopup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label lblSubjectPopup;
 
         /// <summary>
-        /// ddlSubject control.
+        /// ddlSubjectPopup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSubject;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubjectPopup;
 
         /// <summary>
         /// lblErrorSubject control.
@@ -312,13 +312,13 @@ namespace Sinau.View.Teacher
         protected global::System.Web.UI.WebControls.Label lblErrorSubject;
 
         /// <summary>
-        /// Label11 control.
+        /// lblTitlePopup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label11;
+        protected global::System.Web.UI.WebControls.Label lblTitlePopup;
 
         /// <summary>
         /// txtAssignmentTitle control.
@@ -339,13 +339,13 @@ namespace Sinau.View.Teacher
         protected global::System.Web.UI.WebControls.Label lblErrorAssignmentTitle;
 
         /// <summary>
-        /// Label13 control.
+        /// lblAssignDatePopup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label13;
+        protected global::System.Web.UI.WebControls.Label lblAssignDatePopup;
 
         /// <summary>
         /// txtAssignDate control.
@@ -375,13 +375,13 @@ namespace Sinau.View.Teacher
         protected global::System.Web.UI.WebControls.Label lblErrorAssignDate;
 
         /// <summary>
-        /// Label14 control.
+        /// lblDueDatePopup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label14;
+        protected global::System.Web.UI.WebControls.Label lblDueDatePopup;
 
         /// <summary>
         /// txtDueDate control.

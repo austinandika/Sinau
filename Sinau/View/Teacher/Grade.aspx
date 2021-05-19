@@ -1,4 +1,7 @@
-﻿<%@ Page Title="Grade - SINAU" Language="C#" MasterPageFile="~/View/Teacher/Master.Master" AutoEventWireup="true" CodeBehind="Grade.aspx.cs" Inherits="Sinau.View.Teacher.Grade" %>
+﻿<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="AjaxControlToolkit" %>
+
+<%@ Page Title="Grade - SINAU" Language="C#" MasterPageFile="~/View/Teacher/Master.Master" AutoEventWireup="true" CodeBehind="Grade.aspx.cs" Inherits="Sinau.View.Teacher.Grade" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../CSS/Teacher/GradeStyle.css" rel="stylesheet" />
@@ -59,6 +62,7 @@
         </div>
 
         <div class="edit-score-container">
+            <asp:Button Text="Add Grade Component" ID="btnAddComponent" CssClass="btn-modify-score button-design"  OnClientClick="return false;" runat="server" />
             <asp:Button Text="Edit Score" ID="btnEdit" CssClass="btn-modify-score button-design"  OnClientClick="return editScoreMode();" runat="server" />
             <asp:Button Text="Cancel" ID="btnCancel" CssClass="btn-modify-score hide-button button-design" runat="server" OnClientClick="return true;" />
             <asp:Button Text="Submit Changes" ID="btnSubmit" CssClass="btn-modify-score hide-button button-design" OnClick="btnSubmit_Click" runat="server" />
@@ -566,6 +570,106 @@
 
         </table>
     </div>
+
+    <%-- POPUP ADD ASSIGNMENT --%>
+    <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="pnlAddComponent" TargetControlID="btnAddComponent"
+        CancelControlID="btnCancelComponent" BackgroundCssClass="popup-background">
+    </cc1:ModalPopupExtender>
+
+    <asp:Panel ID="pnlAddComponent" runat="server" align="center" Style="display: none">
+        <div class="popup-container">
+            <div class="user-input">
+                <div class="title">
+                    <h1>Add Grade Component</h1>
+                </div>
+
+                <div class="error-server-container">
+                    <asp:Label Text="" runat="server" ID="lblErrorServer" />
+                </div>
+
+                <div class="form-table">
+                    <div class="row">
+                        <div class="input-command">
+                            <asp:Label Text="Class" runat="server" ID="lblClass" />
+                        </div>
+
+                        <div class="input-error-box">
+                            <div class="input-box">
+                                <asp:DropDownList runat="server" ID="ddlClassPopup" CssClass="ddl">
+                                    <asp:ListItem Text="XII MIPA 1" />
+                                    <asp:ListItem Text="XI MIPA 2" />
+                                    <asp:ListItem Text="XI MIPA 1" />
+                                </asp:DropDownList>
+                            </div>
+
+                            <div class="error-box">
+                                <asp:Label Text="" runat="server" ID="lblErrorClass" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-command">
+                            <asp:Label Text="Subject" runat="server" ID="lblSubjectPopup" />
+                        </div>
+
+                        <div class="input-error-box">
+                            <div class="input-box">
+                                <asp:DropDownList runat="server" ID="ddlSubject" CssClass="ddl">
+                                    <asp:ListItem Text="Biology" />
+                                </asp:DropDownList>
+                            </div>
+
+                            <div class="error-box">
+                                <asp:Label Text="" runat="server" ID="lblErrorSubject" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-command">
+                            <asp:Label Text="Category" runat="server" ID="lblComponentCategoryPopup" />
+                        </div>
+
+                        <div class="input-error-box">
+                            <div class="input-box">
+                                <asp:DropDownList runat="server" ID="ddlComponentCategory" CssClass="ddl">
+                                    <asp:ListItem Text="Assignment" />
+                                    <asp:ListItem Text="Quiz" />
+                                </asp:DropDownList>
+                            </div>
+
+                            <div class="error-box">
+                                <asp:Label Text="" runat="server" ID="lblErrorComponentCategory" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-command">
+                            <asp:Label Text="Component Name" runat="server" ID="lblComponentNamePopup" />
+                        </div>
+
+                        <div class="input-error-box">
+                            <div class="input-box">
+                                <asp:TextBox ID="txtComponentName" CssClass="textbox" runat="server"></asp:TextBox>
+                            </div>
+
+                            <div class="error-box">
+                                <asp:Label Text="" runat="server" ID="lblErrorComponentName" />
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="button-container">
+                    <asp:Button Text="Cancel" runat="server" ID="btnCancelComponent" CssClass="button-create button-design" />
+                    <asp:Button Text="Create" runat="server" ID="btnCreateComponent" CssClass="button-create button-design" OnClientClick="return validateCreateComponent();"/>
+                </div>
+            </div>
+
+
+        </div>
+    </asp:Panel>
 
     <script src="../Javascript/Teacher/Grade-TableModification.js"></script>
     

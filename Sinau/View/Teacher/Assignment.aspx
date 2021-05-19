@@ -200,12 +200,12 @@
                 <div class="form-table">
                     <div class="row">
                         <div class="input-command">
-                            <asp:Label Text="Class" runat="server" ID="lblClass" />
+                            <asp:Label Text="Class" runat="server" ID="lblClassPopup" />
                         </div>
 
                         <div class="input-error-box">
                             <div class="input-box">
-                                <asp:DropDownList runat="server" ID="DropDownList1" CssClass="ddl">
+                                <asp:DropDownList runat="server" ID="ddlClassPopup" CssClass="ddl">
                                     <asp:ListItem Text="XII MIPA 1" />
                                     <asp:ListItem Text="XI MIPA 2" />
                                     <asp:ListItem Text="XI MIPA 1" />
@@ -213,19 +213,19 @@
                             </div>
 
                             <div class="error-box">
-                                <asp:Label Text="" runat="server" ID="lblErrorClass" />
+                                <asp:Label Text="" runat="server" ID="lblErrorPopup" />
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-command">
-                            <asp:Label Text="Subject" runat="server" ID="Label5" />
+                            <asp:Label Text="Subject" runat="server" ID="lblSubjectPopup" />
                         </div>
 
                         <div class="input-error-box">
                             <div class="input-box">
-                                <asp:DropDownList runat="server" ID="ddlSubject" CssClass="ddl">
+                                <asp:DropDownList runat="server" ID="ddlSubjectPopup" CssClass="ddl">
                                     <asp:ListItem Text="Biology" />
                                 </asp:DropDownList>
                             </div>
@@ -238,7 +238,7 @@
 
                     <div class="row">
                         <div class="input-command">
-                            <asp:Label Text="Assignment Title" runat="server" ID="Label11" />
+                            <asp:Label Text="Assignment Title" runat="server" ID="lblTitlePopup" />
                         </div>
 
                         <div class="input-error-box">
@@ -254,7 +254,7 @@
 
                     <div class="row">
                         <div class="input-command">
-                            <asp:Label Text="Assign Date" runat="server" ID="Label13" />
+                            <asp:Label Text="Assign Date" runat="server" ID="lblAssignDatePopup" />
                         </div>
 
                         <div class="input-error-box">
@@ -271,7 +271,7 @@
 
                     <div class="row">
                         <div class="input-command">
-                            <asp:Label Text="Due Date" runat="server" ID="Label14" />
+                            <asp:Label Text="Due Date" runat="server" ID="lblDueDatePopup" />
                         </div>
 
                         <div class="input-error-box">
