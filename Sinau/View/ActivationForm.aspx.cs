@@ -11,7 +11,12 @@ namespace Sinau.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["LoggedIn"] != null)
+            {
+                string sessionRole = Session["Role"].ToString();
 
+                Response.Redirect("~/View/" + sessionRole + "/Dashboard.aspx");
+            }
         }
 
         protected void btnValidate_Click(object sender, EventArgs e)
@@ -26,6 +31,7 @@ namespace Sinau.View
 
         protected void btnActivate_Click(object sender, EventArgs e)
         {
+            Session["SuccessActivated"] = true;
             Response.Redirect("~/View/SuccessfullyActivated.aspx");
         }
     }
