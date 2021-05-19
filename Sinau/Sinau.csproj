@@ -233,6 +233,16 @@
   <ItemGroup>
     <Folder Include="Model\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessFacade\BusinessFacade.csproj">
+      <Project>{d9d8cd7f-b9fc-4c84-8507-88b25e3cf3b0}</Project>
+      <Name>BusinessFacade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{2e2794c8-dceb-460e-81cc-49845d7a8cf9}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
