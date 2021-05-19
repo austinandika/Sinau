@@ -10,7 +10,7 @@
         <div class="greeting-text">
             <p>
                 &#128075;
-                <asp:Label Text="Hello, Austin!" runat="server" ID="lblGreeting" />
+                <asp:Label Text="Hello, Brian!" runat="server" ID="lblGreeting" />
             </p>
         </div>
     </div>
