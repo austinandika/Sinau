@@ -38,7 +38,7 @@ namespace DataAccess
                 db.AddInParameter(cmd, "Email", System.Data.DbType.String, email);
                 db.AddInParameter(cmd, "Password", System.Data.DbType.String, password);
 
-                using(IDataReader reader = db.ExecuteReader(cmd))
+                using (IDataReader reader = db.ExecuteReader(cmd))
                 {
                     if (reader.Read())
                     {
