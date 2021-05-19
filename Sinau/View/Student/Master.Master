@@ -60,7 +60,71 @@
                                 No New Notification
                             </div>
 
-                            <ul class="new-notification">
+                            <div class="new-notification">
+                                <div class="notification-title">
+                                    Notification
+                                </div>
+
+                                <div class="row">
+                                    <div class="column">
+                                        <div class="user-notification">
+                                            <div class="notification-description">
+                                                <a href="#">New Assignment: Biology - Cell and Molecular Concept</a>
+                                            </div>
+
+                                            <div class="notification-time">
+                                                <asp:Label Text="May 18, 2021 (13:51)" runat="server" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="column">
+                                        <div class="user-notification">
+                                            <div class="notification-description">
+                                                <a href="#">New Assignment: Biology - Human Body Anatomy</a>
+                                            </div>
+
+                                            <div class="notification-time">
+                                                <asp:Label Text="May 19, 2021 (10:01)" runat="server" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <%--<table class="new-notification">
+                                <tr>
+                                    <td>
+                                        <div class="user-notification">
+                                            <div class="notification-description">
+                                                <a href="#">New Assignment: Biology - Cell and Molecular Concept</a>
+                                            </div>
+
+                                            <div class="notification-time">
+                                                <asp:Label Text="May 18, 2021 (13:51)" runat="server" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="user-notification">
+                                            <div class="notification-description">
+                                                <a href="#">New Assignment: Biology - Human Body Anatomy</a>
+                                            </div>
+
+                                            <div class="notification-time">
+                                                <asp:Label Text="May 19, 2021 (10:01)" runat="server" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>--%>
+
+                            <%--<ul class="new-notification">
                                 <li>
                                     <div class="user-notification">
                                         <div class="notification-description">
@@ -85,7 +149,7 @@
 
                                     </div>
                                 </li>
-                            </ul>
+                            </ul>--%>
                         </div>
                     </div>
 
