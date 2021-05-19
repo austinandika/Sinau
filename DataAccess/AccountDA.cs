@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class UserDA
+    public class AccountDA
     {
         private Database db;
 
-        public UserDA()
+        public AccountDA()
         {
             try
             {
@@ -27,10 +27,10 @@ namespace DataAccess
             }
         }
 
-        public UserData VerifyEmailAndPassword(string email, string password)
+        public AccountData VerifyEmailAndPassword(string email, string password)
         {
             string spName = "";
-            UserData userData = null;
+            AccountData userData = null;
 
             try
             {
@@ -42,7 +42,7 @@ namespace DataAccess
                 {
                     if (reader.Read())
                     {
-                        userData = new UserData();
+                        userData = new AccountData();
                         userData._Email = reader["Email"].ToString().Trim();
                         userData._UserID = reader["UserID"].ToString().Trim();
                         userData._Role = reader["Role"].ToString().Trim();

@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace BusinessFacade
 {
-    public class UserSystem
+    public class AccountSystem
     {
-        public UserData VerifyEmailAndPassword(string email, string password)
+        public AccountData VerifyEmailAndPassword(string email, string password)
         {
             try
             {
-                return new UserDA().VerifyEmailAndPassword(email, password);
+                return new AccountDA().VerifyEmailAndPassword(email, password);
             }
             catch (Exception e)
             {
