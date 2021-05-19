@@ -11,9 +11,15 @@ namespace Sinau
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["userID"] == null)
+            if (Session["LoggedIn"] == null)
             {
-                Response.Redirect("View/Login.aspx");
+                Response.Redirect("~/View/Login.aspx");
+            }
+            else if (Session["LoggedIn"] != null)
+            {
+                string sessionRole = Session["Role"].ToString();
+               
+                Response.Redirect("~/View/" + sessionRole + "/Dashboard.aspx");
             }
         }
     }

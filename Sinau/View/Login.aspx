@@ -21,7 +21,7 @@
                         LOGIN
                     </div>
 
-                    <div class="error-server-container">
+                    <div class="error-server-container" id="errorServerContainer" runat="server">
                         <asp:Label Text="" runat="server" ID="lblErrorServer" />
                     </div>
 
@@ -61,13 +61,6 @@
 
                     <div class="activate-account">
                         Haven't activate your account? <a href="ActivationForm.aspx">Activate Now</a>
-                    </div>
-
-                    <%-- TEMPORARY (REDIRECT TO TEACHER PAGE) --%>
-                    <div class="activate-account" id="temporaryMenu">
-                        TEMPORARY MENU (ONLY FOR DEVELOPMENT)
-                        <br />
-                        -> <a href="Teacher/Dashboard.aspx">LOGIN AS TEACHER HERE</a> <-
                     </div>
 
                 </div>

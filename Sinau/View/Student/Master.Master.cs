@@ -11,7 +11,18 @@ namespace Sinau.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (Session["LoggedIn"] == null)
+            {
+                Response.Redirect("~/View/Login.aspx");
+            }
+            else if (Session["LoggedIn"] != null)
+            {
+                string sessionRole = Session["Role"].ToString();
+                if (sessionRole != "Student")
+                {
+                    Response.Redirect("~/View/" + sessionRole + "/Dashboard.aspx");
+                }
+            }
         }
 
         protected void btnProfile_Click(object sender, EventArgs e)
@@ -21,6 +32,7 @@ namespace Sinau.View
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
+            Session.RemoveAll();
             Response.Redirect("../Login.aspx");
         }
     }
