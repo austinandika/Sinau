@@ -93,8 +93,10 @@
     <Content Include="View\Javascript\ActivationForm-Validation.js" />
     <Content Include="View\Javascript\Dashboard-Slideshow.js" />
     <Content Include="View\Javascript\Login-Validation.js" />
+    <Content Include="View\Javascript\Student\Master-DropdownNotificationProfile.js" />
     <Content Include="View\Javascript\Teacher\Assignment-AddAssignmentValidation.js" />
     <Content Include="View\Javascript\Teacher\Grade-TableModification.js" />
+    <Content Include="View\Javascript\Teacher\Master-DropdownNotificationProfile.js" />
     <Content Include="View\Student\Assignment.aspx" />
     <Content Include="View\Student\Dashboard.aspx" />
     <Content Include="View\Login.aspx" />
@@ -218,7 +220,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
-    <Folder Include="View\Javascript\Student\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
