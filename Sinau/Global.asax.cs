@@ -17,6 +17,7 @@ namespace Sinau
 
         protected void Session_Start(object sender, EventArgs e)
         {
+            Session.Timeout = 45;   // Session timeout = 45 minutes
             if(Session["LoggedIn"] == null)
             {
                 Response.Redirect("~/View/Login.aspx");
