@@ -22,15 +22,15 @@ namespace DataAccess
             }
             catch (Exception e)
             {
+                System.Diagnostics.Debug.WriteLine(e);
 
-                throw;
             }
         }
 
-        public AccountData VerifyEmailAndPassword(string email, string password)
+        public AccountData VerifyAccountByEmailAndPassword(string email, string password)
         {
-            string spName = "";
-            AccountData userData = null;
+            string spName = "SP_VerifyAccountByEmailAndPassword";
+            AccountData accountData = null;
 
             try
             {
@@ -42,18 +42,75 @@ namespace DataAccess
                 {
                     if (reader.Read())
                     {
-                        userData = new AccountData();
-                        userData._Email = reader["Email"].ToString().Trim();
-                        userData._UserID = reader["UserID"].ToString().Trim();
-                        userData._Role = reader["Role"].ToString().Trim();
+                        accountData = new AccountData();
+                        accountData._Email = reader["Email"].ToString().Trim();
+                        accountData._UserID = reader["UserID"].ToString().Trim();
+                        accountData._Role = reader["Role"].ToString().Trim();
                     }
                 }
-                return userData;
+                return accountData;
             }
             catch (Exception e)
             {
                 return null;
             }
+        }
+
+        public AccountData GetUserByIdAndActivationCode(string userID, string activationCode)
+        {
+            string spName = "SP_GetUserByIdAndActivationCode";
+            AccountData accountData = null;
+
+            try
+            {
+                DbCommand cmd = db.GetStoredProcCommand(spName);
+                db.AddInParameter(cmd, "UserID", System.Data.DbType.String, userID);
+                db.AddInParameter(cmd, "ActivationCode", System.Data.DbType.String, activationCode);
+
+                using (IDataReader reader = db.ExecuteReader(cmd))
+                {
+                    if (reader.Read())
+                    {
+                        accountData = new AccountData();
+                        accountData._UserID = reader["UserID"].ToString().Trim();
+                        accountData._ActivationCode = reader["ActivationCode"].ToString().Trim();
+                        accountData._Name = reader["Name"].ToString().Trim();
+                        accountData._AccountStatusID = Convert.ToInt32(reader["AccountStatusID"]);
+                    }
+                }
+                return accountData;
+            }
+            catch (Exception e)
+            {
+
+                return null;
+            }
+        }
+
+        public bool InsertUserEmailAndPasswordById(string userID, string email, string password)
+        {
+            string spName = "SP_InsertUserEmailAndPasswordById";
+            bool returnValue = false;
+
+            try
+            {
+                using (DbConnection connection = db.CreateConnection())
+                {
+                    DbCommand cmd = db.GetStoredProcCommand(spName);
+                    db.AddInParameter(cmd, "UserID", System.Data.DbType.String, userID);
+                    db.AddInParameter(cmd, "Email", System.Data.DbType.String, email);
+                    db.AddInParameter(cmd, "Password", System.Data.DbType.String, password);
+                    db.ExecuteNonQuery(cmd);
+                }
+
+                returnValue = true;
+            }
+            catch (Exception e)
+            {
+                returnValue = false;
+            }
+
+            return returnValue;
         }
     }
 }

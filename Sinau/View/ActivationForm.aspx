@@ -24,7 +24,7 @@
                         ACTIVATION FORM
                     </div>
 
-                    <div class="error-server-container">
+                    <div class="error-server-container" id="errorServerContainer" runat="server">
                         <asp:Label Text="" runat="server" ID="lblErrorServer" />
                     </div>
 
