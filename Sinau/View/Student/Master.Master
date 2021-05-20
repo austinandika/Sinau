@@ -163,7 +163,7 @@
 
                             <div class="profile-description">
                                 <div class="profile-name">
-                                    <asp:Label Text="Brian Samuel" runat="server" ID="lblName" />
+                                    <asp:Label Text="" runat="server" ID="lblName" />
                                 </div>
                                 <div class="profile-role">
                                     <asp:Label Text="Logged in as: Student" runat="server" ID="lblRole" />

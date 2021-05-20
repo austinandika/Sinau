@@ -30,7 +30,6 @@ namespace BusinessFacade
             }
             catch (Exception ex)
             {
-
                 return null;
             }
         }

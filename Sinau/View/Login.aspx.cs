@@ -36,51 +36,29 @@ namespace Sinau.View
 
             errorServerContainer.Attributes.Add("class", errorServerContainer.Attributes["class"].ToString().Replace("active", ""));
 
-            // TEMPORARY FOR DEVELOPMENT
-            if (txtEmail.Text == "student@gmail.com" && txtPassword.Text == "student1234"){
-                Session["LoggedIn"] = true;
-                Session["Email"] = txtEmail.Text;
-                Session["Role"] = "Student";
-                Response.Redirect("~/View/Student/Dashboard.aspx");
-            }
-            else if (txtEmail.Text == "teacher@gmail.com" && txtPassword.Text == "teacher1234")
+            try
             {
-                Session["LoggedIn"] = true;
-                Session["Email"] = txtEmail.Text;
-                Session["Role"] = "Teacher";
-                Response.Redirect("~/View/Teacher/Dashboard.aspx");
-            }
-            else
-            {
-                try
-                {
-                    accountData = new AccountSystem().VerifyAccountByEmailAndPassword(accountData._Email, accountData._Password);
+                accountData = new AccountSystem().VerifyAccountByEmailAndPassword(accountData._Email, accountData._Password);
 
-                    if(accountData != null)
-                    {
-                        Session["LoggedIn"] = true;
-                        Session["Email"] = accountData._Email;
-                        Session["UserID"] = accountData._UserID;
-                        Session["Role"] = accountData._Role;
-                        Response.Redirect("~/View/" + Session["Role"] + "/Dashboard.aspx");
-                    }
-                    else
-                    {
-                        lblErrorServer.Text = "Incorrect email or password. Please make sure you have entered the email or password correctly.";
-                        errorServerContainer.Attributes["class"] += " active";
-                    }
+                if (accountData != null)
+                {
+                    Session["LoggedIn"] = true;
+                    Session["Email"] = accountData._Email;
+                    Session["UserID"] = accountData._UserID;
+                    Session["Role"] = accountData._Role;
+                    Response.Redirect("~/View/" + Session["Role"] + "/Dashboard.aspx");
                 }
-                catch (Exception ex)
+                else
                 {
                     lblErrorServer.Text = "Incorrect email or password. Please make sure you have entered the email or password correctly.";
                     errorServerContainer.Attributes["class"] += " active";
                 }
-
-                
-                
             }
-
-            
+            catch (Exception ex)
+            {
+                lblErrorServer.Text = "Incorrect email or password. Please make sure you have entered the email or password correctly.";
+                errorServerContainer.Attributes["class"] += " active";
+            }
         }
 
         private string Encrypt(string clearText)

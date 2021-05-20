@@ -20,10 +20,9 @@ namespace DataAccess
             {
                 db = DatabaseFactory.CreateDatabase("SinauConnectionString");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(e);
-
+                
             }
         }
 
@@ -50,7 +49,7 @@ namespace DataAccess
                 }
                 return accountData;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -80,7 +79,7 @@ namespace DataAccess
                 }
                 return accountData;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
                 return null;
@@ -105,7 +104,7 @@ namespace DataAccess
 
                 returnValue = true;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 returnValue = false;
             }
