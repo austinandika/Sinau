@@ -16,7 +16,7 @@ namespace BusinessFacade
             {
                 return new AccountDA().VerifyAccountByEmailAndPassword(email, password);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -28,7 +28,7 @@ namespace BusinessFacade
             {
                 return new AccountDA().GetUserByIdAndActivationCode(userID, activationCode);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
                 return null;
@@ -41,7 +41,7 @@ namespace BusinessFacade
             {
                 return new AccountDA().InsertUserEmailAndPasswordById(userID, email, password);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
                 return false;
