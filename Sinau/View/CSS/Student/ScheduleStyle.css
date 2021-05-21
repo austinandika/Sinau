@@ -56,30 +56,59 @@
 .AccordionContent {
     background-color: #dadada;
     border-radius: 10px;
-    padding-top: 10px;
     padding-bottom: 10px;
     margin-bottom: 5px;
 }
 
+.no-schedule-div {
+    display: none;
+    text-align: center;
+    height: 30px;
+}
+
+.no-schedule-div h3 {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+    .no-schedule-div.active {
+        display: block;
+    }
+
 
 .tbl {
-    width: 90%;
+    width: 100%;
     table-layout: fixed;
     margin-left: auto;
     margin-right: auto;
     border-spacing: 2px;
+    border-collapse: collapse;
 }
 
     .tbl tr {
         height: 30px;
     }
 
+        .tbl tr:nth-child(even) {
+            background-color: white;
+        }
+
     .tbl td {
         text-align: center;
+        height: 40px;
     }
 
-    .tbl .coursename {
+    .tbl .course-name-td {
         text-align: left;
+        padding-left: 50px;
+        width: 40%
+    }
+
+    .tbl .course-time-td{
+    }
+
+    .tbl .join-button-td {
+        width: 40%
     }
 
 .join-class-button {
