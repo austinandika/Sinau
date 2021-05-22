@@ -116,6 +116,10 @@
         word-wrap: break-word;
     }
 
+    .assignment-table-container .class-column {
+        width: 130px;
+    }
+
     .assignment-table-container .subject-column {
         width: 200px;
     }
@@ -141,7 +145,7 @@
     }
 
     .assignment-table-container .action-column {
-        width: 100px;
+        width: 70px;
     }
 
     .assignment-table-container .assignment-table-content .title-column {

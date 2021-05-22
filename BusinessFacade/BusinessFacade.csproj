@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssignmentSystem.cs" />
     <Compile Include="ScheduleSystem.cs" />
+    <Compile Include="SettingSystem.cs" />
     <Compile Include="UserSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AccountSystem.cs" />
