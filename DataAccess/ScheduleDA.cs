@@ -43,8 +43,8 @@ namespace DataAccess
                     {
                         ScheduleData data = new ScheduleData();
                         data._DayID = Convert.ToString(reader["DayID"]);
+                        data._DayName = Convert.ToString(reader["DayName"]);
                         data._SubjectName = Convert.ToString(reader["SubjectName"]);
-
                         data._TimeStart = TimeSpan.Parse(reader["TimeStart"].ToString()).ToString(@"hh\:mm");
                         data._TimeEnd = TimeSpan.Parse(reader["TimeEnd"].ToString()).ToString(@"hh\:mm");
                         data._LinkVidcon = Convert.ToString(reader["LinkVidcon"]);
@@ -53,6 +53,45 @@ namespace DataAccess
                     }
 
                     returnList = studentScheduleList;
+                }
+                return returnList;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public List<ScheduleData> GetTeacherScheduleDataByID(string userID)
+        {
+            string spName = "SP_GetTeacherScheduleById";
+            List<ScheduleData> returnList;
+
+            try
+            {
+                DbCommand cmd = db.GetStoredProcCommand(spName);
+                db.AddInParameter(cmd, "UserID", System.Data.DbType.String, userID);
+
+                using (IDataReader reader = db.ExecuteReader(cmd))
+                {
+                    List<ScheduleData> teacherScheduleList = new List<ScheduleData>();
+
+                    while (reader.Read())
+                    {
+                        ScheduleData data = new ScheduleData();
+                        data._DayID = Convert.ToString(reader["DayID"]);
+                        data._DayName = Convert.ToString(reader["DayName"]);
+                        data._SubjectName = Convert.ToString(reader["SubjectName"]);
+                        data._Class = Convert.ToString(reader["Class"]);
+                        data._TimeStart = TimeSpan.Parse(reader["TimeStart"].ToString()).ToString(@"hh\:mm");
+                        data._TimeEnd = TimeSpan.Parse(reader["TimeEnd"].ToString()).ToString(@"hh\:mm");
+                        data._LinkVidcon = Convert.ToString(reader["LinkVidcon"]);
+
+                        teacherScheduleList.Add(data);
+                    }
+
+                    returnList = teacherScheduleList;
                 }
                 return returnList;
             }

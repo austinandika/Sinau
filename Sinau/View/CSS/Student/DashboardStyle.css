@@ -191,6 +191,20 @@ body {
                     margin-top: 20px;
                 }
 
+.course-table-container .no-schedule-div {
+    display: none;
+    text-align: center;
+}
+
+    .course-table-container .no-schedule-div h3 {
+        font-size: 16px;
+        font-weight: normal;
+    }
+
+    .course-table-container .no-schedule-div.active {
+        display: block;
+    }
+
                     .content .right-content .upcoming-course-container .inside-container .course-table-container td {
                         vertical-align: central;
                         height: 50px;

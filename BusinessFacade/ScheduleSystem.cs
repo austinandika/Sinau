@@ -21,5 +21,17 @@ namespace BusinessFacade
                 return null;
             }
         }
+
+        public List<ScheduleData> GetTeacherScheduleDataByID(string userID)
+        {
+            try
+            {
+                return new ScheduleDA().GetTeacherScheduleDataByID(userID);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="Dashboard - SINAU" Language="C#" MasterPageFile="~/View/Teacher/Master.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="Sinau.View.Teacher.Dashboard" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../CSS/Teacher/DashboardStyle.css" rel="stylesheet" type="text/css" />
-    <link href="../CSS/MainStyle.css" rel="stylesheet" type="text/css"/>
+    <link href="../CSS/MainStyle.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="greeting">
@@ -23,7 +24,7 @@
                 <div class="info-image-container">
                     <img src="../Assets/Test-Banner.jpg" class="slide" alt="" />
                 </div>
-                
+
 
                 <a class="prev-button" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next-button" onclick="plusSlides(1)">&#10095;</a>
@@ -102,69 +103,35 @@
                     </div>
 
                     <div class="course-table-container">
+                        <div class="no-schedule-div" id="noScheduleDay" runat="server">
+                            <h3>It's FREE. You have no class schedule for today<br />&#129303</h3>
+                        </div>
+
                         <table>
-                            <tr>
-                                <td>
-                                    <asp:Label Text="Biology" ID="lblCourseName" runat="server" />
-                                </td>
+                            <asp:Repeater ID="rptScheduleToday" runat="server">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("_SubjectName") %>' ID="lblCourseName" runat="server" />
+                                        </td>
 
-                                <td>
-                                    <asp:Label Text="XII MIPA 1" ID="lblScheduleClass" runat="server" />
-                                </td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("_Class") %>' ID="lblScheduleClass" runat="server" />
+                                        </td>
 
-                                <td>
-                                    <asp:Label Text="07.00 - 08.30" ID="lblCourseTime" runat="server" />
-                                </td>
-                            </tr>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("_TimeStart") + " - " + Eval("_TimeEnd") %>' ID="lblCourseTime" runat="server" />
+                                        </td>
+                                    </tr>
 
-                            <tr>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" ID="btnJoinClass" CssClass="join-class-button button-design" />
-                                </td>
-                            </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Button Text="Join" runat="server" ID="btnJoinClass" CssClass="join-class-button button-design" PostBackUrl='<%# Eval("_LinkVidcon") %>' OnClientClick="window.document.forms[0].target='_blank'; setTimeout(function(){window.document.forms[0].target='';}, 500);" />
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
 
-
-                            <%-- BATAS --%>
-                            <tr>
-                                <td>
-                                    <asp:Label Text="Biology" ID="Label19" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="XII MIPA 2" ID="Label20" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="09.00 - 10.30" ID="Label21" runat="server" />
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" ID="Button2" CssClass="join-class-button button-design" />
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td>
-                                    <asp:Label Text="Biology" ID="Label22" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="X MIPA 1" ID="Label23" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="10.30 - 12.00" ID="Label24" runat="server" />
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" ID="Button1" CssClass="join-class-button button-design" />
-                                </td>
-                            </tr>
                         </table>
                     </div>
                 </div>

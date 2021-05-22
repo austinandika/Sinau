@@ -94,9 +94,6 @@ namespace Sinau.View.Student
             {
 
             }
-            
-
-
         }
     }
 }

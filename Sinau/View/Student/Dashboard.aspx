@@ -183,76 +183,30 @@
                     </div>
 
                     <div class="course-table-container">
+                        <div class="no-schedule-div" id="noScheduleDay" runat="server">
+                            <h3>It's FREE. You have no class schedule for today<br />&#129303</h3>
+                        </div>
+
                         <table>
-                            <tr>
-                                <td>
-                                    <asp:Label Text="Biology" ID="lblCourseName" runat="server" />
-                                </td>
+                            <asp:Repeater ID="rptScheduleToday" runat="server">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("_SubjectName") %>' ID="lblCourseName" runat="server" />
+                                        </td>
 
-                                <td>
-                                    <asp:Label Text="07.00 - 08.30" ID="lblCourseTime" runat="server" />
-                                </td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("_TimeStart") + " - " + Eval("_TimeEnd") %>' ID="lblCourseTime" runat="server" />
+                                        </td>
+                                    </tr>
 
-                                <td>
-                                    <asp:Button Text="Join" runat="server" ID="btnJoinClass" CssClass="join-class-button button-design" />
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <asp:Label Text="Biology" ID="Label19" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="08.30 - 10.00" ID="Label20" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <asp:Label Text="Social Studies" ID="Label21" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="10.00 - 11.30" ID="Label22" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <asp:Label Text="English" ID="Label23" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="12.00 - 13.30" ID="Label24" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <asp:Label Text="Mathematics" ID="Label25" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="13.30 - 15.00" ID="Label26" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-                            </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Button Text="Join" runat="server" ID="btnJoinClass" CssClass="join-class-button button-design" PostBackUrl='<%# Eval("_LinkVidcon") %>' OnClientClick="window.document.forms[0].target='_blank'; setTimeout(function(){window.document.forms[0].target='';}, 500);" />
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
 
                         </table>
                     </div>

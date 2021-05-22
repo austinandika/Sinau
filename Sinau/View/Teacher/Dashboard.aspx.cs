@@ -1,4 +1,5 @@
 ﻿using BusinessFacade;
+using Common;
 using Common.Data;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace Sinau.View.Teacher
             string sessionEmail = Session["Email"].ToString();
             string sessionUserID = Session["UserID"].ToString();
 
+            // GREETING
             try
             {
                 userData = new UserSystem().GetUserInfoByUserID(sessionUserID, sessionRole);
@@ -25,6 +27,32 @@ namespace Sinau.View.Teacher
                 lblGreeting.Text += splitName[0] + "!";
             }
             catch (Exception)
+            {
+
+            }
+
+            // TODAY SCHEDULE
+            string todayDay = DateTime.Today.DayOfWeek.ToString();
+            try
+            {
+                List<ScheduleData> listSchedule = new ScheduleSystem().GetTeacherScheduleDataByID(sessionUserID);
+                List<ScheduleData> listScheduleToday = null;
+                if (listSchedule != null)
+                {
+                    listScheduleToday = listSchedule.Where(p => p._DayName == todayDay).ToList();
+
+                    if (listScheduleToday.Count != 0)
+                    {
+                        rptScheduleToday.DataSource = listScheduleToday;
+                        rptScheduleToday.DataBind();
+                    }
+                    else
+                    {
+                        noScheduleDay.Attributes["class"] += " active";
+                    }
+                }
+            }
+            catch (Exception ex)
             {
 
             }

@@ -198,9 +198,6 @@
                         </table>
                     </Content>
                 </ajaxToolkit:AccordionPane>
-
-
-
             </Panes>
 
         </ajaxToolkit:Accordion>
