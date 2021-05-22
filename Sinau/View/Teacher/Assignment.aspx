@@ -24,15 +24,13 @@
                 <tr>
                     <td>Class</td>
                     <td>
-                        <asp:DropDownList runat="server" ID="ddlClass" CssClass="ddl" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged">
-                            <asp:ListItem Text="All" Value="All" />
+                        <asp:DropDownList runat="server" ID="ddlClass" CssClass="ddl" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged" AutoPostBack="true">
                         </asp:DropDownList>
                     </td>
 
                     <td>Subject</td>
                     <td>
-                        <asp:DropDownList runat="server" ID="ddlSubjectFilter" CssClass="ddl" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlSubjectFilter_SelectedIndexChanged">
-                            <asp:ListItem Text="All" Value="All"/>
+                        <asp:DropDownList runat="server" ID="ddlSubjectFilter" CssClass="ddl"  OnSelectedIndexChanged="ddlSubjectFilter_SelectedIndexChanged" AutoPostBack="true">
                         </asp:DropDownList>
                     </td>
                 </tr>

@@ -24,18 +24,29 @@ namespace Sinau.View.Teacher
                 ddlClass.DataTextField = "_Class";
                 ddlClass.DataValueField = "_ClassID";
                 ddlClass.DataBind();
+                ddlClass.Items.Insert(0, new ListItem("All", "All"));
 
                 List<AssignmentData> subjectList = new AssignmentSystem().GetTeacherSubjectByIdAndClass(sessionUserID, ddlClass.SelectedValue ,academicYearID);
                 ddlSubjectFilter.DataSource = subjectList;
                 ddlSubjectFilter.DataTextField = "_SubjectID";
                 ddlSubjectFilter.DataTextField = "_Subject";
                 ddlSubjectFilter.DataBind();
+                ddlSubjectFilter.Items.Insert(0, new ListItem("All", "All"));
             }
         }
 
         protected void ddlClass_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string sessionUserID = Session["UserID"].ToString();
+            string sessionRole = Session["Role"].ToString();
+            string academicYearID = new SettingSystem().GetUserLatestAcademicYearByIdAndRole(sessionUserID, sessionRole)._AcademicYearID;
 
+            List<AssignmentData> subjectList = new AssignmentSystem().GetTeacherSubjectByIdAndClass(sessionUserID, ddlClass.SelectedValue, academicYearID);
+            ddlSubjectFilter.DataSource = subjectList;
+            ddlSubjectFilter.DataTextField = "_SubjectID";
+            ddlSubjectFilter.DataTextField = "_Subject";
+            ddlSubjectFilter.DataBind();
+            ddlSubjectFilter.Items.Insert(0, new ListItem("All", "All"));
         }
 
         protected void ddlSubjectFilter_SelectedIndexChanged(object sender, EventArgs e)
