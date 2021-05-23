@@ -69,14 +69,15 @@ function assignDateValidation() {
         var assignDateParts = txtAssignDate.value.split("/");
         var dateObjectAssign = new Date(+assignDateParts[2], assignDateParts[1] - 1, +assignDateParts[0]);
 
-        var today = new Date();
+        var today = getDateWithoutTime(new Date());
+        
         //var dd = String(today.getDate()).padStart(2, '0');
         //var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         //var yyyy = today.getFullYear();
 
         //today = mm + '/' + dd + '/' + yyyy;
 
-        var diffDays = dateObjectAssign.getDate() - today.getDate();
+        var diffDays = dateObjectAssign.getTime() - today.getTime();
 
         if (diffDays < 0) {
             lblErrorAssignDate.innerHTML = "Assign date must be same or greater than today date";
@@ -113,9 +114,9 @@ function dueDateValidation() {
         var dueDateParts = txtDueDate.value.split("/");
         var dateObjectDue = new Date(+dueDateParts[2], dueDateParts[1] - 1, +dueDateParts[0]);
 
-        var diffDays = dateObjectDue.getDate() - dateObjectAssign.getDate();
+        var diffDays = dateObjectDue.getTime() - dateObjectAssign.getTime();
 
-        if (diffDays < 0) {
+        if (diffDays <= 0) {
             lblErrorDueDate.innerHTML = "Due date must be greater than assign date";
             txtDueDate.classList.add("error");
             isValidDate = false;
@@ -179,4 +180,10 @@ function resetErrorEffect() {
 
 function resetAnimation() {
     void btnCreate.offsetWidth;
+}
+
+function getDateWithoutTime(dateTime) {
+    var date = new Date(dateTime.getTime());
+    date.setHours(0, 0, 0, 0);
+    return date;
 }

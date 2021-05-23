@@ -18,6 +18,7 @@ namespace Common.Data
         public string _AssignmentPath { get; set; }
         public string _AssignDate { get; set; }
         public string _DueDate { get; set; }
+        public int _StatusID { get; set; }
         public string _Status { get; set; }
     }
 }

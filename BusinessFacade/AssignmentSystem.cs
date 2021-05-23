@@ -47,11 +47,11 @@ namespace BusinessFacade
             }
         }
 
-        public bool InsertAssignmentByIdClassSubject(string classID, string subjectID, string academicYearID, string assignmentTitle, string assignDate, string dueDate, string assignmentPath, int statusID)
+        public bool InsertAssignmentByIdClassSubject(string classID, string subjectID, string academicYearID, string assignmentTitle, string assignDate, string dueDate, string assignmentPath)
         {
             try
             {
-                return new AssignmentDA().InsertAssignmentByIdClassSubject(classID, subjectID, academicYearID, assignmentTitle, assignDate, dueDate, assignmentPath, statusID);
+                return new AssignmentDA().InsertAssignmentByIdClassSubject(classID, subjectID, academicYearID, assignmentTitle, assignDate, dueDate, assignmentPath);
             }
             catch (Exception ex)
             {

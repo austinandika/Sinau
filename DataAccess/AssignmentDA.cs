@@ -124,6 +124,7 @@ namespace DataAccess.Properties
                         data._AssignmentPath = Convert.ToString(reader["AssignmentPath"]);
                         data._AssignDate = (Convert.ToDateTime(reader["AssignDate"])).ToString("MMM dd, yyyy");
                         data._DueDate = Convert.ToDateTime(reader["DueDate"]).ToString("MMM dd, yyyy");
+                        data._StatusID = Convert.ToInt32(reader["StatusID"]);
                         data._Status = Convert.ToString(reader["Status"]);
 
                         teacherAssignmentList.Add(data);
@@ -140,7 +141,7 @@ namespace DataAccess.Properties
             }
         }
 
-        public bool InsertAssignmentByIdClassSubject(string classID, string subjectID, string academicYearID, string assignmentTitle, string assignDate, string dueDate, string assignmentPath, int statusID)
+        public bool InsertAssignmentByIdClassSubject(string classID, string subjectID, string academicYearID, string assignmentTitle, string assignDate, string dueDate, string assignmentPath)
         {
             string spName = "SP_InsertAssignmentByIdClassSubject";
             bool returnValue = false;
@@ -157,7 +158,6 @@ namespace DataAccess.Properties
                     db.AddInParameter(cmd, "AssignDate", System.Data.DbType.String, assignDate);
                     db.AddInParameter(cmd, "DueDate", System.Data.DbType.String, dueDate);
                     db.AddInParameter(cmd, "AssignmentPath", System.Data.DbType.String, assignmentPath);
-                    db.AddInParameter(cmd, "StatusID", System.Data.DbType.String, statusID);
 
                     db.ExecuteNonQuery(cmd);
                 }

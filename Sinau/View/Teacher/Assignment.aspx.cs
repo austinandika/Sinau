@@ -49,8 +49,9 @@ namespace Sinau.View.Teacher
                 {
                     List<AssignmentData> listTeacherAssignment = new AssignmentSystem().GetTeacherAssignmentByIdClassSubject(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
 
-                    if(listTeacherAssignment.Count != 0)
+                    if (listTeacherAssignment.Count != 0)
                     {
+                        validateAssignmentStatus(listTeacherAssignment);
                         rptTeacherAssignment.DataSource = listTeacherAssignment;
                         rptTeacherAssignment.DataBind();
                     }
@@ -85,8 +86,16 @@ namespace Sinau.View.Teacher
             {
                 List<AssignmentData> listTeacherAssignment = new AssignmentSystem().GetTeacherAssignmentByIdClassSubject(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
 
-                rptTeacherAssignment.DataSource = listTeacherAssignment;
-                rptTeacherAssignment.DataBind();
+                if (listTeacherAssignment.Count != 0)
+                {
+                    validateAssignmentStatus(listTeacherAssignment);
+                    rptTeacherAssignment.DataSource = listTeacherAssignment;
+                    rptTeacherAssignment.DataBind();
+                }
+                else
+                {
+                    noScheduleDiv.Visible = true;
+                }
             }
             catch (Exception ex)
             {
@@ -107,8 +116,16 @@ namespace Sinau.View.Teacher
             {
                 List<AssignmentData> listTeacherAssignment = new AssignmentSystem().GetTeacherAssignmentByIdClassSubject(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
 
-                rptTeacherAssignment.DataSource = listTeacherAssignment;
-                rptTeacherAssignment.DataBind();
+                if (listTeacherAssignment.Count != 0)
+                {
+                    validateAssignmentStatus(listTeacherAssignment);
+                    rptTeacherAssignment.DataSource = listTeacherAssignment;
+                    rptTeacherAssignment.DataBind();
+                }
+                else
+                {
+                    noScheduleDiv.Visible = true;
+                }
             }
             catch (Exception ex)
             {
@@ -143,28 +160,53 @@ namespace Sinau.View.Teacher
             string dueDateValue = dueDate.ToString("yyyy-MM-dd");
             string assignmentPathValue = "test";
 
-            int statusID = -1;
-            int assignDueCompare = DateTime.Compare(assignDate, DateTime.Today);
+            
 
-            // DateTime.Compare return:
-            // < 0 − If date1 is earlier than date2
-            // 0 − If date1 is the same as date2
-            // > 0 − If date1 is later than date2
-
-            if (assignDueCompare > 0)
-            {
-                statusID = 1;   // Waiting
-            }
-            else if(assignDueCompare == 0)
-            {
-                statusID = 2;   // Assigned
-            }
-
-            bool returnValueInsertAssignment = new AssignmentSystem().InsertAssignmentByIdClassSubject(classValue, subjectValue, academicYearID, assignmentTitleValue, assignDateValue, dueDateValue, assignmentPathValue, statusID);
+            bool returnValueInsertAssignment = new AssignmentSystem().InsertAssignmentByIdClassSubject(classValue, subjectValue, academicYearID, assignmentTitleValue, assignDateValue, dueDateValue, assignmentPathValue);
 
             if (returnValueInsertAssignment)
             {
                 Response.Redirect(Request.RawUrl);
+            }
+        }
+
+        private void validateAssignmentStatus(List<AssignmentData> listAssignmentTemp)
+        {
+            for (int i = 0; i < listAssignmentTemp.Count; i++)
+            {
+                if (listAssignmentTemp[i]._StatusID == 0)
+                {
+                    DateTime assignDate = DateTime.ParseExact(listAssignmentTemp[i]._AssignDate, "MMM dd, yyyy", null);
+                    DateTime dueDate = DateTime.ParseExact(listAssignmentTemp[i]._DueDate, "MMM dd, yyyy", null);
+
+                    DateTime todayDate = DateTime.Now;
+                    int assignDueCompare = DateTime.Compare(assignDate, dueDate);
+                    int assignTodayCompare = DateTime.Compare(assignDate, todayDate);
+                    int todayDueCompare = DateTime.Compare(todayDate, dueDate);
+
+                    // DateTime.Compare return:
+                    // date1 - date2
+                    // < 0 − If date1 is earlier than date2
+                    // 0 − If date1 is the same as date2
+                    // > 0 − If date1 is later than date2
+
+                    // waiting
+                    // assigned
+                    // done
+
+                    if (todayDueCompare > 0)
+                    {
+                        listAssignmentTemp[i]._Status = "Done";
+                    }
+                    else if (assignTodayCompare <= 0 && todayDueCompare <= 0)
+                    {
+                        listAssignmentTemp[i]._Status = "Assigned";
+                    }
+                    else if (assignTodayCompare > 0)
+                    {
+                        listAssignmentTemp[i]._Status = "Waiting";
+                    }
+                }
             }
         }
     }
