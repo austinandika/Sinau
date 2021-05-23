@@ -58,5 +58,41 @@ namespace BusinessFacade
                 return false;
             }
         }
+
+        public List<AssignmentData> GetStudentClassById(string userID, string academicYearID)
+        {
+            try
+            {
+                return new AssignmentDA().GetStudentClassById(userID, academicYearID);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public List<AssignmentData> GetStudentSubjectByClass(string classID, string academicYearID)
+        {
+            try
+            {
+                return new AssignmentDA().GetStudentSubjectByClass(classID, academicYearID);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public List<AssignmentData> GetStudentAssignmentByClassSubject(string userID, string classID, string subjectID, string academicYearID)
+        {
+            try
+            {
+                return new AssignmentDA().GetStudentAssignmentByClassSubject(userID, classID, subjectID, academicYearID);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

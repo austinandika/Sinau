@@ -30,11 +30,11 @@
 }
 
     .assignment-filter-container tr td:nth-child(odd) {
-        width: 120px;
+        width: 70px;
     }
 
     .assignment-filter-container tr td:nth-child(even) {
-        width: 200px;
+        width: 150px;
     }
 
 .assignment-filter-container .ddl {
@@ -67,6 +67,11 @@
         padding-bottom: 5px;
         word-wrap: break-word;
     }
+
+        .assignment-table-container .assignment-table-content.no-assignment {
+            display: block;
+            text-align: center;
+        }
 
     .assignment-table-container .subject-column {
         width: 150px;

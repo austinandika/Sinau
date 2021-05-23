@@ -20,5 +20,9 @@ namespace Common.Data
         public string _DueDate { get; set; }
         public int _StatusID { get; set; }
         public string _Status { get; set; }
+        public string _SubmissionDate { get; set; }
+        public string _AnswerPath { get; set; }
+        public int _SubmissionStatusID { get; set; }
+        public string _SubmissionStatus { get; set; }
     }
 }

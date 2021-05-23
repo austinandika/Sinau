@@ -171,5 +171,141 @@ namespace DataAccess.Properties
 
             return returnValue;
         }
+
+        public List<AssignmentData> GetStudentClassById(string userID, string academicYearID)
+        {
+            string spName = "SP_GetStudentClassById";
+            List<AssignmentData> returnList;
+
+            try
+            {
+                DbCommand cmd = db.GetStoredProcCommand(spName);
+                db.AddInParameter(cmd, "UserID", System.Data.DbType.String, userID);
+                db.AddInParameter(cmd, "AcademicYearID", System.Data.DbType.String, academicYearID);
+
+                using (IDataReader reader = db.ExecuteReader(cmd))
+                {
+                    List<AssignmentData> studentClassList = new List<AssignmentData>();
+
+                    while (reader.Read())
+                    {
+                        AssignmentData data = new AssignmentData();
+                        data._ClassID = Convert.ToString(reader["ClassID"]);
+                        data._Class = Convert.ToString(reader["Class"]);
+
+                        studentClassList.Add(data);
+                    }
+
+                    returnList = studentClassList;
+                }
+                return returnList;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public List<AssignmentData> GetStudentSubjectByClass(string classID, string academicYearID)
+        {
+            string spName = "SP_GetStudentSubjectByClass";
+            List<AssignmentData> returnList;
+
+            try
+            {
+                DbCommand cmd = db.GetStoredProcCommand(spName);
+                db.AddInParameter(cmd, "ClassID", System.Data.DbType.String, classID);
+                db.AddInParameter(cmd, "AcademicYearID", System.Data.DbType.String, academicYearID);
+
+                using (IDataReader reader = db.ExecuteReader(cmd))
+                {
+                    List<AssignmentData> studentSubjectList = new List<AssignmentData>();
+
+                    while (reader.Read())
+                    {
+                        AssignmentData data = new AssignmentData();
+                        data._SubjectID = Convert.ToString(reader["SubjectID"]);
+                        data._Subject = Convert.ToString(reader["Subject"]);
+
+                        studentSubjectList.Add(data);
+                    }
+
+                    returnList = studentSubjectList;
+                }
+                return returnList;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public List<AssignmentData> GetStudentAssignmentByClassSubject(string userID, string classID, string subjectID, string academicYearID)
+        {
+            string spName = "SP_GetStudentAssignmentByClassSubject";
+            List<AssignmentData> returnList;
+
+            try
+            {
+                DbCommand cmd = db.GetStoredProcCommand(spName);
+                db.AddInParameter(cmd, "UserID", System.Data.DbType.String, userID);
+                db.AddInParameter(cmd, "ClassID", System.Data.DbType.String, classID);
+                db.AddInParameter(cmd, "SubjectID", System.Data.DbType.String, subjectID);
+                db.AddInParameter(cmd, "AcademicYearID", System.Data.DbType.String, academicYearID);
+
+                using (IDataReader reader = db.ExecuteReader(cmd))
+                {
+                    List<AssignmentData> studentAssignmentList = new List<AssignmentData>();
+
+                    while (reader.Read())
+                    {
+                        AssignmentData data = new AssignmentData();
+                        data._ClassSubAssignID = Convert.ToInt32(reader["ClSubAsID"]);
+                        data._Class = Convert.ToString(reader["Class"]);
+                        data._Subject = Convert.ToString(reader["Subject"]);
+                        data._AssignmentTitle = Convert.ToString(reader["AssignmentTitle"]);
+                        data._AssignmentPath = Convert.ToString(reader["AssignmentPath"]);
+                        data._AssignDate = (Convert.ToDateTime(reader["AssignDate"])).ToString("MMM dd, yyyy");
+                        data._DueDate = Convert.ToDateTime(reader["DueDate"]).ToString("MMM dd, yyyy");
+                        data._StatusID = Convert.ToInt32(reader["StatusID"]);
+                        data._Status = Convert.ToString(reader["Status"]);
+                        
+                        try
+                        {
+                            data._SubmissionDate = (Convert.ToDateTime(reader["SubmissionDate"])).ToString("MMM dd, yyyy");
+                        }
+                        catch (Exception ex)
+                        {
+                            data._SubmissionDate = "-";
+                        }
+
+                        data._AnswerPath = Convert.ToString(reader["AnswerPath"]);
+                        try
+                        {
+                            data._SubmissionStatusID = Convert.ToInt32(reader["SubmStatusID"]);
+                        }
+                        catch (Exception)
+                        {
+
+                            data._SubmissionStatusID = 0;
+                        }
+                        
+                        data._SubmissionStatus = Convert.ToString(reader["SubmStatus"]);
+
+                        studentAssignmentList.Add(data);
+                    }
+
+                    returnList = studentAssignmentList;
+                }
+                return returnList;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
     }
 }

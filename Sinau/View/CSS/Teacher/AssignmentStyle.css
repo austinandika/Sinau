@@ -116,10 +116,10 @@
         word-wrap: break-word;
     }
 
-    .assignment-table-container .assignment-table-content.no-assignment {
-        display: block;
-        text-align: center;
-    }
+        .assignment-table-container .assignment-table-content.no-assignment {
+            display: block;
+            text-align: center;
+        }
 
     .assignment-table-container .class-column {
         width: 130px;
