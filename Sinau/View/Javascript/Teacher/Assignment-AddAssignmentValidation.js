@@ -65,6 +65,25 @@ function assignDateValidation() {
         txtAssignDate.classList.add("error");
         isValidDate = false;
     }
+    else {
+        var assignDateParts = txtAssignDate.value.split("/");
+        var dateObjectAssign = new Date(+assignDateParts[2], assignDateParts[1] - 1, +assignDateParts[0]);
+
+        var today = new Date();
+        //var dd = String(today.getDate()).padStart(2, '0');
+        //var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        //var yyyy = today.getFullYear();
+
+        //today = mm + '/' + dd + '/' + yyyy;
+
+        var diffDays = dateObjectAssign.getDate() - today.getDate();
+
+        if (diffDays < 0) {
+            lblErrorAssignDate.innerHTML = "Assign date must be same or greater than today date";
+            txtAssignDate.classList.add("error");
+            isValidDate = false;
+        }
+    }
 
     if (isValidDate == false) {
         createFlag = false;

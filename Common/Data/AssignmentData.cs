@@ -13,5 +13,11 @@ namespace Common.Data
         public string _Class { get; set; }
         public string _SubjectID { get; set; }
         public string _Subject { get; set; }
+        public int _ClassSubAssignID { get; set; }
+        public string _AssignmentTitle { get; set; }
+        public string _AssignmentPath { get; set; }
+        public string _AssignDate { get; set; }
+        public string _DueDate { get; set; }
+        public string _Status { get; set; }
     }
 }

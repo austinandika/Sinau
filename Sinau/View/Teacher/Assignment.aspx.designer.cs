@@ -42,76 +42,22 @@ namespace Sinau.View.Teacher
         protected global::System.Web.UI.WebControls.Button btnAddAssignment;
 
         /// <summary>
-        /// lblClass control.
+        /// noScheduleDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblClass;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noScheduleDiv;
 
         /// <summary>
-        /// lblSubject control.
+        /// rptTeacherAssignment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSubject;
-
-        /// <summary>
-        /// lblAssignmentTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAssignmentTitle;
-
-        /// <summary>
-        /// btnDownloadQuestion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnDownloadQuestion;
-
-        /// <summary>
-        /// lblAssignDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAssignDate;
-
-        /// <summary>
-        /// lblDueDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDueDate;
-
-        /// <summary>
-        /// lblStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStatus;
-
-        /// <summary>
-        /// btnDownloadAnswer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnDownloadAnswer;
+        protected global::System.Web.UI.WebControls.Repeater rptTeacherAssignment;
 
         /// <summary>
         /// mp1 control.

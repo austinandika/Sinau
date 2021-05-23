@@ -34,5 +34,29 @@ namespace BusinessFacade
                 return null;
             }
         }
+
+        public List<AssignmentData> GetTeacherAssignmentByIdClassSubject(string userID, string classID, string subjectID, string academicYearID)
+        {
+            try
+            {
+                return new AssignmentDA().GetTeacherAssignmentByIdClassSubject(userID, classID, subjectID, academicYearID);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public bool InsertAssignmentByIdClassSubject(string classID, string subjectID, string academicYearID, string assignmentTitle, string assignDate, string dueDate, string assignmentPath, int statusID)
+        {
+            try
+            {
+                return new AssignmentDA().InsertAssignmentByIdClassSubject(classID, subjectID, academicYearID, assignmentTitle, assignDate, dueDate, assignmentPath, statusID);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

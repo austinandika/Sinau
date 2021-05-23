@@ -81,7 +81,7 @@
         padding: 5px;
     }
 
-    .upper-container .edit-score-container .btn-add-assignment {
+    .upper-container .edit-assignment-container .btn-add-assignment {
         padding: 10px 10px;
         border: none;
         border-radius: 8px;
@@ -114,6 +114,11 @@
         padding-top: 5px;
         padding-bottom: 5px;
         word-wrap: break-word;
+    }
+
+    .assignment-table-container .assignment-table-content.no-assignment {
+        display: block;
+        text-align: center;
     }
 
     .assignment-table-container .class-column {
