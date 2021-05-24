@@ -112,7 +112,7 @@ body {
             border-radius: 20px;
             width: 100%;
             height: 280px;
-            background-color: #FDEDCF;
+            background-color: #dadada;
         }
 
             .content .left-content .upcoming-assignment-container .inside-container {
@@ -177,7 +177,7 @@ body {
 
         .content .right-content .upcoming-course-container {
             border-radius: 20px;
-            background-color: #EBF7E7;
+            background-color: #dadada;
             height: 100%;
         }
 
