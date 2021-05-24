@@ -49,7 +49,9 @@
 
         <asp:Repeater runat="server" ID="rptStudentAssignment">
             <ItemTemplate>
-                <div class="assignment-table-content" runat="server" visible='<%# Eval("_Status").ToString() != "Waiting" %>'>
+                <%-- <div class="assignment-table-content" runat="server" visible='<%# Eval("_Status").ToString() != "Waiting" %>'> --%>
+                <div class="assignment-table-content">
+
                     <asp:Label Text='<%# Eval("_ClassSubAssignID") %>' ID="lblClassSubAssignID" runat="server" Visible="false" />
 
                     <div class="subject-column">
@@ -61,7 +63,7 @@
                     </div>
 
                     <div class="download-question-column">
-                        <asp:LinkButton ID="btnDownloadQuestion" runat="server">
+                        <asp:LinkButton ID="btnDownloadQuestion" runat="server" OnClick="btnDownloadQuestion_Click">
                     <div class="btn-download-question">
                         <i class="fa fa-floppy-o" aria-hidden="true" title="Download the assignment question"></i>
                     </div>

@@ -1,6 +1,7 @@
 ﻿using BusinessFacade;
 using Common.Data;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -158,8 +159,18 @@ namespace Sinau.View.Teacher
             string assignDateValue = assignDate.ToString("yyyy-MM-dd");
             DateTime dueDate = DateTime.ParseExact(txtDueDate.Text, "dd/MM/yyyy", null);
             string dueDateValue = dueDate.ToString("yyyy-MM-dd");
-            string assignmentPathValue = "test";
 
+            string fileExtension = Path.GetExtension(fuQuestionFile.PostedFile.FileName);
+            DateTime today = DateTime.Now;
+
+            string fileName = today.ToString("yyyy") + today.ToString("MM") + today.ToString("dd") + today.ToString("HH") + today.ToString("mm") + today.ToString("ss") + "_" + sessionUserID + "_" + "Assignment" + fileExtension;
+
+            
+
+            fuQuestionFile.PostedFile.SaveAs(Server.MapPath("~/Uploads/") + fileName);
+
+            string filePath = "~/Uploads/" + fileName;
+            string assignmentPathValue = filePath;
             
 
             bool returnValueInsertAssignment = new AssignmentSystem().InsertAssignmentByIdClassSubject(classValue, subjectValue, academicYearID, assignmentTitleValue, assignDateValue, dueDateValue, assignmentPathValue);
@@ -208,6 +219,31 @@ namespace Sinau.View.Teacher
                     }
                 }
             }
+        }
+
+        protected void btnDownloadQuestion_Click(object sender, EventArgs e)
+        {
+            //Find the reference of the Repeater Item
+            RepeaterItem item = (sender as LinkButton).Parent as RepeaterItem;
+            int classSubjectAssignmentID = int.Parse((item.FindControl("lblClassSubAssignID") as Label).Text);
+
+            try
+            {
+                AssignmentData assignment = new AssignmentSystem().GetAssignmentFilePathByClassSubAssignID(classSubjectAssignmentID);
+
+                string assignmentPath = assignment._AssignmentPath;
+
+                Response.ContentType = "application/octet-stream";
+                Response.AppendHeader("Content-Disposition", "attachment;filename=" + assignmentPath);
+                string fileMap = Server.MapPath(assignmentPath);
+                Response.TransmitFile(fileMap);
+                Response.End();
+            }
+            catch (Exception)
+            {
+
+            }
+            
         }
     }
 }

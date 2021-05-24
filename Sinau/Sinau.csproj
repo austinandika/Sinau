@@ -230,7 +230,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Uploads\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessFacade\BusinessFacade.csproj">
       <Project>{d9d8cd7f-b9fc-4c84-8507-88b25e3cf3b0}</Project>

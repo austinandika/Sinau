@@ -307,5 +307,31 @@ namespace DataAccess.Properties
                 return null;
             }
         }
+
+        public AssignmentData GetAssignmentFilePathByClassSubAssignID(int classSubjectAssignmentID)
+        {
+            string spName = "SP_GetAssignmentFilePathByClassSubAssignID";
+            AssignmentData assignmentPath = null;
+
+            try
+            {
+                DbCommand cmd = db.GetStoredProcCommand(spName);
+                db.AddInParameter(cmd, "ClassSubAssignID", System.Data.DbType.String, classSubjectAssignmentID);
+
+                using (IDataReader reader = db.ExecuteReader(cmd))
+                {
+                    if (reader.Read())
+                    {
+                        assignmentPath = new AssignmentData();
+                        assignmentPath._AssignmentPath = reader["AssignmentPath"].ToString().Trim();
+                    }
+                }
+                return assignmentPath;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

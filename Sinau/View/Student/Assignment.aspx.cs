@@ -1,6 +1,7 @@
 ﻿using BusinessFacade;
 using Common.Data;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -37,7 +38,7 @@ namespace Sinau.View.Student
 
                 if (listStudentAssignment.Count != 0)
                 {
-                    validateAssignmentStatus(listStudentAssignment);
+                    listStudentAssignment = validateAssignmentStatus(listStudentAssignment);
                     rptStudentAssignment.DataSource = listStudentAssignment;
                     rptStudentAssignment.DataBind();
                 }
@@ -73,7 +74,7 @@ namespace Sinau.View.Student
 
                 if (listStudentAssignment.Count != 0)
                 {
-                    validateAssignmentStatus(listStudentAssignment);
+                    listStudentAssignment = validateAssignmentStatus(listStudentAssignment);
                     rptStudentAssignment.DataSource = listStudentAssignment;
                     rptStudentAssignment.DataBind();
                 }
@@ -103,7 +104,7 @@ namespace Sinau.View.Student
 
                 if (listStudentAssignment.Count != 0)
                 {
-                    validateAssignmentStatus(listStudentAssignment);
+                    listStudentAssignment = validateAssignmentStatus(listStudentAssignment);
                     rptStudentAssignment.DataSource = listStudentAssignment;
                     rptStudentAssignment.DataBind();
                 }
@@ -118,8 +119,10 @@ namespace Sinau.View.Student
             }
         }
 
-        private void validateAssignmentStatus(List<AssignmentData> listAssignmentTemp)
+        private List<AssignmentData> validateAssignmentStatus(List<AssignmentData> listAssignmentTemp)
         {
+            List<AssignmentData> returnList = new List<AssignmentData>();
+
             for (int i = 0; i < listAssignmentTemp.Count; i++)
             {
                 if (listAssignmentTemp[i]._StatusID == 0 && listAssignmentTemp[i]._SubmissionStatusID == -1)
@@ -148,10 +151,12 @@ namespace Sinau.View.Student
                     if (todayDueCompare > 0)
                     {
                         listAssignmentTemp[i]._Status = "Not-Sumbit";
+                        returnList.Add(listAssignmentTemp[i]);
                     }
                     else if (assignTodayCompare <= 0 && todayDueCompare <= 0)
                     {
                         listAssignmentTemp[i]._Status = "Assigned";
+                        returnList.Add(listAssignmentTemp[i]);
                     }
                     else if (assignTodayCompare > 0)
                     {
@@ -161,6 +166,7 @@ namespace Sinau.View.Student
                 else if(listAssignmentTemp[i]._StatusID == 0 && listAssignmentTemp[i]._SubmissionStatusID != -1)
                 {
                     listAssignmentTemp[i]._Status = listAssignmentTemp[i]._SubmissionStatus;
+                    returnList.Add(listAssignmentTemp[i]);
                 }
 
                 //if (listAssignmentTemp[i]._SubmissionStatusID == -1) // haven't submitted the answer
@@ -172,6 +178,31 @@ namespace Sinau.View.Student
                 //        listAssignmentTemp[i]._Status = "Not-Sumbit";
                 //    }
                 //}
+            }
+            return returnList;
+        }
+
+        protected void btnDownloadQuestion_Click(object sender, EventArgs e)
+        {
+            //Find the reference of the Repeater Item
+            RepeaterItem item = (sender as LinkButton).Parent as RepeaterItem;
+            int classSubjectAssignmentID = int.Parse((item.FindControl("lblClassSubAssignID") as Label).Text);
+
+            try
+            {
+                AssignmentData assignment = new AssignmentSystem().GetAssignmentFilePathByClassSubAssignID(classSubjectAssignmentID);
+
+                string assignmentPath = assignment._AssignmentPath;
+
+                Response.ContentType = "application/octet-stream";
+                Response.AppendHeader("Content-Disposition", "attachment;filename=" + assignmentPath);
+                string fileMap = Server.MapPath(assignmentPath);
+                Response.TransmitFile(fileMap);
+                Response.End();
+            }
+            catch (Exception)
+            {
+
             }
         }
     }

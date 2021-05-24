@@ -94,5 +94,17 @@ namespace BusinessFacade
                 return null;
             }
         }
+
+        public AssignmentData GetAssignmentFilePathByClassSubAssignID(int classSubjectAssignmentID)
+        {
+            try
+            {
+                return new AssignmentDA().GetAssignmentFilePathByClassSubAssignID(classSubjectAssignmentID);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 }
