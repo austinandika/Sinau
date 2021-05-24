@@ -278,7 +278,7 @@ namespace DataAccess.Properties
                         }
                         catch (Exception ex)
                         {
-                            data._SubmissionDate = "-";
+                            data._SubmissionDate = "";
                         }
 
                         data._AnswerPath = Convert.ToString(reader["AnswerPath"]);
@@ -289,7 +289,7 @@ namespace DataAccess.Properties
                         catch (Exception)
                         {
 
-                            data._SubmissionStatusID = 0;
+                            data._SubmissionStatusID = -1;      // haven't submitted the answer
                         }
                         
                         data._SubmissionStatus = Convert.ToString(reader["SubmStatus"]);

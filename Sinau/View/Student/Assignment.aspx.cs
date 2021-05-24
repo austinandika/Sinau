@@ -122,8 +122,11 @@ namespace Sinau.View.Student
         {
             for (int i = 0; i < listAssignmentTemp.Count; i++)
             {
-                if (listAssignmentTemp[i]._StatusID == 0)
+                if (listAssignmentTemp[i]._StatusID == 0 && listAssignmentTemp[i]._SubmissionStatusID == -1)
                 {
+                    // listAssignmentTemp[i]._SubmissionStatusID == -1 -> haven't subitted the answer
+                    listAssignmentTemp[i]._SubmissionDate = "-";
+
                     DateTime assignDate = DateTime.ParseExact(listAssignmentTemp[i]._AssignDate, "MMM dd, yyyy", null);
                     DateTime dueDate = DateTime.ParseExact(listAssignmentTemp[i]._DueDate, "MMM dd, yyyy", null);
 
@@ -144,7 +147,7 @@ namespace Sinau.View.Student
 
                     if (todayDueCompare > 0)
                     {
-                        listAssignmentTemp[i]._Status = "(TEMPORARY DONE)";
+                        listAssignmentTemp[i]._Status = "Not-Sumbit";
                     }
                     else if (assignTodayCompare <= 0 && todayDueCompare <= 0)
                     {
@@ -155,6 +158,20 @@ namespace Sinau.View.Student
                         listAssignmentTemp[i]._Status = "Waiting";
                     }
                 }
+                else if(listAssignmentTemp[i]._StatusID == 0 && listAssignmentTemp[i]._SubmissionStatusID != -1)
+                {
+                    listAssignmentTemp[i]._Status = listAssignmentTemp[i]._SubmissionStatus;
+                }
+
+                //if (listAssignmentTemp[i]._SubmissionStatusID == -1) // haven't submitted the answer
+                //{
+                //    listAssignmentTemp[i]._SubmissionDate = "-";
+
+                //    if(listAssignmentTemp[i]._Status == "Done")
+                //    {
+                //        listAssignmentTemp[i]._Status = "Not-Sumbit";
+                //    }
+                //}
             }
         }
     }

@@ -205,10 +205,20 @@ body {
         display: block;
     }
 
-                    .content .right-content .upcoming-course-container .inside-container .course-table-container td {
+                    .content .right-content .upcoming-course-container .inside-container .course-table-container tr:nth-child(even) td {
                         vertical-align: central;
                         height: 50px;
                     }
+
+                    .content .right-content .upcoming-course-container .inside-container .course-table-container tr:nth-child(odd) td {
+                        vertical-align: central;
+                        height: fit-content;
+                    }
+
+                    /*.content .right-content .upcoming-course-container .inside-container .course-table-container td {
+                        vertical-align: central;
+                        height: 50px;
+                    }*/
 
                     .content .right-content .upcoming-course-container .inside-container .course-table-container tr {
                         display: list-item;
@@ -217,6 +227,12 @@ body {
                         margin-left: 20px;
                         vertical-align: baseline;
                     }
+
+                        .content .right-content .upcoming-course-container .inside-container .course-table-container tr:nth-child(even) {
+                            display: block;
+                            margin-left: 20px;
+                            vertical-align: baseline;
+                        }
 
                     .content .right-content .upcoming-course-container .inside-container .course-table-container td:nth-child(1) {
                         width: 200px;
