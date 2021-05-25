@@ -147,7 +147,7 @@
 
                             <div class="button-container">
                                 <asp:Button Text="Cancel" runat="server" ID="btnCancel" CssClass="button-create button-cancel" />
-                                <asp:Button Text="Submit" runat="server" ID="btnCreate" CssClass="button-create button-design" OnClientClick="return validateCreateAssignment();" OnClick="btnCreate_Click" />
+                                <asp:Button Text="Submit" runat="server" ID="btnCreate" CssClass="button-create button-design" OnClick="btnCreate_Click" />
                             </div>
                         </div>
                     </div>

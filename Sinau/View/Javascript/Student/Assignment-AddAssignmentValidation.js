@@ -1,15 +1,19 @@
-﻿var fuAnswerFile = null;
-$('.button-create button-design').click(function () {
-    fuAnswerFile = $(this).attr('id');
-})
+﻿////var fuAnswerFile = null;
+////$('.button-create button-design').click(function () {
+////    fuAnswerFile = $(this).attr('id');
+////})
 
-var btnCreate = null;
-$('.fu-answer-file').click(function () {
-    btnCreate = $(this).attr('id');
-})
+////var btnCreate = null;
+////$('.fu-answer-file').click(function () {
+////    btnCreate = $(this).attr('id');
+////})
+
 
 //var fuAnswerFile = document.getElementById('ContentPlaceHolder1_rptStudentAssignment_fuAnswerFile_0');
 //var btnCreate = document.getElementById('ContentPlaceHolder1_rptStudentAssignment_btnCreate_0');
+
+var fuAnswerFile = document.getElementById('ContentPlaceHolder1_rptStudentAssignment_fuAnswerFile_0');
+var btnCreate = document.getElementById('ContentPlaceHolder1_rptStudentAssignment_btnCreate_0');
 
 // LABEL
 

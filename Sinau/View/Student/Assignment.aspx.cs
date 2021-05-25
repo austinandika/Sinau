@@ -213,37 +213,73 @@ namespace Sinau.View.Student
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
+            bool isValidFile = true;
+
             //Find the reference of the Repeater Item
             RepeaterItem item = (sender as Button).Parent.Parent as RepeaterItem;
             int classSubjectAssignmentID = int.Parse((item.FindControl("lblClassSubAssignID") as HiddenField).Value);
             FileUpload fuAnswerFile = item.FindControl("fuAnswerFile") as FileUpload;
             Label lblErrorAnswerFile = item.FindControl("lblErrorAnswerFile") as Label;
 
-            string sessionUserID = Session["UserID"].ToString();
-            string submissionDate = DateTime.Now.ToString("yyyy-MM-dd").ToString();
 
-            string fileExtension = Path.GetExtension(fuAnswerFile.PostedFile.FileName);
-
-            DateTime today = DateTime.Now;
-            string fileName = today.ToString("yyyy") + today.ToString("MM") + today.ToString("dd") + today.ToString("HH") + today.ToString("mm") + today.ToString("ss") + "_" + sessionUserID + "_" + "Answer" + fileExtension;
-
-            fuAnswerFile.PostedFile.SaveAs(Server.MapPath("~/Uploads/") + fileName);
-
-            string filePath = "~/Uploads/" + fileName;
-            string answerPathValue = filePath;
-
+            var supportedTypes = new[] { "txt", "pdf", "ppt", "xls", "doc", "pptx", "xlsx", "docx", "rar", "zip", "jpg", "jpeg", "png", "wav", "mp3", "mp4", "avi", "3gp", "mkv", "mov", "flv" };
+            string fileExt;
             try
             {
-                bool isInserted = new AssignmentSystem().InsertStudentAsgAnswerByClSubAsgIDAndUserID(classSubjectAssignmentID, sessionUserID, submissionDate, answerPathValue);
-
-                if (isInserted)
-                {
-                    Response.Redirect(Request.RawUrl);
-                }
+                fileExt = System.IO.Path.GetExtension(fuAnswerFile.PostedFile.FileName).Substring(1);
             }
             catch (Exception ex)
             {
-                lblErrorAnswerFile.Text = "Your answer failed to upload";
+                fileExt = "";
+            }
+            
+            int maxFileSize = 20000;    // 20.000 kb = 20mb
+
+            if(fuAnswerFile.HasFile == false)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR: File is required')", true);
+                isValidFile = false;
+            }
+            else if (!supportedTypes.Contains(fileExt))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR: File type is not allowed')", true);
+                isValidFile = false;
+            }
+            else if (fuAnswerFile.FileBytes.Length > (maxFileSize * 1024))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR: File size is too big, maximum file size is 20mb')", true);
+                isValidFile = false;
+            }
+
+            if (isValidFile)
+            {
+                string sessionUserID = Session["UserID"].ToString();
+                string submissionDate = DateTime.Now.ToString("yyyy-MM-dd").ToString();
+
+                string fileExtension = Path.GetExtension(fuAnswerFile.PostedFile.FileName);
+
+                DateTime today = DateTime.Now;
+                string fileName = today.ToString("yyyy") + today.ToString("MM") + today.ToString("dd") + today.ToString("HH") + today.ToString("mm") + today.ToString("ss") + "_" + sessionUserID + "_" + "Answer" + fileExtension;
+
+                fuAnswerFile.PostedFile.SaveAs(Server.MapPath("~/Uploads/") + fileName);
+
+                string filePath = "~/Uploads/" + fileName;
+                string answerPathValue = filePath;
+
+                try
+                {
+                    bool isInserted = new AssignmentSystem().InsertStudentAsgAnswerByClSubAsgIDAndUserID(classSubjectAssignmentID, sessionUserID, submissionDate, answerPathValue);
+
+                    if (isInserted)
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('SUCCESS: Your answer have been submitted'); window.location ='Assignment.aspx';", true);
+                        //Response.Redirect(Request.RawUrl);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //lblErrorAnswerFile.Text = "Your answer failed to upload";
+                }
             }
         }
 
