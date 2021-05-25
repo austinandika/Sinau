@@ -56,12 +56,12 @@
         </div>
 
 
-        <div class="assignment-table-content no-assignment" id="noScheduleDiv" runat="server" visible="false">You have no assignment</div>
+        <div class="assignment-table-content no-assignment" id="noScheduleDiv" runat="server" visible="false">You haven't added an assignment</div>
 
         <asp:Repeater ID="rptTeacherAssignment" runat="server">
             <ItemTemplate>
                 <div class="assignment-table-content">
-                    <asp:Label Text='<%# Eval("_ClassSubAssignID") %>' ID="lblClassSubAssignID" runat="server" Visible="false" />
+                    <asp:HiddenField Value='<%# Eval("_ClassSubAssignID") %>' ID="lblClassSubAssignID" runat="server" />
                     <div class="class-column">
                         <asp:Label Text='<%# Eval("_Class") %>' runat="server" ID="lblClass" />
                     </div>

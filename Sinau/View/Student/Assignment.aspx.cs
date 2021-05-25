@@ -14,42 +14,46 @@ namespace Sinau.View.Student
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string sessionUserID = Session["UserID"].ToString();
-            string sessionRole = Session["Role"].ToString();
-            string academicYearID = new SettingSystem().GetUserLatestAcademicYearByIdAndRole(sessionUserID, sessionRole)._AcademicYearID;
-
-            List<AssignmentData> classList = new AssignmentSystem().GetStudentClassById(sessionUserID, academicYearID);
-            ddlClass.DataSource = classList;
-            ddlClass.DataTextField = "_Class";
-            ddlClass.DataValueField = "_ClassID";
-            ddlClass.DataBind();
-
-            List<AssignmentData> subjectList = new AssignmentSystem().GetStudentSubjectByClass(ddlClass.SelectedValue, academicYearID);
-            ddlSubjectFilter.DataSource = subjectList;
-            ddlSubjectFilter.DataTextField = "_Subject";
-            ddlSubjectFilter.DataValueField = "_SubjectID";
-            ddlSubjectFilter.DataBind();
-
-            string ddlClassValue = ddlClass.SelectedValue;
-            string ddlSubjectValue = ddlSubjectFilter.SelectedValue;
-            try
+            if (!IsPostBack)
             {
-                List<AssignmentData> listStudentAssignment = new AssignmentSystem().GetStudentAssignmentByClassSubject(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
+                string sessionUserID = Session["UserID"].ToString();
+                string sessionRole = Session["Role"].ToString();
+                string academicYearID = new SettingSystem().GetUserLatestAcademicYearByIdAndRole(sessionUserID, sessionRole)._AcademicYearID;
 
-                if (listStudentAssignment.Count != 0)
-                {
-                    listStudentAssignment = validateAssignmentStatus(listStudentAssignment);
-                    rptStudentAssignment.DataSource = listStudentAssignment;
-                    rptStudentAssignment.DataBind();
-                }
-                else
-                {
-                    noScheduleDiv.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
+                List<AssignmentData> classList = new AssignmentSystem().GetStudentClassById(sessionUserID, academicYearID);
+                ddlClass.DataSource = classList;
+                ddlClass.DataTextField = "_Class";
+                ddlClass.DataValueField = "_ClassID";
+                ddlClass.DataBind();
 
+                List<AssignmentData> subjectList = new AssignmentSystem().GetStudentSubjectByClass(ddlClass.SelectedValue, academicYearID);
+                ddlSubjectFilter.DataSource = subjectList;
+                ddlSubjectFilter.DataTextField = "_Subject";
+                ddlSubjectFilter.DataValueField = "_SubjectID";
+                ddlSubjectFilter.DataBind();
+                ddlSubjectFilter.Items.Insert(0, new ListItem("All", "All"));
+
+                string ddlClassValue = ddlClass.SelectedValue;
+                string ddlSubjectValue = ddlSubjectFilter.SelectedValue;
+                try
+                {
+                    List<AssignmentData> listStudentAssignment = new AssignmentSystem().GetStudentAssignmentByClassSubject(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
+
+                    if (listStudentAssignment.Count != 0)
+                    {
+                        listStudentAssignment = validateAssignmentStatus(listStudentAssignment);
+                        rptStudentAssignment.DataSource = listStudentAssignment;
+                        rptStudentAssignment.DataBind();
+                    }
+                    else
+                    {
+                        noScheduleDiv.Visible = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
         }
 
@@ -64,6 +68,7 @@ namespace Sinau.View.Student
             ddlSubjectFilter.DataTextField = "_Subject";
             ddlSubjectFilter.DataValueField = "_SubjectID";
             ddlSubjectFilter.DataBind();
+            ddlSubjectFilter.Items.Insert(0, new ListItem("All", "All"));
 
             string ddlClassValue = ddlClass.SelectedValue;
             string ddlSubjectValue = ddlSubjectFilter.SelectedValue;
@@ -186,7 +191,7 @@ namespace Sinau.View.Student
         {
             //Find the reference of the Repeater Item
             RepeaterItem item = (sender as LinkButton).Parent as RepeaterItem;
-            int classSubjectAssignmentID = int.Parse((item.FindControl("lblClassSubAssignID") as Label).Text);
+            int classSubjectAssignmentID = int.Parse((item.FindControl("lblClassSubAssignID") as HiddenField).Value);
 
             try
             {
@@ -204,6 +209,88 @@ namespace Sinau.View.Student
             {
 
             }
+        }
+
+        protected void btnCreate_Click(object sender, EventArgs e)
+        {
+            //Find the reference of the Repeater Item
+            RepeaterItem item = (sender as Button).Parent.Parent as RepeaterItem;
+            int classSubjectAssignmentID = int.Parse((item.FindControl("lblClassSubAssignID") as HiddenField).Value);
+            FileUpload fuAnswerFile = item.FindControl("fuAnswerFile") as FileUpload;
+            Label lblErrorAnswerFile = item.FindControl("lblErrorAnswerFile") as Label;
+
+            string sessionUserID = Session["UserID"].ToString();
+            string submissionDate = DateTime.Now.ToString("yyyy-MM-dd").ToString();
+
+            string fileExtension = Path.GetExtension(fuAnswerFile.PostedFile.FileName);
+
+            DateTime today = DateTime.Now;
+            string fileName = today.ToString("yyyy") + today.ToString("MM") + today.ToString("dd") + today.ToString("HH") + today.ToString("mm") + today.ToString("ss") + "_" + sessionUserID + "_" + "Answer" + fileExtension;
+
+            fuAnswerFile.PostedFile.SaveAs(Server.MapPath("~/Uploads/") + fileName);
+
+            string filePath = "~/Uploads/" + fileName;
+            string answerPathValue = filePath;
+
+            try
+            {
+                bool isInserted = new AssignmentSystem().InsertStudentAsgAnswerByClSubAsgIDAndUserID(classSubjectAssignmentID, sessionUserID, submissionDate, answerPathValue);
+
+                if (isInserted)
+                {
+                    Response.Redirect(Request.RawUrl);
+                }
+            }
+            catch (Exception ex)
+            {
+                lblErrorAnswerFile.Text = "Your answer failed to upload";
+            }
+        }
+
+        protected void btnDownloadAnswer_Click(object sender, EventArgs e)
+        {
+            //Find the reference of the Repeater Item
+            RepeaterItem item = (sender as LinkButton).Parent as RepeaterItem;
+            int classSubjectAssignmentID = int.Parse((item.FindControl("lblClassSubAssignID") as HiddenField).Value);
+            string sessionUserID = Session["UserID"].ToString();
+
+            try
+            {
+                AssignmentData answer = new AssignmentSystem().GetAssignmentAnsFileByClassSubAssignIDAndUserID(classSubjectAssignmentID, sessionUserID);
+
+                string answerPath = answer._AnswerPath;
+
+                Response.ContentType = "application/octet-stream";
+                Response.AppendHeader("Content-Disposition", "attachment;filename=" + answerPath);
+                string fileMap = Server.MapPath(answerPath);
+                Response.TransmitFile(fileMap);
+                Response.End();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        protected void rptStudentAssignment_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                string submissionDate = (e.Item.FindControl("lblSubmissionDate") as Label).Text;
+
+                if (submissionDate == "-")
+                {
+                    e.Item.FindControl("btnDownloadAnswer").Visible = false;
+                }
+            }
+
+
+            // hide download button when user haven't submitted assignment answer
+            //if (submissionDate == "-")
+            //{
+            //    e.Item.FindControl("btnDownloadAnswer").Visible = false;
+            //}
         }
     }
 }

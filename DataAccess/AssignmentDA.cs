@@ -333,5 +333,60 @@ namespace DataAccess.Properties
                 return null;
             }
         }
+
+        public bool InsertStudentAsgAnswerByClSubAsgIDAndUserID(int classSubjectAssignmentID, string userID, string submissionDate, string answerPath)
+        {
+            string spName = "SP_InsertStudentAsgAnswerByClSubAsgIDAndUserID";
+            bool returnValue = false;
+
+            try
+            {
+                using (DbConnection connection = db.CreateConnection())
+                {
+                    DbCommand cmd = db.GetStoredProcCommand(spName);
+                    db.AddInParameter(cmd, "ClassSubAssignID", System.Data.DbType.Int32, classSubjectAssignmentID);
+                    db.AddInParameter(cmd, "UserID", System.Data.DbType.String, userID);
+                    db.AddInParameter(cmd, "SubmissionDate", System.Data.DbType.String, submissionDate);
+                    db.AddInParameter(cmd, "AnswerPath", System.Data.DbType.String, answerPath);
+
+                    db.ExecuteNonQuery(cmd);
+                }
+
+                returnValue = true;
+            }
+            catch (Exception e)
+            {
+                returnValue = false;
+            }
+
+            return returnValue;
+        }
+
+        public AssignmentData GetAssignmentAnsFileByClassSubAssignIDAndUserID(int classSubjectAssignmentID, string userID)
+        {
+            string spName = "SP_GetAssignmentAnsFileByClassSubAssignIDAndUserID";
+            AssignmentData assignmentPath = null;
+
+            try
+            {
+                DbCommand cmd = db.GetStoredProcCommand(spName);
+                db.AddInParameter(cmd, "ClassSubAssignID", System.Data.DbType.String, classSubjectAssignmentID);
+                db.AddInParameter(cmd, "UserID", System.Data.DbType.String, userID);
+
+                using (IDataReader reader = db.ExecuteReader(cmd))
+                {
+                    if (reader.Read())
+                    {
+                        assignmentPath = new AssignmentData();
+                        assignmentPath._AnswerPath = reader["AnswerPath"].ToString().Trim();
+                    }
+                }
+                return assignmentPath;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

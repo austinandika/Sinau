@@ -106,5 +106,29 @@ namespace BusinessFacade
                 return null;
             }
         }
+
+        public bool InsertStudentAsgAnswerByClSubAsgIDAndUserID(int classSubjectAssignmentID, string userID, string submissionDate, string answerPath)
+        {
+            try
+            {
+                return new AssignmentDA().InsertStudentAsgAnswerByClSubAsgIDAndUserID(classSubjectAssignmentID, userID, submissionDate, answerPath);
+            }
+            catch (Exception)
+            {
+                return false ;
+            }
+        }
+
+        public AssignmentData GetAssignmentAnsFileByClassSubAssignIDAndUserID(int classSubjectAssignmentID, string userID)
+        {
+            try
+            {
+                return new AssignmentDA().GetAssignmentAnsFileByClassSubAssignIDAndUserID(classSubjectAssignmentID, userID);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 }

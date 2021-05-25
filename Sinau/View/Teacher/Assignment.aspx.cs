@@ -225,7 +225,7 @@ namespace Sinau.View.Teacher
         {
             //Find the reference of the Repeater Item
             RepeaterItem item = (sender as LinkButton).Parent as RepeaterItem;
-            int classSubjectAssignmentID = int.Parse((item.FindControl("lblClassSubAssignID") as Label).Text);
+            int classSubjectAssignmentID = int.Parse((item.FindControl("lblClassSubAssignID") as HiddenField).Value);
 
             try
             {
