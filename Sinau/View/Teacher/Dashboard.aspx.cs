@@ -24,7 +24,7 @@ namespace Sinau.View.Teacher
             {
                 userData = new UserSystem().GetUserInfoByUserID(sessionUserID, sessionRole);
                 string[] splitName = userData._Name.Split(' ');
-                lblGreeting.Text += splitName[0] + "!";
+                lblGreeting.Text = "Hello, " + splitName[0] + "!";
             }
             catch (Exception)
             {
@@ -49,6 +49,37 @@ namespace Sinau.View.Teacher
                     else
                     {
                         noScheduleDay.Attributes["class"] += " active";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+            // UPCOMING STUDENT ASSIGNMENT
+            //string todayDay = DateTime.Today.DayOfWeek.ToString();
+            try
+            {
+                string academicYearID = new SettingSystem().GetUserLatestAcademicYearByIdAndRole(sessionUserID, sessionRole)._AcademicYearID;
+                List<AssignmentData> listTeacherAssignment = new AssignmentSystem().GetTeacherAssignmentByIdClassSubject(sessionUserID, "All", "All", academicYearID);
+
+                //List<AssignmentData> listTeacherAssignmentUpcoming = null;  // due next 7 days
+
+                if(listTeacherAssignment != null)
+                {
+                    //listTeacherAssignmentUpcoming = listTeacherAssignment.Where(p => p._DueDate == todayDay).ToList();
+
+                    if (listTeacherAssignment.Count != 0)
+                    {
+                        //validateAssignmentStatus(listTeacherAssignment);
+                        rptUpcomingAssignment.DataSource = listTeacherAssignment;
+                        rptUpcomingAssignment.DataBind();
+                    }
+                    else
+                    {
+                        noAssignment.Attributes["class"] += " active";
                     }
                 }
             }

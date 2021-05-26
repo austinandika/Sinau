@@ -9,7 +9,7 @@
         <div class="greeting-text">
             <p>
                 &#128075;
-                <asp:Label Text="Hello, " runat="server" ID="lblGreeting" />
+                <asp:Label Text="" runat="server" ID="lblGreeting" />
             </p>
         </div>
     </div>
@@ -40,56 +40,40 @@
                     </div>
 
                     <div class="assignment-table-container">
+
+                        <div class="no-assignment-div" id="noAssignment" runat="server">
+                            <h3>You have no assignment</h3>
+                        </div>
+
                         <table>
-                            <tr>
+                            <asp:Repeater ID="rptUpcomingAssignment" runat="server">
+                                <ItemTemplate>
+                                    <tr>
 
-                                <td>
-                                    <asp:Label Text="Biology" ID="lblSubject" runat="server" />
-                                </td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("_Subject") %>' ID="lblSubject" runat="server" />
+                                        </td>
 
-                                <td>
-                                    <asp:Label Text="DNA Structure" ID="lblAssignmentTitle" runat="server" />
-                                </td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("_AssignmentTitle") %>' ID="lblAssignmentTitle" runat="server" />
+                                        </td>
 
-                                <td>
-                                    <asp:Label Text="XII MIPA 1" ID="lblAssignmentClass" runat="server" />
-                                </td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("_Class") %>' ID="lblAssignmentClass" runat="server" />
+                                        </td>
 
-                                <td>
-                                    <asp:Label Text="June 23, 2020" ID="lblDeadline" runat="server" />
-                                </td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("_DueDate") %>' ID="lblDeadline" runat="server" />
+                                        </td>
 
-                                <td>
-                                    <asp:Button ID="btnViewAssignment" Text="View" runat="server" CssClass="view-assignment-button button-design" />
-                                </td>
-                            </tr>
-
-                            <%-- BATAS --%>
-
-                            <tr>
-
-                                <td>
-                                    <asp:Label Text="Biology" ID="Label1" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="Structure of Human Body" ID="Label2" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="XI MIPA 3" ID="Label3" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="June 27, 2020" ID="Label4" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Button ID="Button3" Text="View" runat="server" CssClass="view-assignment-button button-design" />
-                                </td>
-                            </tr>
-
+                                        <td>
+                                            <asp:Button ID="btnViewAssignment" Text="View" runat="server" CssClass="view-assignment-button button-design" PostBackUrl="~/View/Teacher/Assignment.aspx" />
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </table>
+
                     </div>
                 </div>
             </div>

@@ -10,7 +10,7 @@
         <div class="greeting-text">
             <p>
                 &#128075;
-                <asp:Label Text="Hello, " runat="server" ID="lblGreeting" />
+                <asp:Label Text="" runat="server" ID="lblGreeting" />
             </p>
         </div>
     </div>
@@ -41,135 +41,36 @@
                     </div>
 
                     <div class="assignment-table-container">
+
+                        <div class="no-assignment-div" id="noAssignment" runat="server">
+                            <h3>YEAY. You have no assignment left &#129303</h3>
+                        </div>
+
                         <table>
-                            <tr>
+                            <asp:Repeater ID="rptUpcomingAssignment" runat="server">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("_Subject") %>' ID="lblSubject" runat="server" />
+                                        </td>
 
-                                <td>
-                                    <asp:Label Text="Biology" ID="lblSubject" runat="server" />
-                                </td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("_AssignmentTitle") %>' ID="lblAssignmentTitle" runat="server" />
+                                        </td>
 
-                                <td>
-                                    <asp:Label Text="DNA Structure" ID="lblAssignmentTitle" runat="server" />
-                                </td>
+                                        <td>
+                                            <asp:Label Text='<%# Eval("_DueDate") %>' ID="lblDeadline" runat="server" />
+                                        </td>
 
-                                <td>
-                                    <asp:Label Text="June 23, 2020" ID="lblDeadline" runat="server" />
-                                </td>
+                                        <td>
+                                            <asp:Button ID="btnViewAssignment" Text="View" runat="server" CssClass="view-assignment-button button-design" PostBackUrl="~/View/Student/Assignment.aspx" />
+                                        </td>
+                                    </tr>
 
-                                <td>
-                                    <asp:Button ID="btnViewAssignment" Text="View" runat="server" CssClass="view-assignment-button button-design" />
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <asp:Label Text="Biology" ID="Label1" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="RNA Multiplication" ID="Label13" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="June 24, 2020" ID="Label2" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Button Text="View" runat="server" CssClass="view-assignment-button button-design" />
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <asp:Label Text="Physics" ID="Label3" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="Newton's Law" ID="Label14" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="June 25, 2020" ID="Label4" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Button Text="View" runat="server" CssClass="view-assignment-button button-design" />
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <asp:Label Text="Chemistry" ID="Label5" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="Periodic Table" ID="Label15" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="June 30, 2020" ID="Label6" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Button Text="View" runat="server" CssClass="view-assignment-button button-design" />
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <asp:Label Text="Physics" ID="Label7" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="Newton's 2 Law" ID="Label16" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="July 1, 2020" ID="Label8" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Button Text="View" runat="server" CssClass="view-assignment-button button-design" />
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <asp:Label Text="Physics" ID="Label9" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="Newton's 1 Law" ID="Label17" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="July 5, 2020" ID="Label10" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Button Text="View" runat="server" CssClass="view-assignment-button button-design" />
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <asp:Label Text="Physics" ID="Label11" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="Newton's 3 Law" ID="Label18" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Label Text="July 10, 2020" ID="Label12" runat="server" />
-                                </td>
-
-                                <td>
-                                    <asp:Button Text="View" runat="server" CssClass="view-assignment-button button-design" />
-                                </td>
-                            </tr>
-
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </table>
+
                     </div>
                 </div>
             </div>

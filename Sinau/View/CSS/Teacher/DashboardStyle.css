@@ -146,19 +146,23 @@ body {
 
                     .content .left-content .upcoming-assignment-container .inside-container .assignment-table-container td:nth-child(1) {
                         width: 150px;
+                        padding: 0 5px;
                     }
 
                     .content .left-content .upcoming-assignment-container .inside-container .assignment-table-container td:nth-child(2) {
                         width: 200px;
+                        padding: 0 5px;
                     }
 
                     .content .left-content .upcoming-assignment-container .inside-container .assignment-table-container td:nth-child(3) {
                         width: 150px;
                         text-align: center;
+                        padding: 0 5px;
                     }
 
                     .content .left-content .upcoming-assignment-container .inside-container .assignment-table-container td:nth-child(4) {
                         width: 150px;
+                        padding: 0 5px;
                     }
 
                     .content .left-content .upcoming-assignment-container .inside-container .assignment-table-container .view-assignment-button {
@@ -169,6 +173,22 @@ body {
                         text-align: center;
                         cursor: pointer;
                     }
+
+.assignment-table-container .no-assignment-div {
+    display: none;
+    text-align: center;
+}
+
+    .assignment-table-container .no-assignment-div h3 {
+        font-size: 16px;
+        font-weight: normal;
+    }
+
+    .assignment-table-container .no-assignment-div.active {
+        display: block;
+    }
+
+
 
     .content .right-content {
         width: 400px;
@@ -236,16 +256,19 @@ body {
                         }
 
                     .content .right-content .upcoming-course-container .inside-container .course-table-container td:nth-child(1) {
-                        width: 150px;
+                        width: 35%;
+                        padding: 0 5px;
                     }
 
                     .content .right-content .upcoming-course-container .inside-container .course-table-container td:nth-child(2) {
-                        width: 150px;
+                        width: 30%;
+                        padding: 0 5px;
                         text-align: center;
                     }
 
                     .content .right-content .upcoming-course-container .inside-container .course-table-container td:nth-child(3) {
-                        width: 150px;
+                        width: 35%;
+                        padding: 0 5px;
                     }
 
                     .content .right-content .upcoming-course-container .inside-container .course-table-container .join-class-button {

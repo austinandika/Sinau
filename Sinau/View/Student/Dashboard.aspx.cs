@@ -24,7 +24,7 @@ namespace Sinau.View
             {
                 userData = new UserSystem().GetUserInfoByUserID(sessionUserID, sessionRole);
                 string[] splitName = userData._Name.Split(' ');
-                lblGreeting.Text += splitName[0] + "!";
+                lblGreeting.Text = "Hello, " + splitName[0] + "!";
             }
             catch (Exception)
             {
@@ -49,6 +49,40 @@ namespace Sinau.View
                     else
                     {
                         noScheduleDay.Attributes["class"] += " active";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+            // UPCOMING STUDENT ASSIGNMENT
+            //string todayDay = DateTime.Today.DayOfWeek.ToString();
+            try
+            {
+                string academicYearID = new SettingSystem().GetUserLatestAcademicYearByIdAndRole(sessionUserID, sessionRole)._AcademicYearID;
+                List<AssignmentData> studentClassList = new AssignmentSystem().GetStudentClassById(sessionUserID, academicYearID);
+                string studentClassID = studentClassList[0]._ClassID;
+
+                List<AssignmentData> listStudentAssignment = new AssignmentSystem().GetStudentAssignmentByClassSubject(sessionUserID, studentClassID, "All", academicYearID);
+
+                List<AssignmentData> listTeacherAssignmentAssigned = null;  // due next 7 days
+
+                if (listStudentAssignment != null)
+                {
+                    listTeacherAssignmentAssigned = listStudentAssignment.Where(p => p._SubmissionStatusID != 1).ToList();  // 1 = submitted
+
+                    if (listTeacherAssignmentAssigned.Count != 0)
+                    {
+                        //validateAssignmentStatus(listTeacherAssignment);
+                        rptUpcomingAssignment.DataSource = listTeacherAssignmentAssigned;
+                        rptUpcomingAssignment.DataBind();
+                    }
+                    else
+                    {
+                        noAssignment.Attributes["class"] += " active";
                     }
                 }
             }
