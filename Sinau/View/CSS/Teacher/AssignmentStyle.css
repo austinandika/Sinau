@@ -123,18 +123,22 @@
 
     .assignment-table-container .class-column {
         width: 130px;
+        padding: 0 5px;
     }
 
     .assignment-table-container .subject-column {
         width: 200px;
+        padding: 0 5px;
     }
 
     .assignment-table-container .title-column {
         width: 250px;
+        padding: 0 5px;
     }
 
     .assignment-table-container .download-question-column {
         width: 50px;
+        padding: 0 5px;
     }
 
         .assignment-table-container .download-question-column .btn-download-question {
@@ -143,14 +147,17 @@
 
     .assignment-table-container .date-column {
         width: 150px;
+        padding: 0 5px;
     }
 
     .assignment-table-container .status-column {
         width: 150px;
+        padding: 0 5px;
     }
 
     .assignment-table-container .action-column {
         width: 70px;
+        padding: 0 5px;
     }
 
     .assignment-table-container .assignment-table-content .title-column {

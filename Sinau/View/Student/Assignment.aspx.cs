@@ -155,7 +155,7 @@ namespace Sinau.View.Student
 
                     if (todayDueCompare > 0)
                     {
-                        listAssignmentTemp[i]._Status = "Not-Sumbit";
+                        listAssignmentTemp[i]._Status = "Not-Submit";
                         returnList.Add(listAssignmentTemp[i]);
                     }
                     else if (assignTodayCompare <= 0 && todayDueCompare <= 0)
@@ -268,6 +268,18 @@ namespace Sinau.View.Student
 
                 try
                 {
+                    // delete last answer file
+                    AssignmentData lastAnswer = new AssignmentSystem().GetAssignmentAnsFileByClassSubAssignIDAndUserID(classSubjectAssignmentID, sessionUserID);
+
+                    string lastAnswerPath = lastAnswer._AnswerPath;
+                    string lastAnswerMapPath = Server.MapPath(lastAnswerPath);
+                    FileInfo file = new FileInfo(lastAnswerMapPath);
+                    if(lastAnswerPath != "" && file.Exists)
+                    {
+                        file.Delete();
+                    }
+
+                    // insert
                     bool isInserted = new AssignmentSystem().InsertStudentAsgAnswerByClSubAsgIDAndUserID(classSubjectAssignmentID, sessionUserID, submissionDate, answerPathValue);
 
                     if (isInserted)
@@ -278,6 +290,7 @@ namespace Sinau.View.Student
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     //lblErrorAnswerFile.Text = "Your answer failed to upload";
                 }
             }
@@ -310,14 +323,24 @@ namespace Sinau.View.Student
 
         protected void rptStudentAssignment_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            
+            // hide download button when user haven't submitted assignment answer
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 string submissionDate = (e.Item.FindControl("lblSubmissionDate") as Label).Text;
+                string status = (e.Item.FindControl("lblStatus") as Label).Text;
 
-                if (submissionDate == "-")
+                if (submissionDate != "-")
                 {
-                    e.Item.FindControl("btnDownloadAnswer").Visible = false;
+                    e.Item.FindControl("btnDownloadAnswer").Visible = true;
+                }
+
+                string dueDateText = (e.Item.FindControl("lblDueDate") as Label).Text;
+                DateTime dueDate = DateTime.ParseExact(dueDateText, "MMM dd, yyyy", null);
+                DateTime todayDate = DateTime.Now;
+                int todayDueCompare = DateTime.Compare(todayDate, dueDate);
+                if (todayDueCompare <= 0)
+                {
+                    e.Item.FindControl("btnUploadAnswer").Visible = true;
                 }
             }
 

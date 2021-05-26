@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Ionic.Zip;
 
 namespace Sinau.View.Teacher
 {
@@ -244,6 +245,50 @@ namespace Sinau.View.Teacher
 
             }
             
+        }
+
+        protected void btnDownloadAnswer_Click(object sender, EventArgs e)
+        {
+            string sessionUserID = Session["UserID"].ToString();
+            string sessionRole = Session["Role"].ToString();
+            string academicYearID = new SettingSystem().GetUserLatestAcademicYearByIdAndRole(sessionUserID, sessionRole)._AcademicYearID;
+
+            //Find the reference of the Repeater Item
+            RepeaterItem item = (sender as LinkButton).Parent as RepeaterItem;
+            int classSubjectAssignmentID = int.Parse((item.FindControl("lblClassSubAssignID") as HiddenField).Value);
+
+            List<AssignmentData> listAssignmentAnswer = new AssignmentSystem().GetAllAssignmentAnsFileByClassSubAssignID(classSubjectAssignmentID);
+
+            string fileName = academicYearID + "_" + listAssignmentAnswer[0]._ClassID + "_" + listAssignmentAnswer[0]._SubjectID + "_" + listAssignmentAnswer[0]._ClassSubAssignID.ToString();
+
+            ZipFile multipleFiles = new ZipFile();
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName + ".zip");
+            Response.ContentType = "application/zip";
+
+            for (int i = 0; i < listAssignmentAnswer.Count; i++)
+            {
+                if(listAssignmentAnswer[i]._AnswerPath != "")
+                {
+                    string filePath = Server.MapPath(listAssignmentAnswer[i]._AnswerPath);
+                    multipleFiles.AddFile(filePath, string.Empty);
+                }
+            }
+
+            multipleFiles.Save(Response.OutputStream);
+        }
+
+        protected void rptTeacherAssignment_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            // hide download button when assignment hasn't reached the due date
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                string status = (e.Item.FindControl("lblStatus") as Label).Text;
+
+                if (status == "Done")
+                {
+                    e.Item.FindControl("btnDownloadAnswer").Visible = true;
+                }
+            }
         }
     }
 }

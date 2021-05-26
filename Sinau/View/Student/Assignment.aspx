@@ -93,14 +93,14 @@
                     </div>
 
                     <div class="action-column">
-                        <asp:LinkButton ID="btnUploadAnswer" runat="server" OnClientClick="return false;">
+                        <asp:LinkButton ID="btnUploadAnswer" runat="server" OnClientClick="return false;" Visible="false">
                             <label class="upload-answer">
                                 <i class="fa fa-upload" aria-hidden="true" title="Upload your answer"></i>
                                 <%--<asp:FileUpload ID="fuAnswer" runat="server" />--%>
                             </label>
                         </asp:LinkButton>
 
-                        <asp:LinkButton ID="btnDownloadAnswer" runat="server" OnClick="btnDownloadAnswer_Click">
+                        <asp:LinkButton ID="btnDownloadAnswer" runat="server" OnClick="btnDownloadAnswer_Click" Visible="false">
                             <div class="btn-download-answer">
                                 <i class="fa fa-download" aria-hidden="true" title="Download your last submitted answer"></i>
                             </div>

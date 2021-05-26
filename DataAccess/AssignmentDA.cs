@@ -388,5 +388,42 @@ namespace DataAccess.Properties
                 return null;
             }
         }
+
+        public List<AssignmentData> GetAllAssignmentAnsFileByClassSubAssignID(int classSubjectAssignmentID)
+        {
+            string spName = "SP_GetAllAssignmentAnsFileByClassSubAssignID";
+            List<AssignmentData> returnList;
+
+            try
+            {
+                DbCommand cmd = db.GetStoredProcCommand(spName);
+                db.AddInParameter(cmd, "ClassSubAssignID", System.Data.DbType.Int32, classSubjectAssignmentID);
+
+                using (IDataReader reader = db.ExecuteReader(cmd))
+                {
+                    List<AssignmentData> studentAnswerPathList = new List<AssignmentData>();
+
+                    while (reader.Read())
+                    {
+                        AssignmentData data = new AssignmentData();
+                        data._ClassID = Convert.ToString(reader["ClassID"]);
+                        data._SubjectID = Convert.ToString(reader["SubjectID"]);
+                        data._ClassSubAssignID = Convert.ToInt32(reader["ClSubAsID"]);
+                        data._AnswerPath = Convert.ToString(reader["AnswerPath"]);
+
+
+                        studentAnswerPathList.Add(data);
+                    }
+
+                    returnList = studentAnswerPathList;
+                }
+                return returnList;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
     }
 }

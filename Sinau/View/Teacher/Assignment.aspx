@@ -58,7 +58,7 @@
 
         <div class="assignment-table-content no-assignment" id="noScheduleDiv" runat="server" visible="false">You haven't added an assignment</div>
 
-        <asp:Repeater ID="rptTeacherAssignment" runat="server">
+        <asp:Repeater ID="rptTeacherAssignment" runat="server" OnItemDataBound="rptTeacherAssignment_ItemDataBound">
             <ItemTemplate>
                 <div class="assignment-table-content">
                     <asp:HiddenField Value='<%# Eval("_ClassSubAssignID") %>' ID="lblClassSubAssignID" runat="server" />
@@ -97,7 +97,7 @@
                     </div>
 
                     <div class="action-column">
-                        <asp:LinkButton ID="btnDownloadAnswer" runat="server">
+                        <asp:LinkButton ID="btnDownloadAnswer" runat="server" OnClick="btnDownloadAnswer_Click" Visible="false">
                     <div class="btn-download-answer">
                         <i class="fa fa-download" aria-hidden="true" title="Download all of the students answer"></i>
                     </div>
