@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Data\AccountData.cs" />
     <Compile Include="Data\AssignmentData.cs" />
+    <Compile Include="Data\GradeData.cs" />
     <Compile Include="Data\SettingData.cs" />
     <Compile Include="Data\UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
