@@ -19,9 +19,7 @@
             <tr>
                 <td>Grade</td>
                 <td>
-                    <asp:DropDownList runat="server" ID="ddlGrade" CssClass="ddl">
-                        <asp:ListItem Text="9" />
-                        <asp:ListItem Text="10" />
+                    <asp:DropDownList runat="server" ID="ddlGrade" CssClass="ddl" OnSelectedIndexChanged="ddlGrade_SelectedIndexChanged" AutoPostBack="true">
                     </asp:DropDownList>
                 </td>
             </tr>
@@ -29,9 +27,7 @@
             <tr>
                 <td>Semester</td>
                 <td>
-                    <asp:DropDownList runat="server" ID="ddlSemester" CssClass="ddl">
-                        <asp:ListItem Text="1 (Odd)" />
-                        <asp:ListItem Text="2 (Even)" />
+                    <asp:DropDownList runat="server" ID="ddlSemester" CssClass="ddl" OnSelectedIndexChanged="ddlSemester_SelectedIndexChanged" AutoPostBack="true">
                     </asp:DropDownList>
                 </td>
             </tr>

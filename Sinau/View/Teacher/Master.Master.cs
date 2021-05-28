@@ -20,10 +20,10 @@ namespace Sinau.View.Teacher
             else if(Session["LoggedIn"] != null)
             {
                 string sessionRole = Session["Role"].ToString();
-                if (sessionRole != "Teacher")
-                {
-                    Response.Redirect("~/View/" + sessionRole + "/Dashboard.aspx");
-                }
+                //if (sessionRole != "Teacher")
+                //{
+                //    Response.Redirect("~/View/" + sessionRole + "/Dashboard.aspx");
+                //}
 
                 UserData userData = new UserData();
                 string sessionEmail = Session["Email"].ToString();
