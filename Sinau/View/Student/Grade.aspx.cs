@@ -19,11 +19,11 @@ namespace Sinau.View.Student
                 string sessionRole = Session["Role"].ToString();
 
                 List<GradeData> classList = new GradeSystem().GetStudentAllClassSemesterById(sessionUserID);
-                List<int> classListGrade = null;
+                List<int> classlistStudentGrade = null;
                 List<GradeData> classListSemester = null;
 
-                classListGrade = classList.Select(s => s._Grade).Distinct().ToList();
-                ddlGrade.DataSource = classListGrade;
+                classlistStudentGrade = classList.Select(s => s._Grade).Distinct().ToList();
+                ddlGrade.DataSource = classlistStudentGrade;
                 ddlGrade.DataBind();
 
                 int ddlGradeSelected = Convert.ToInt32(ddlGrade.SelectedValue);
@@ -46,8 +46,10 @@ namespace Sinau.View.Student
                 ddlSemester.DataValueField = "_AcademicYearID";
                 ddlSemester.DataBind();
 
-
+                string ddlAcademicYearSelected = ddlSemester.SelectedValue;
+                viewStudentGrade(sessionUserID, ddlAcademicYearSelected);
             }
+
         }
 
         protected void ddlGrade_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,11 +79,98 @@ namespace Sinau.View.Student
             ddlSemester.DataTextField = "_SemesterAndAcademicYear";
             ddlSemester.DataValueField = "_AcademicYearID";
             ddlSemester.DataBind();
+
+
+            string ddlAcademicYearSelected = ddlSemester.SelectedValue;
+            viewStudentGrade(sessionUserID, ddlAcademicYearSelected);
         }
 
         protected void ddlSemester_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string sessionUserID = Session["UserID"].ToString();
+            string ddlAcademicYearSelected = ddlSemester.SelectedValue;
 
+            viewStudentGrade(sessionUserID, ddlAcademicYearSelected);
+        }
+
+        protected void viewStudentGrade(string sessionUserID, string ddlAcademicYearSelected)
+        {
+            List<GradeData> listStudentGrade = new GradeSystem().GetStudentScoreByUserIDAcademicYearID(sessionUserID, ddlAcademicYearSelected);
+
+            List<GradeData> listTeacher = new GradeSystem().GetTeacherByClassID(listStudentGrade[0]._ClassID);
+
+            if(listStudentGrade == null)
+            {
+                noGradeDiv.Visible = true;
+            }
+            else
+            {
+                int seqViewNoTemp = 1;
+                string lastIndexSubjectID = "";
+                for (int i = 0; i < listStudentGrade.Count; i++)
+                {
+                    // Add grading
+                    // source: https://en.wikipedia.org/wiki/Academic_grading_in_Indonesia
+                    if (listStudentGrade[i]._Score >= 85)
+                    {
+                        listStudentGrade[i]._GradeLetter = "A";
+                    }
+                    else if (listStudentGrade[i]._Score >= 75 && listStudentGrade[i]._Score < 85)
+                    {
+                        listStudentGrade[i]._GradeLetter = "B";
+                    }
+                    else if (listStudentGrade[i]._Score >= 60 && listStudentGrade[i]._Score < 75)
+                    {
+                        listStudentGrade[i]._GradeLetter = "C";
+                    }
+                    else if (listStudentGrade[i]._Score >= 50 && listStudentGrade[i]._Score < 60)
+                    {
+                        listStudentGrade[i]._GradeLetter = "D";
+                    }
+                    else if (listStudentGrade[i]._Score >= 0 && listStudentGrade[i]._Score < 50)
+                    {
+                        listStudentGrade[i]._GradeLetter = "E";
+                    }
+
+                    // Add teacher name
+                    string currSubjectID = listStudentGrade[i]._SubjectID;
+                    listStudentGrade[i]._TeacherName = listTeacher.Where(x => x._SubjectID == currSubjectID).Select(x => x._TeacherName).FirstOrDefault();
+
+                    // Modify view
+
+                    if (i == 0)
+                    {
+                        listStudentGrade[i]._seqViewNo = seqViewNoTemp.ToString();
+                        seqViewNoTemp++;
+                    }
+                    else if (i > 0)
+                    {
+                        if (listStudentGrade[i - 1]._SubjectID != "")
+                        {
+                            lastIndexSubjectID = listStudentGrade[i - 1]._SubjectID;
+                        }
+
+                        string currIndexSubjectID = listStudentGrade[i]._SubjectID;
+                        if (lastIndexSubjectID == currIndexSubjectID)
+                        {
+                            listStudentGrade[i]._seqViewNo = "";
+                            listStudentGrade[i]._Class = "";
+                            listStudentGrade[i]._SubjectID = "";
+                            listStudentGrade[i]._Subject = "";
+                            listStudentGrade[i]._TeacherName = "";
+                        }
+                        else
+                        {
+                            listStudentGrade[i]._seqViewNo = seqViewNoTemp.ToString();
+                            seqViewNoTemp++;
+                        }
+                    }
+                }
+
+                rptStudentGrade.DataSource = listStudentGrade;
+                rptStudentGrade.DataBind();
+            }
+            
         }
     }
 }

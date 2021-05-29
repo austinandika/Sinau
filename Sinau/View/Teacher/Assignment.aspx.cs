@@ -47,25 +47,7 @@ namespace Sinau.View.Teacher
 
                 string ddlClassValue = ddlClass.SelectedValue;
                 string ddlSubjectValue = ddlSubjectFilter.SelectedValue;
-                try
-                {
-                    List<AssignmentData> listTeacherAssignment = new AssignmentSystem().GetTeacherAssignmentByIdClassSubject(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
-
-                    if (listTeacherAssignment.Count != 0)
-                    {
-                        validateAssignmentStatus(listTeacherAssignment);
-                        rptTeacherAssignment.DataSource = listTeacherAssignment;
-                        rptTeacherAssignment.DataBind();
-                    }
-                    else
-                    {
-                        noScheduleDiv.Visible = true ;
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                }
+                viewTeacherAssignment(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
             }
         }
 
@@ -84,25 +66,7 @@ namespace Sinau.View.Teacher
 
             string ddlClassValue = ddlClass.SelectedValue;
             string ddlSubjectValue = ddlSubjectFilter.SelectedValue;
-            try
-            {
-                List<AssignmentData> listTeacherAssignment = new AssignmentSystem().GetTeacherAssignmentByIdClassSubject(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
-
-                if (listTeacherAssignment.Count != 0)
-                {
-                    validateAssignmentStatus(listTeacherAssignment);
-                    rptTeacherAssignment.DataSource = listTeacherAssignment;
-                    rptTeacherAssignment.DataBind();
-                }
-                else
-                {
-                    noScheduleDiv.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
+            viewTeacherAssignment(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
         }
 
         protected void ddlSubjectFilter_SelectedIndexChanged(object sender, EventArgs e)
@@ -114,25 +78,7 @@ namespace Sinau.View.Teacher
             string ddlClassValue = ddlClass.SelectedValue;
             string ddlSubjectValue = ddlSubjectFilter.SelectedValue;
 
-            try
-            {
-                List<AssignmentData> listTeacherAssignment = new AssignmentSystem().GetTeacherAssignmentByIdClassSubject(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
-
-                if (listTeacherAssignment.Count != 0)
-                {
-                    validateAssignmentStatus(listTeacherAssignment);
-                    rptTeacherAssignment.DataSource = listTeacherAssignment;
-                    rptTeacherAssignment.DataBind();
-                }
-                else
-                {
-                    noScheduleDiv.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
+            viewTeacherAssignment(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
         }
 
         protected void ddlClassPopup_SelectedIndexChanged(object sender, EventArgs e)
@@ -288,6 +234,29 @@ namespace Sinau.View.Teacher
                 {
                     e.Item.FindControl("btnDownloadAnswer").Visible = true;
                 }
+            }
+        }
+
+        protected void viewTeacherAssignment(string sessionUserID, string ddlClassValue, string ddlSubjectValue, string academicYearID)
+        {
+            try
+            {
+                List<AssignmentData> listTeacherAssignment = new AssignmentSystem().GetTeacherAssignmentByIdClassSubject(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
+
+                if (listTeacherAssignment.Count != 0)
+                {
+                    validateAssignmentStatus(listTeacherAssignment);
+                    rptTeacherAssignment.DataSource = listTeacherAssignment;
+                    rptTeacherAssignment.DataBind();
+                }
+                else
+                {
+                    noScheduleDiv.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }

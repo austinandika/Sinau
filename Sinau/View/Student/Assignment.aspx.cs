@@ -35,25 +35,7 @@ namespace Sinau.View.Student
 
                 string ddlClassValue = ddlClass.SelectedValue;
                 string ddlSubjectValue = ddlSubjectFilter.SelectedValue;
-                try
-                {
-                    List<AssignmentData> listStudentAssignment = new AssignmentSystem().GetStudentAssignmentByClassSubject(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
-
-                    if (listStudentAssignment.Count != 0)
-                    {
-                        listStudentAssignment = validateAssignmentStatus(listStudentAssignment);
-                        rptStudentAssignment.DataSource = listStudentAssignment;
-                        rptStudentAssignment.DataBind();
-                    }
-                    else
-                    {
-                        noScheduleDiv.Visible = true;
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                }
+                viewStudentAssignment(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
             }
         }
 
@@ -73,25 +55,7 @@ namespace Sinau.View.Student
             string ddlClassValue = ddlClass.SelectedValue;
             string ddlSubjectValue = ddlSubjectFilter.SelectedValue;
 
-            try
-            {
-                List<AssignmentData> listStudentAssignment = new AssignmentSystem().GetStudentAssignmentByClassSubject(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
-
-                if (listStudentAssignment.Count != 0)
-                {
-                    listStudentAssignment = validateAssignmentStatus(listStudentAssignment);
-                    rptStudentAssignment.DataSource = listStudentAssignment;
-                    rptStudentAssignment.DataBind();
-                }
-                else
-                {
-                    noScheduleDiv.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
+            viewStudentAssignment(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
         }
 
         protected void ddlSubjectFilter_SelectedIndexChanged(object sender, EventArgs e)
@@ -103,25 +67,7 @@ namespace Sinau.View.Student
             string ddlClassValue = ddlClass.SelectedValue;
             string ddlSubjectValue = ddlSubjectFilter.SelectedValue;
 
-            try
-            {
-                List<AssignmentData> listStudentAssignment = new AssignmentSystem().GetStudentAssignmentByClassSubject(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
-
-                if (listStudentAssignment.Count != 0)
-                {
-                    listStudentAssignment = validateAssignmentStatus(listStudentAssignment);
-                    rptStudentAssignment.DataSource = listStudentAssignment;
-                    rptStudentAssignment.DataBind();
-                }
-                else
-                {
-                    noScheduleDiv.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
+            viewStudentAssignment(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
         }
 
         private List<AssignmentData> validateAssignmentStatus(List<AssignmentData> listAssignmentTemp)
@@ -185,6 +131,29 @@ namespace Sinau.View.Student
                 //}
             }
             return returnList;
+        }
+        
+        protected void viewStudentAssignment(string sessionUserID, string ddlClassValue, string ddlSubjectValue, string academicYearID)
+        {
+            try
+            {
+                List<AssignmentData> listStudentAssignment = new AssignmentSystem().GetStudentAssignmentByClassSubject(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
+
+                if (listStudentAssignment.Count != 0)
+                {
+                    listStudentAssignment = validateAssignmentStatus(listStudentAssignment);
+                    rptStudentAssignment.DataSource = listStudentAssignment;
+                    rptStudentAssignment.DataBind();
+                }
+                else
+                {
+                    noScheduleDiv.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         protected void btnDownloadQuestion_Click(object sender, EventArgs e)

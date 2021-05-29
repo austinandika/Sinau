@@ -21,5 +21,28 @@ namespace BusinessFacade
                 return null;
             }
         }
+        public List<GradeData> GetStudentScoreByUserIDAcademicYearID(string userID, string academicYearID)
+        {
+            try
+            {
+                return new GradeDA().GetStudentScoreByUserIDAcademicYearID(userID, academicYearID);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public List<GradeData> GetTeacherByClassID(string classID)
+        {
+            try
+            {
+                return new GradeDA().GetTeacherByClassID(classID);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

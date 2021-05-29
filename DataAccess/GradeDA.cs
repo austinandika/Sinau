@@ -63,5 +63,81 @@ namespace DataAccess
                 return null;
             }
         }
+
+        public List<GradeData> GetStudentScoreByUserIDAcademicYearID(string userID, string academicYearID)
+        {
+            string spName = "SP_GetStudentScoreByUserIDAcademicYearID";
+            List<GradeData> returnList;
+
+            try
+            {
+                DbCommand cmd = db.GetStoredProcCommand(spName);
+                db.AddInParameter(cmd, "UserID", System.Data.DbType.String, userID);
+                db.AddInParameter(cmd, "AcademicYearID", System.Data.DbType.String, academicYearID);
+
+                using (IDataReader reader = db.ExecuteReader(cmd))
+                {
+                    List<GradeData> gradeList = new List<GradeData>();
+
+                    while (reader.Read())
+                    {
+                        GradeData data = new GradeData();
+                        data._ClassID = Convert.ToString(reader["ClassID"]);
+                        data._Class = Convert.ToString(reader["Class"]);
+                        data._SubjectID = Convert.ToString(reader["SubjectID"]);
+                        data._Subject = Convert.ToString(reader["Subject"]);
+                        data._Category = Convert.ToString(reader["Category"]);
+                        data._CategoryID = Convert.ToString(reader["CategoryID"]);
+                        data._Component = Convert.ToString(reader["ComponentName"]);
+                        data._MinScore = Convert.ToInt32(reader["MinScore"]);
+                        data._Score = Convert.ToInt32(reader["Score"]);
+
+                        gradeList.Add(data);
+                    }
+
+                    returnList = gradeList;
+                }
+                return returnList;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public List<GradeData> GetTeacherByClassID(string classID)
+        {
+            string spName = "SP_GetTeacherByClassID";
+            List<GradeData> returnList;
+
+            try
+            {
+                DbCommand cmd = db.GetStoredProcCommand(spName);
+                db.AddInParameter(cmd, "ClassID", System.Data.DbType.String, classID);
+
+                using (IDataReader reader = db.ExecuteReader(cmd))
+                {
+                    List<GradeData> teacherList = new List<GradeData>();
+
+                    while (reader.Read())
+                    {
+                        GradeData data = new GradeData();
+                        data._SubjectID = Convert.ToString(reader["SubjectID"]);
+                        data._TeacherName = Convert.ToString(reader["TeacherName"]);
+
+                        teacherList.Add(data);
+                    }
+
+                    returnList = teacherList;
+                }
+                return returnList;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
     }
 }
