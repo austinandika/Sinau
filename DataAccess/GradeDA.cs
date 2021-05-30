@@ -139,5 +139,152 @@ namespace DataAccess
                 return null;
             }
         }
+
+        public List<GradeData> GetTeacherClassById(string userID, string academicYearID)
+        {
+            string spName = "SP_GetTeacherClassById";
+            List<GradeData> returnList;
+
+            try
+            {
+                DbCommand cmd = db.GetStoredProcCommand(spName);
+                db.AddInParameter(cmd, "UserID", System.Data.DbType.String, userID);
+                db.AddInParameter(cmd, "AcademicYearID", System.Data.DbType.String, academicYearID);
+
+                using (IDataReader reader = db.ExecuteReader(cmd))
+                {
+                    List<GradeData> teacherClassList = new List<GradeData>();
+
+                    while (reader.Read())
+                    {
+                        GradeData data = new GradeData();
+                        data._ClassID = Convert.ToString(reader["ClassID"]);
+                        data._Class = Convert.ToString(reader["Class"]);
+
+                        teacherClassList.Add(data);
+                    }
+
+                    returnList = teacherClassList;
+                }
+                return returnList;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public List<GradeData> GetTeacherSubjectByIdAndClass(string userID, string classID, string academicYearID)
+        {
+            string spName = "SP_GetTeacherSubjectByIdAndClass";
+            List<GradeData> returnList;
+
+            try
+            {
+                DbCommand cmd = db.GetStoredProcCommand(spName);
+                db.AddInParameter(cmd, "UserID", System.Data.DbType.String, userID);
+                db.AddInParameter(cmd, "ClassID", System.Data.DbType.String, classID);
+                db.AddInParameter(cmd, "AcademicYearID", System.Data.DbType.String, academicYearID);
+
+                using (IDataReader reader = db.ExecuteReader(cmd))
+                {
+                    List<GradeData> teacherSubjectList = new List<GradeData>();
+
+                    while (reader.Read())
+                    {
+                        GradeData data = new GradeData();
+                        data._SubjectID = Convert.ToString(reader["SubjectID"]);
+                        data._Subject = Convert.ToString(reader["Subject"]);
+
+                        teacherSubjectList.Add(data);
+                    }
+
+                    returnList = teacherSubjectList;
+                }
+                return returnList;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public List<GradeData> GetAllStudentScoreByAcademicYearSubjectClass(string academicYearID, string classID, string subjectID)
+        {
+            string spName = "SP_GetAllStudentScoreByAcademicYearSubjectClass";
+            List<GradeData> returnList;
+
+            try
+            {
+                DbCommand cmd = db.GetStoredProcCommand(spName);
+                db.AddInParameter(cmd, "AcademicYearID", System.Data.DbType.String, academicYearID);
+                db.AddInParameter(cmd, "SubjectID", System.Data.DbType.String, subjectID);
+                db.AddInParameter(cmd, "ClassID", System.Data.DbType.String, classID);
+
+                using (IDataReader reader = db.ExecuteReader(cmd))
+                {
+                    List<GradeData> scoreList = new List<GradeData>();
+
+                    while (reader.Read())
+                    {
+                        GradeData data = new GradeData();
+                        data._NISN = Convert.ToString(reader["UserID"]);
+                        data._StudentName = Convert.ToString(reader["StudentName"]);
+                        data._CategoryID = Convert.ToString(reader["CategoryID"]);
+                        data._Category = Convert.ToString(reader["CategoryName"]);
+                        data._ComponentID = Convert.ToString(reader["ComponentID"]);
+                        data._Component = Convert.ToString(reader["ComponentName"]);
+                        data._MinScore = Convert.ToInt32(reader["MinScore"]);
+                        data._Score = Convert.ToInt32(reader["Score"]);
+
+                        scoreList.Add(data);
+                    }
+
+                    returnList = scoreList;
+                }
+                return returnList;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public List<GradeData> GetCategoryScorePercentage()
+        {
+            string spName = "SP_GetCategoryScorePercentage";
+            List<GradeData> returnList;
+
+            try
+            {
+                DbCommand cmd = db.GetStoredProcCommand(spName);
+
+                using (IDataReader reader = db.ExecuteReader(cmd))
+                {
+                    List<GradeData> categoryPercentageList = new List<GradeData>();
+
+                    while (reader.Read())
+                    {
+                        GradeData data = new GradeData();
+                        data._CategoryID = Convert.ToString(reader["CategoryID"]);
+                        data._Category = Convert.ToString(reader["CategoryName"]);
+                        data._CategoryPercentage = Convert.ToInt32(reader["CategoryPercentage"]);
+
+                        categoryPercentageList.Add(data);
+                    }
+
+                    returnList = categoryPercentageList;
+                }
+                return returnList;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
     }
 }

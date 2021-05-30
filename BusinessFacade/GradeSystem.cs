@@ -44,5 +44,53 @@ namespace BusinessFacade
                 return null;
             }
         }
+
+        public List<GradeData> GetTeacherClassById(string userID, string academicYearID)
+        {
+            try
+            {
+                return new GradeDA().GetTeacherClassById(userID, academicYearID);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public List<GradeData> GetTeacherSubjectByIdAndClass(string userID, string classID, string academicYearID)
+        {
+            try
+            {
+                return new GradeDA().GetTeacherSubjectByIdAndClass(userID, classID, academicYearID);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public List<GradeData> GetAllStudentScoreByAcademicYearSubjectClass(string academicYearID, string classID, string subjectID)
+        {
+            try
+            {
+                return new GradeDA().GetAllStudentScoreByAcademicYearSubjectClass(academicYearID, classID, subjectID);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public List<GradeData> GetCategoryScorePercentage()
+        {
+            try
+            {
+                return new GradeDA().GetCategoryScorePercentage();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

@@ -53,5 +53,38 @@ namespace DataAccess
             }
         }
 
+        public List<SettingData> GetUserAllAcademicYearByIdAndRole(string userID, string role)
+        {
+            string spName = "SP_GetUserAllAcademicYearByIdAndRole";
+            List<SettingData> returnList;
+
+            try
+            {
+                DbCommand cmd = db.GetStoredProcCommand(spName);
+                db.AddInParameter(cmd, "UserID", System.Data.DbType.String, userID);
+                db.AddInParameter(cmd, "Role", System.Data.DbType.String, role);
+
+                using (IDataReader reader = db.ExecuteReader(cmd))
+                {
+                    List<SettingData> academicYearList = new List<SettingData>();
+
+                    if (reader.Read())
+                    {
+                        SettingData data = new SettingData();
+                        data._AcademicYearID = Convert.ToString(reader["AcademicYearID"]);
+                        data._AcademicYearName = Convert.ToString(reader["AcademicYear"]);
+
+                        academicYearList.Add(data);
+                    }
+                    returnList = academicYearList;
+                }
+                return returnList;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
 }

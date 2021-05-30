@@ -21,11 +21,15 @@ namespace Common.Data
         public string _TeacherName { get; set; }
         public string _CategoryID { get; set; }
         public string _Category { get; set; }
+        public int _CategoryPercentage { get; set; }
+        public string _ComponentID { get; set; }
         public string _Component { get; set; }
         public int _MinScore { get; set; }
         public int _Score { get; set; }
         public string _GradeLetter { get; set; }
-
+        public string _NISN { get; set; }
+        public string _StudentName { get; set; }
+        
         // no for sequence in user view 
         public string _seqViewNo { get; set; }
     }

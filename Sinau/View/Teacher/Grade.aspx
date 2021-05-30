@@ -24,37 +24,30 @@
         <div class="grade-filter-container">
             <table>
                 <tr>
-                    <td>Course</td>
+                    <td>Academic Year</td>
                     <td>
-                        <asp:DropDownList runat="server" ID="ddlGrade" CssClass="ddl">
-                            <asp:ListItem Text="Biology" />
-                            <asp:ListItem Text="Mathematics" />
+                        <asp:DropDownList runat="server" ID="ddlAcademicYear" CssClass="ddl" OnSelectedIndexChanged="ddlAcademicYear_SelectedIndexChanged" AutoPostBack="true">
                         </asp:DropDownList>
                     </td>
 
                     <td>Class</td>
                     <td>
-                        <asp:DropDownList runat="server" ID="ddlClass" CssClass="ddl">
-                            <asp:ListItem Text="11-A" />
-                            <asp:ListItem Text="12-A" />
+                        <asp:DropDownList runat="server" ID="ddlClass" CssClass="ddl" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged" AutoPostBack="true">
                         </asp:DropDownList>
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Category</td>
+                    <td>Subject</td>
                     <td>
-                        <asp:DropDownList runat="server" ID="ddlSemester" CssClass="ddl">
-                            <asp:ListItem Text="Assignment" />
-                            <asp:ListItem Text="Mid Exam" />
+                        <asp:DropDownList runat="server" ID="ddlSubject" CssClass="ddl" OnSelectedIndexChanged="ddlSubject_SelectedIndexChanged" AutoPostBack="true">
                         </asp:DropDownList>
                     </td>
 
-                    <td>Academic Year</td>
+                    <td>Category</td>
                     <td>
-                        <asp:DropDownList runat="server" ID="ddlAcademicYear" CssClass="ddl">
-                            <asp:ListItem Text="2019-20" />
-                            <asp:ListItem Text="2020-21" />
+                        <asp:DropDownList runat="server" ID="ddlSemester" CssClass="ddl">
+                            <asp:ListItem Text="-" />
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -69,8 +62,113 @@
         </div>
     </div>
 
-
     <div class="score-table-container">
+        <table>
+            <asp:Repeater ID="rptGradeMain" runat="server" OnItemDataBound="rptGradeMain_ItemDataBound">
+                    <HeaderTemplate>
+                        <thead>
+                            <tr>
+                                <th rowspan="2" id="no-th">No</th>
+                                <th rowspan="2" id="nisn-th">NISN</th>
+                                <th rowspan="2" id="student-name-th" class="fixed-header">Student Name</th>
+                                <asp:Repeater runat="server" ID="rptComponentHeader">
+                                    <ItemTemplate>
+                                        <th class="rotated-th">
+                                            <div>
+                                                <asp:Label Text='<%# Eval("_Component") %>' runat="server" ID="lblComponent" />
+                                            </div>
+                                        </th>
+                                    </ItemTemplate>
+                                </asp:Repeater>  
+
+                                <th rowspan="2" class="rotated-th">
+                                    <div><span>Total Assignment</span></div>
+                                </th>
+                                <th rowspan="2" class="rotated-th">
+                                    <div><span>Total Quiz</span></div>
+                                </th>
+                                <th rowspan="2" class="rotated-th">
+                                    <div><span>Total Mid Exam</span></div>
+                                </th>
+                                <th rowspan="2" class="rotated-th">
+                                    <div><span>Total Final Exam</span></div>
+                                </th>
+                                <th rowspan="2" id="min-score-th">
+                                    <div><span>Min Score</span></div>
+                                </th>
+                                <th rowspan="2" id="total-th">
+                                    <div><span>Total</span></div>
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <asp:Repeater runat="server" ID="rptCategoryHeader">
+                                    <ItemTemplate>
+                                        <th class="component-th">
+                                            <asp:Label Text='<%#Eval("_CategoryID")%>' runat="server" ID="lblCategory" />
+                                        </th>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </tr>
+                        </thead>
+                    </HeaderTemplate>
+
+                    <ItemTemplate>
+                        <tbody>
+                            <tr>
+                                <td class="no-td">
+                                    <asp:Label Text='<%# Container.ItemIndex + 1 %>' runat="server" ID="lblRowNo" />
+                                </td>
+
+                                <td class="nisn-td">
+                                    <asp:Label Text='<%# Eval("_NISN") %>' runat="server" ID="lblNISN" />
+                                </td>
+
+                                <td class="student-name-td">
+                                    <asp:Label Text='<%# Eval("_StudentName") %>' runat="server" ID="lblStudentName" />
+                                </td>
+
+                                <asp:Repeater runat="server" ID="rptComponentScoreItem">
+                                    <ItemTemplate>
+                                        <td class="student-score-td">
+                                            <asp:TextBox ID="TxtScore" runat="server" ReadOnly="true" CssClass="txt-score" Text='<%# Eval("_Score") %>'></asp:TextBox>
+                                        </td>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                                
+                                <td class="student-score-td">
+                                    <asp:Label Text="" runat="server" ID="lblTotalAssignment" />
+                                </td>
+
+                                <td class="student-score-td">
+                                    <asp:Label Text="" runat="server" ID="lblTotalQuiz" />
+                                </td>
+
+                                <td class="student-score-td">
+                                    <asp:Label Text="" runat="server" ID="lblTotalMidExam" />
+                                </td>
+
+                                <td class="student-score-td">
+                                    <asp:Label Text="" runat="server" ID="lblTotalFinalExam" />
+                                </td>
+
+                                <td class="min-score-td">
+                                    <asp:Label Text='<%# Eval("_MinScore") %>' runat="server" ID="lblMinScore" />
+                                </td>
+                                <td class="total-td">
+                                    <asp:Label Text="" runat="server" ID="lblTotalScore" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </ItemTemplate>
+                </asp:Repeater>
+            
+            
+        </table>
+    </div>
+
+
+    <%--<div class="score-table-container">
         <table>
             <thead>
                 <tr>
@@ -122,10 +220,11 @@
                     <th class="component-th">MID</th>
                     <th class="component-th">FIN</th>
                 </tr>
-            </thead>
+            </thead>--%>
 
-            <tbody>
-                <%-- CONTENT SCORE --%>
+            
+            <%-- CONTENT SCORE --%>
+            <%--<tbody>
                 <tr>
                     <td class="no-td">1</td>
                     <td class="nisn-td">189654892</td>
@@ -257,319 +356,10 @@
                     <td class="min-score-td">70</td>
                     <td class="total-td">90</td>
                 </tr>
-
-                <tr>
-                    <td class="no-td">1</td>
-                    <td class="nisn-td">189654892</td>
-                    <td class="student-name-td">Austin Andika Tanujaya</td>
-                    <td>
-                        <asp:TextBox ID="TextBox10" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox11" runat="server" ReadOnly="true" CssClass="txt-score">87</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox12" runat="server" ReadOnly="true" CssClass="txt-score">85</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox13" runat="server" ReadOnly="true" CssClass="txt-score">98</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox14" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>95</td>
-                    <td>87</td>
-                    <td>80</td>
-                    <td>97</td>
-                    <td class="min-score-td">70</td>
-                    <td class="total-td">90</td>
-                </tr>
-
-                <tr>
-                    <td class="no-td">1</td>
-                    <td class="nisn-td">189654892</td>
-                    <td class="student-name-td">Austin Andika Tanujaya</td>
-                    <td>
-                        <asp:TextBox ID="TextBox15" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox16" runat="server" ReadOnly="true" CssClass="txt-score">87</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox17" runat="server" ReadOnly="true" CssClass="txt-score">85</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox18" runat="server" ReadOnly="true" CssClass="txt-score">98</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox19" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>95</td>
-                    <td>87</td>
-                    <td>80</td>
-                    <td>97</td>
-                    <td class="min-score-td">70</td>
-                    <td class="total-td">90</td>
-                </tr>
-
-                <tr>
-                    <td class="no-td">1</td>
-                    <td class="nisn-td">189654892</td>
-                    <td class="student-name-td">Austin Andika Tanujaya</td>
-                    <td>
-                        <asp:TextBox ID="TextBox20" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox21" runat="server" ReadOnly="true" CssClass="txt-score">87</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox22" runat="server" ReadOnly="true" CssClass="txt-score">85</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox23" runat="server" ReadOnly="true" CssClass="txt-score">98</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox24" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>95</td>
-                    <td>87</td>
-                    <td>80</td>
-                    <td>97</td>
-                    <td class="min-score-td">70</td>
-                    <td class="total-td">90</td>
-                </tr>
-
-                <tr>
-                    <td class="no-td">1</td>
-                    <td class="nisn-td">189654892</td>
-                    <td class="student-name-td">Austin Andika Tanujaya</td>
-                    <td>
-                        <asp:TextBox ID="TextBox70" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox71" runat="server" ReadOnly="true" CssClass="txt-score">87</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox72" runat="server" ReadOnly="true" CssClass="txt-score">85</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox73" runat="server" ReadOnly="true" CssClass="txt-score">98</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox74" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>95</td>
-                    <td>87</td>
-                    <td>80</td>
-                    <td>97</td>
-                    <td class="min-score-td">70</td>
-                    <td class="total-td">90</td>
-                </tr>
-
-                <tr>
-                    <td class="no-td">1</td>
-                    <td class="nisn-td">189654892</td>
-                    <td class="student-name-td">Austin Andika Tanujaya</td>
-                    <td>
-                        <asp:TextBox ID="TextBox75" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox76" runat="server" ReadOnly="true" CssClass="txt-score">87</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox77" runat="server" ReadOnly="true" CssClass="txt-score">85</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox78" runat="server" ReadOnly="true" CssClass="txt-score">98</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox79" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>95</td>
-                    <td>87</td>
-                    <td>80</td>
-                    <td>97</td>
-                    <td class="min-score-td">70</td>
-                    <td class="total-td">90</td>
-                </tr>
-
-                <tr>
-                    <td class="no-td">1</td>
-                    <td class="nisn-td">189654892</td>
-                    <td class="student-name-td">Austin Andika Tanujaya</td>
-                    <td>
-                        <asp:TextBox ID="TextBox25" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox26" runat="server" ReadOnly="true" CssClass="txt-score">87</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox27" runat="server" ReadOnly="true" CssClass="txt-score">85</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox28" runat="server" ReadOnly="true" CssClass="txt-score">98</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox29" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>95</td>
-                    <td>87</td>
-                    <td>80</td>
-                    <td>97</td>
-                    <td class="min-score-td">70</td>
-                    <td class="total-td">90</td>
-                </tr>
-
-                <tr>
-                    <td class="no-td">1</td>
-                    <td class="nisn-td">189654892</td>
-                    <td class="student-name-td">Austin Andika Tanujaya</td>
-                    <td>
-                        <asp:TextBox ID="TextBox30" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox31" runat="server" ReadOnly="true" CssClass="txt-score">87</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox32" runat="server" ReadOnly="true" CssClass="txt-score">85</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox33" runat="server" ReadOnly="true" CssClass="txt-score">98</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox34" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>95</td>
-                    <td>87</td>
-                    <td>80</td>
-                    <td>97</td>
-                    <td class="min-score-td">70</td>
-                    <td class="total-td">90</td>
-                </tr>
-
-                <tr>
-                    <td class="no-td">1</td>
-                    <td class="nisn-td">189654892</td>
-                    <td class="student-name-td">Austin Andika Tanujaya</td>
-                    <td>
-                        <asp:TextBox ID="TextBox35" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox36" runat="server" ReadOnly="true" CssClass="txt-score">87</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox37" runat="server" ReadOnly="true" CssClass="txt-score">85</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox38" runat="server" ReadOnly="true" CssClass="txt-score">98</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox39" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>95</td>
-                    <td>87</td>
-                    <td>80</td>
-                    <td>97</td>
-                    <td class="min-score-td">70</td>
-                    <td class="total-td">90</td>
-                </tr>
-
-                <tr>
-                    <td class="no-td">1</td>
-                    <td class="nisn-td">189654892</td>
-                    <td class="student-name-td">Austin Andika Tanujaya</td>
-                    <td>
-                        <asp:TextBox ID="TextBox40" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox41" runat="server" ReadOnly="true" CssClass="txt-score">87</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox42" runat="server" ReadOnly="true" CssClass="txt-score">85</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox43" runat="server" ReadOnly="true" CssClass="txt-score">98</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox44" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>95</td>
-                    <td>87</td>
-                    <td>80</td>
-                    <td>97</td>
-                    <td class="min-score-td">70</td>
-                    <td class="total-td">90</td>
-                </tr>
-
-                <tr>
-                    <td class="no-td">1</td>
-                    <td class="nisn-td">189654892</td>
-                    <td class="student-name-td">Austin Andika Tanujaya</td>
-                    <td>
-                        <asp:TextBox ID="TextBox45" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox46" runat="server" ReadOnly="true" CssClass="txt-score">87</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox47" runat="server" ReadOnly="true" CssClass="txt-score">85</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox48" runat="server" ReadOnly="true" CssClass="txt-score">98</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox49" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>95</td>
-                    <td>87</td>
-                    <td>80</td>
-                    <td>97</td>
-                    <td class="min-score-td">70</td>
-                    <td class="total-td">90</td>
-                </tr>
-
-                <tr>
-                    <td class="no-td">1</td>
-                    <td class="nisn-td">189654892</td>
-                    <td class="student-name-td">Austin Andika Tanujaya</td>
-                    <td>
-                        <asp:TextBox ID="TextBox50" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox51" runat="server" ReadOnly="true" CssClass="txt-score">87</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox52" runat="server" ReadOnly="true" CssClass="txt-score">85</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox53" runat="server" ReadOnly="true" CssClass="txt-score">98</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox54" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>95</td>
-                    <td>87</td>
-                    <td>80</td>
-                    <td>97</td>
-                    <td class="min-score-td">70</td>
-                    <td class="total-td">90</td>
-                </tr>
-
-                <tr>
-                    <td class="no-td">1</td>
-                    <td class="nisn-td">189654892</td>
-                    <td class="student-name-td">Austin Andika Tanujaya</td>
-                    <td>
-                        <asp:TextBox ID="TextBox55" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox56" runat="server" ReadOnly="true" CssClass="txt-score">87</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox57" runat="server" ReadOnly="true" CssClass="txt-score">85</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox58" runat="server" ReadOnly="true" CssClass="txt-score">98</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox59" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>95</td>
-                    <td>87</td>
-                    <td>80</td>
-                    <td>97</td>
-                    <td class="min-score-td">70</td>
-                    <td class="total-td">90</td>
-                </tr>
-
-                <tr>
-                    <td class="no-td">1</td>
-                    <td class="nisn-td">189654892</td>
-                    <td class="student-name-td">Austin Andika Tanujaya</td>
-                    <td>
-                        <asp:TextBox ID="TextBox60" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox61" runat="server" ReadOnly="true" CssClass="txt-score">87</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox62" runat="server" ReadOnly="true" CssClass="txt-score">85</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox63" runat="server" ReadOnly="true" CssClass="txt-score">98</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox64" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>95</td>
-                    <td>87</td>
-                    <td>80</td>
-                    <td>97</td>
-                    <td class="min-score-td">70</td>
-                    <td class="total-td">90</td>
-                </tr>
-
-                <tr>
-                    <td class="no-td">1</td>
-                    <td class="nisn-td">189654892</td>
-                    <td class="student-name-td">Austin Andika Tanujaya</td>
-                    <td>
-                        <asp:TextBox ID="TextBox65" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox66" runat="server" ReadOnly="true" CssClass="txt-score">87</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox67" runat="server" ReadOnly="true" CssClass="txt-score">85</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox68" runat="server" ReadOnly="true" CssClass="txt-score">98</asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="TextBox69" runat="server" ReadOnly="true" CssClass="txt-score">90</asp:TextBox></td>
-                    <td>95</td>
-                    <td>87</td>
-                    <td>80</td>
-                    <td>97</td>
-                    <td class="min-score-td">70</td>
-                    <td class="total-td">90</td>
-                </tr>
-
             </tbody>
 
         </table>
-    </div>
+    </div>--%>
 
     <%-- POPUP ADD ASSIGNMENT --%>
     <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="pnlAddComponent" TargetControlID="btnAddComponent"
@@ -615,7 +405,7 @@
 
                         <div class="input-error-box">
                             <div class="input-box">
-                                <asp:DropDownList runat="server" ID="ddlSubject" CssClass="ddl">
+                                <asp:DropDownList runat="server" ID="ddlSubjectPopup" CssClass="ddl">
                                     <asp:ListItem Text="Biology" />
                                 </asp:DropDownList>
                             </div>

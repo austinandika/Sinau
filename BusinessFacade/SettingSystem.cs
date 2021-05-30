@@ -21,5 +21,18 @@ namespace BusinessFacade
                 return null;
             }
         }
+
+        public List<SettingData> GetUserAllAcademicYearByIdAndRole(string userID, string role)
+        {
+            try
+            {
+                return new SettingDA().GetUserAllAcademicYearByIdAndRole(userID, role);
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
     }
 }
