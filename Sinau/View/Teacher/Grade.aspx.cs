@@ -14,11 +14,10 @@ namespace Sinau.View.Teacher
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string sessionUserID = Session["UserID"].ToString();
+            string sessionRole = Session["Role"].ToString();
             if (!IsPostBack)
             {
-                string sessionUserID = Session["UserID"].ToString();
-                string sessionRole = Session["Role"].ToString();
-                
                 List<SettingData> academicYearList = new SettingSystem().GetUserAllAcademicYearByIdAndRole(sessionUserID, sessionRole);
                 ddlAcademicYear.DataSource = academicYearList;
                 ddlAcademicYear.DataTextField = "_AcademicYearName";
@@ -45,8 +44,44 @@ namespace Sinau.View.Teacher
 
 
                 viewAllStudentGrade(ddlAcademicYearValue, ddlClassValue, ddlSubjectValue);
+
+                // Add grade component
+                string academicYearID = new SettingSystem().GetUserLatestAcademicYearByIdAndRole(sessionUserID, sessionRole)._AcademicYearID;
+
+                List<GradeData> classListPopup = new GradeSystem().GetTeacherClassById(sessionUserID, academicYearID);
+                ddlClassPopup.DataSource = classListPopup;
+                ddlClassPopup.DataTextField = "_Class";
+                ddlClassPopup.DataValueField = "_ClassID";
+                ddlClassPopup.DataBind();
+
+                string ddlClassValuePopup = ddlClassPopup.SelectedValue;
+
+                List<GradeData> subjectListPopup = new GradeSystem().GetTeacherSubjectByIdAndClass(sessionUserID, ddlClassValue, academicYearID);
+                ddlSubjectPopup.DataSource = subjectListPopup;
+                ddlSubjectPopup.DataTextField = "_Subject";
+                ddlSubjectPopup.DataValueField = "_SubjectID";
+                ddlSubjectPopup.DataBind();
+
+                string ddlSubjectValuePopup = ddlSubjectPopup.SelectedValue;
+
+                List<GradeData> categoryListPopup = new GradeSystem().GetCategoryScorePercentage();
+                ddlComponentCategory.DataSource = categoryListPopup;
+                ddlComponentCategory.DataTextField = "_Category";
+                ddlComponentCategory.DataValueField = "_CategoryID";
+                ddlComponentCategory.DataBind();
+
+                string ddlCategoryValuePopup = ddlComponentCategory.SelectedValue;
             }
 
+            // if selected academic year is not the current academic year
+            string ddlAcademicYearValue2 = ddlAcademicYear.SelectedValue;
+            string academicYearIDLatest = new SettingSystem().GetUserLatestAcademicYearByIdAndRole(sessionUserID, sessionRole)._AcademicYearID;
+
+            if (ddlAcademicYearValue2 != academicYearIDLatest)
+            {
+                btnAddComponent.Visible = false;
+                btnEdit.Visible = false;
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -119,7 +154,7 @@ namespace Sinau.View.Teacher
             {
                 Repeater rptComponentHeader = e.Item.FindControl("rptComponentHeader") as Repeater;
 
-                List<GradeData> listComponentCategory = listGrade.Select(x => new GradeData { _Component = x._Component, _CategoryID = x._CategoryID } ).DistinctBy(x => x._Component).ToList();
+                List<GradeData> listComponentCategory = listGrade.Select(x => new GradeData { _Component = x._Component, _CategoryID = x._CategoryID, _isActiveComponent = x._isActiveComponent } ).DistinctBy(x => x._Component).ToList();
 
                 rptComponentHeader.DataSource = listComponentCategory;
                 rptComponentHeader.DataBind();
@@ -129,6 +164,12 @@ namespace Sinau.View.Teacher
 
                 rptCategoryHeader.DataSource = listComponentCategory;
                 rptCategoryHeader.DataBind();
+
+
+                Repeater rptIsActiveCategory = e.Item.FindControl("rptIsActiveCategory") as Repeater;
+
+                rptIsActiveCategory.DataSource = listComponentCategory;
+                rptIsActiveCategory.DataBind();
             }
 
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
@@ -138,17 +179,17 @@ namespace Sinau.View.Teacher
 
                 string tempNISN = (rptGradeMain.FindControl("lblNISN") as Label).Text;
 
-                List<GradeData> listScore = listGrade.Where(x => x._NISN == tempNISN).Select(x => new GradeData {_CategoryID = x._CategoryID , _Score = x._Score } ).ToList();
+                List<GradeData> listScore = listGrade.Where(x => x._NISN == tempNISN).Select(x => new GradeData {_CategoryID = x._CategoryID , _ComponentID = x._ComponentID , _ScoreID = x._ScoreID ,_Score = x._Score, _isActiveComponent = x._isActiveComponent } ).ToList();
 
                 rptComponentScoreItem.DataSource = listScore;
                 rptComponentScoreItem.DataBind();
 
                 // average the score
 
-                int avgAssignmentScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "ASG").Select(x => x._Score ).Average()));
-                int avgQuizScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "QUZ").Select(x => x._Score).Average()));
-                int avgMidScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "MID").Select(x => x._Score).Average()));
-                int avgFinalScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "FIN").Select(x => x._Score).Average()));
+                int avgAssignmentScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "ASG" && x._isActiveComponent == 1).Select(x => x._Score ).Average()));
+                int avgQuizScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "QUZ" && x._isActiveComponent == 1).Select(x => x._Score).Average()));
+                int avgMidScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "MID" && x._isActiveComponent == 1).Select(x => x._Score).Average()));
+                int avgFinalScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "FIN" && x._isActiveComponent == 1).Select(x => x._Score).Average()));
 
                 Label lblTotalAssignment = (rptGradeMain.FindControl("lblTotalAssignment") as Label);
                 Label lblTotalQuiz = (rptGradeMain.FindControl("lblTotalQuiz") as Label);
@@ -187,6 +228,91 @@ namespace Sinau.View.Teacher
 
             rptGradeMain.DataSource = listStudentData;
             rptGradeMain.DataBind();
+        }
+
+        // Add grade component
+        protected void ddlClassPopup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string sessionUserID = Session["UserID"].ToString();
+            string sessionRole = Session["Role"].ToString();
+            string academicYearID = new SettingSystem().GetUserLatestAcademicYearByIdAndRole(sessionUserID, sessionRole)._AcademicYearID;
+
+            string ddlClassValue = ddlClassPopup.SelectedValue;
+
+            List<GradeData> subjectList = new GradeSystem().GetTeacherSubjectByIdAndClass(sessionUserID, ddlClassValue, academicYearID);
+            ddlSubjectPopup.DataSource = subjectList;
+            ddlSubjectPopup.DataTextField = "_Subject";
+            ddlSubjectPopup.DataValueField = "_SubjectID";
+            ddlSubjectPopup.DataBind();
+
+            string ddlSubjectValue = ddlSubjectPopup.SelectedValue;
+
+            List<GradeData> categoryList = new GradeSystem().GetCategoryScorePercentage();
+            ddlComponentCategory.DataSource = categoryList;
+            ddlComponentCategory.DataTextField = "_Category";
+            ddlComponentCategory.DataValueField = "_CategoryID";
+            ddlComponentCategory.DataBind();
+
+            string ddlCategoryValue = ddlComponentCategory.SelectedValue;
+        }
+
+        protected void ddlSubjectPopup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string sessionUserID = Session["UserID"].ToString();
+            string sessionRole = Session["Role"].ToString();
+            string academicYearID = new SettingSystem().GetUserLatestAcademicYearByIdAndRole(sessionUserID, sessionRole)._AcademicYearID;
+
+            string ddlClassValue = ddlClassPopup.SelectedValue;
+
+            string ddlSubjectValue = ddlSubjectPopup.SelectedValue;
+
+            List<GradeData> categoryList = new GradeSystem().GetCategoryScorePercentage();
+            ddlComponentCategory.DataSource = categoryList;
+            ddlComponentCategory.DataTextField = "_Category";
+            ddlComponentCategory.DataValueField = "_CategoryID";
+            ddlComponentCategory.DataBind();
+
+            string ddlCategoryValue = ddlComponentCategory.SelectedValue;
+        }
+
+        protected void ddlComponentCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCreateComponent_Click(object sender, EventArgs e)
+        {
+            string sessionUserID = Session["UserID"].ToString();
+            string sessionRole = Session["Role"].ToString();
+            string academicYearID = new SettingSystem().GetUserLatestAcademicYearByIdAndRole(sessionUserID, sessionRole)._AcademicYearID;
+
+            string ddlClassValue = ddlClassPopup.SelectedValue;
+            string ddlSubjectValue = ddlSubjectPopup.SelectedValue;
+            string ddlCategoryValue = ddlComponentCategory.SelectedValue;
+            string txtComponentNameValue = txtComponentName.Text;
+
+            bool isInserted = new GradeSystem().InsertGradeComponent(ddlClassValue, ddlSubjectValue, ddlCategoryValue, txtComponentNameValue);
+
+            if (isInserted)
+            {
+                Response.Redirect(Request.RawUrl);
+            }
+            else
+            {
+                Response.Redirect(Request.RawUrl);
+            }
+        }
+
+        protected void rptIsActiveCategory_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            RepeaterItem rptIsActiveCategory = e.Item;
+            CheckBox cbIsActive = (rptIsActiveCategory.FindControl("cbIsActive") as CheckBox);
+            cbIsActive.InputAttributes["class"] = "cb-is-active";
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

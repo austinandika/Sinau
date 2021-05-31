@@ -97,6 +97,9 @@ namespace Sinau.View.Student
         {
             List<GradeData> listStudentGrade = new GradeSystem().GetStudentScoreByUserIDAcademicYearID(sessionUserID, ddlAcademicYearSelected);
 
+            // eliminate the inactive score component
+            listStudentGrade = listStudentGrade.Where(x => x._isActiveComponent == 1).ToList(); // isActiveComponent == 1 is true
+
             List<GradeData> listTeacher = new GradeSystem().GetTeacherByClassID(listStudentGrade[0]._ClassID);
 
             if(listStudentGrade == null)

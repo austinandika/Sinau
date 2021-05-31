@@ -4,7 +4,15 @@
     var btnCancelId = document.getElementById('ContentPlaceHolder1_btnCancel');
     var btnAddComponent = document.getElementById('ContentPlaceHolder1_btnAddComponent');
     var txtScoreClass = document.getElementsByClassName('txt-score');
+    var cbIsActiveClass = document.getElementsByClassName('cb-is-active');
+
+    for (i = 0; i < cbIsActiveClass.length; i++) {
+        // cb isActive become editable
+        cbIsActiveClass[i].removeAttribute('disabled');
+    }
+
     for (i = 0; i < txtScoreClass.length; i++) {
+        // txt become editable
         txtScoreClass[i].removeAttribute('readonly');
         txtScoreClass[i].classList.add("edit-mode");
     }

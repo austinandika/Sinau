@@ -25,7 +25,9 @@ namespace Common.Data
         public string _ComponentID { get; set; }
         public string _Component { get; set; }
         public int _MinScore { get; set; }
+        public int _ScoreID { get; set; }
         public int _Score { get; set; }
+        public int _isActiveComponent { get; set; }
         public string _GradeLetter { get; set; }
         public string _NISN { get; set; }
         public string _StudentName { get; set; }

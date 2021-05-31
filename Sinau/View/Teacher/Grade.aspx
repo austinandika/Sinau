@@ -57,7 +57,7 @@
         <div class="edit-score-container">
             <asp:Button Text="Add Grade Component" ID="btnAddComponent" CssClass="btn-modify-score button-design"  OnClientClick="return false;" runat="server" />
             <asp:Button Text="Edit Score" ID="btnEdit" CssClass="btn-modify-score button-design"  OnClientClick="return editScoreMode();" runat="server" />
-            <asp:Button Text="Cancel" ID="btnCancel" CssClass="btn-modify-score hide-button button-design" runat="server" OnClientClick="return true;" />
+            <asp:Button Text="Cancel" ID="btnCancel" CssClass="btn-modify-score hide-button button-design" runat="server" OnClick="btnCancel_Click" />
             <asp:Button Text="Submit Changes" ID="btnSubmit" CssClass="btn-modify-score hide-button button-design" OnClick="btnSubmit_Click" runat="server" />
         </div>
     </div>
@@ -68,9 +68,9 @@
                     <HeaderTemplate>
                         <thead>
                             <tr>
-                                <th rowspan="2" id="no-th">No</th>
-                                <th rowspan="2" id="nisn-th">NISN</th>
-                                <th rowspan="2" id="student-name-th" class="fixed-header">Student Name</th>
+                                <th rowspan="3" id="no-th">No</th>
+                                <th rowspan="3" id="nisn-th">NISN</th>
+                                <th rowspan="3" id="student-name-th" class="fixed-header">Student Name</th>
                                 <asp:Repeater runat="server" ID="rptComponentHeader">
                                     <ItemTemplate>
                                         <th class="rotated-th">
@@ -81,22 +81,22 @@
                                     </ItemTemplate>
                                 </asp:Repeater>  
 
-                                <th rowspan="2" class="rotated-th">
+                                <th rowspan="3" class="rotated-th">
                                     <div><span>Total Assignment</span></div>
                                 </th>
-                                <th rowspan="2" class="rotated-th">
+                                <th rowspan="3" class="rotated-th">
                                     <div><span>Total Quiz</span></div>
                                 </th>
-                                <th rowspan="2" class="rotated-th">
+                                <th rowspan="3" class="rotated-th">
                                     <div><span>Total Mid Exam</span></div>
                                 </th>
-                                <th rowspan="2" class="rotated-th">
+                                <th rowspan="3" class="rotated-th">
                                     <div><span>Total Final Exam</span></div>
                                 </th>
-                                <th rowspan="2" id="min-score-th">
+                                <th rowspan="3" id="min-score-th">
                                     <div><span>Min Score</span></div>
                                 </th>
-                                <th rowspan="2" id="total-th">
+                                <th rowspan="3" id="total-th">
                                     <div><span>Total</span></div>
                                 </th>
                             </tr>
@@ -106,6 +106,16 @@
                                     <ItemTemplate>
                                         <th class="component-th">
                                             <asp:Label Text='<%#Eval("_CategoryID")%>' runat="server" ID="lblCategory" />
+                                        </th>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </tr>
+
+                            <tr>
+                                <asp:Repeater runat="server" ID="rptIsActiveCategory" OnItemDataBound="rptIsActiveCategory_ItemDataBound">
+                                    <ItemTemplate>
+                                        <th class="component-th">
+                                            <asp:CheckBox Checked='<%#Convert.ToInt32(Eval("_isActiveComponent"))==1?true:false%>' ID="cbIsActive" Enabled="false" runat="server"/>
                                         </th>
                                     </ItemTemplate>
                                 </asp:Repeater>
@@ -131,7 +141,9 @@
                                 <asp:Repeater runat="server" ID="rptComponentScoreItem">
                                     <ItemTemplate>
                                         <td class="student-score-td">
-                                            <asp:TextBox ID="TxtScore" runat="server" ReadOnly="true" CssClass="txt-score" Text='<%# Eval("_Score") %>'></asp:TextBox>
+                                            <asp:HiddenField ID="hfComponentID" runat="server" Value='<%# Eval("_ComponentID") %>'/>
+                                            <asp:HiddenField ID="hfScoreID" runat="server" Value='<%# Eval("_ScoreID") %>'/>
+                                            <asp:TextBox ID="txtScore" runat="server" ReadOnly="true" CssClass="txt-score" Text='<%# Eval("_Score") %>'></asp:TextBox>
                                         </td>
                                     </ItemTemplate>
                                 </asp:Repeater>
@@ -378,62 +390,65 @@
                 </div>
 
                 <div class="form-table">
-                    <div class="row">
-                        <div class="input-command">
-                            <asp:Label Text="Class" runat="server" ID="lblClass" />
-                        </div>
+                    <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <div class="row">
+                                <div class="input-command">
+                                    <asp:Label Text="Class" runat="server" ID="lblClass" />
+                                </div>
 
-                        <div class="input-error-box">
-                            <div class="input-box">
-                                <asp:DropDownList runat="server" ID="ddlClassPopup" CssClass="ddl">
-                                    <asp:ListItem Text="XII MIPA 1" />
-                                    <asp:ListItem Text="XI MIPA 2" />
-                                    <asp:ListItem Text="XI MIPA 1" />
-                                </asp:DropDownList>
+                                <div class="input-error-box">
+                                    <div class="input-box">
+                                        <asp:DropDownList runat="server" ID="ddlClassPopup" CssClass="ddl" OnSelectedIndexChanged="ddlClassPopup_SelectedIndexChanged" AutoPostBack="true">
+                                        </asp:DropDownList>
+                                    </div>
+
+                                    <div class="error-box">
+                                        <asp:Label Text="" runat="server" ID="lblErrorClass" />
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="error-box">
-                                <asp:Label Text="" runat="server" ID="lblErrorClass" />
-                            </div>
-                        </div>
-                    </div>
+                            <div class="row">
+                                <div class="input-command">
+                                    <asp:Label Text="Subject" runat="server" ID="lblSubjectPopup" />
+                                </div>
 
-                    <div class="row">
-                        <div class="input-command">
-                            <asp:Label Text="Subject" runat="server" ID="lblSubjectPopup" />
-                        </div>
+                                <div class="input-error-box">
+                                    <div class="input-box">
+                                        <asp:DropDownList runat="server" ID="ddlSubjectPopup" CssClass="ddl" OnSelectedIndexChanged="ddlSubjectPopup_SelectedIndexChanged" AutoPostBack="true">
+                                        </asp:DropDownList>
+                                    </div>
 
-                        <div class="input-error-box">
-                            <div class="input-box">
-                                <asp:DropDownList runat="server" ID="ddlSubjectPopup" CssClass="ddl">
-                                    <asp:ListItem Text="Biology" />
-                                </asp:DropDownList>
-                            </div>
-
-                            <div class="error-box">
-                                <asp:Label Text="" runat="server" ID="lblErrorSubject" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="input-command">
-                            <asp:Label Text="Category" runat="server" ID="lblComponentCategoryPopup" />
-                        </div>
-
-                        <div class="input-error-box">
-                            <div class="input-box">
-                                <asp:DropDownList runat="server" ID="ddlComponentCategory" CssClass="ddl">
-                                    <asp:ListItem Text="Assignment" />
-                                    <asp:ListItem Text="Quiz" />
-                                </asp:DropDownList>
+                                    <div class="error-box">
+                                        <asp:Label Text="" runat="server" ID="lblErrorSubject" />
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="error-box">
-                                <asp:Label Text="" runat="server" ID="lblErrorComponentCategory" />
+                            <div class="row">
+                                <div class="input-command">
+                                    <asp:Label Text="Category" runat="server" ID="lblComponentCategoryPopup" />
+                                </div>
+
+                                <div class="input-error-box">
+                                    <div class="input-box">
+                                        <asp:DropDownList runat="server" ID="ddlComponentCategory" CssClass="ddl" OnSelectedIndexChanged="ddlComponentCategory_SelectedIndexChanged" AutoPostBack="true">
+                                        </asp:DropDownList>
+                                    </div>
+
+                                    <div class="error-box">
+                                        <asp:Label Text="" runat="server" ID="lblErrorComponentCategory" />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="ddlClassPopup" EventName="SelectedIndexChanged" />
+                            <asp:AsyncPostBackTrigger ControlID="ddlSubjectPopup" EventName="SelectedIndexChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                    
 
                     <div class="row">
                         <div class="input-command">
@@ -453,7 +468,7 @@
 
                 <div class="button-container">
                     <asp:Button Text="Cancel" runat="server" ID="btnCancelComponent" CssClass="button-create button-design" />
-                    <asp:Button Text="Create" runat="server" ID="btnCreateComponent" CssClass="button-create button-design" OnClientClick="return validateCreateComponent();"/>
+                    <asp:Button Text="Create" runat="server" ID="btnCreateComponent" CssClass="button-create button-design" OnClientClick="return validateCreateComponent();" OnClick="btnCreateComponent_Click"/>
                 </div>
             </div>
 

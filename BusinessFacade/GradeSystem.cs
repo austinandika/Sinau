@@ -92,5 +92,17 @@ namespace BusinessFacade
                 return null;
             }
         }
+
+        public bool InsertGradeComponent(string classID, string subjectID, string categoryID, string componentName)
+        {
+            try
+            {
+                return new GradeDA().InsertGradeComponent(classID, subjectID, categoryID, componentName);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

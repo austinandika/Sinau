@@ -91,6 +91,7 @@ namespace DataAccess
                         data._Component = Convert.ToString(reader["ComponentName"]);
                         data._MinScore = Convert.ToInt32(reader["MinScore"]);
                         data._Score = Convert.ToInt32(reader["Score"]);
+                        data._isActiveComponent = Convert.ToInt32(reader["IsActiveComponent"]);
 
                         gradeList.Add(data);
                     }
@@ -238,6 +239,7 @@ namespace DataAccess
                         data._Component = Convert.ToString(reader["ComponentName"]);
                         data._MinScore = Convert.ToInt32(reader["MinScore"]);
                         data._Score = Convert.ToInt32(reader["Score"]);
+                        data._isActiveComponent = Convert.ToInt32(reader["IsActiveComponent"]);
 
                         scoreList.Add(data);
                     }
@@ -285,6 +287,34 @@ namespace DataAccess
                 Console.WriteLine(ex.Message);
                 return null;
             }
+        }
+
+        public bool InsertGradeComponent(string classID, string subjectID, string categoryID, string componentName)
+        {
+            string spName = "SP_InsertGradeComponent";
+            bool returnValue = false;
+
+            try
+            {
+                using (DbConnection connection = db.CreateConnection())
+                {
+                    DbCommand cmd = db.GetStoredProcCommand(spName);
+                    db.AddInParameter(cmd, "ClassID", System.Data.DbType.String, classID);
+                    db.AddInParameter(cmd, "SubjectID", System.Data.DbType.String, subjectID);
+                    db.AddInParameter(cmd, "CategoryID", System.Data.DbType.String, categoryID);
+                    db.AddInParameter(cmd, "ComponentName", System.Data.DbType.String, componentName);
+
+                    db.ExecuteNonQuery(cmd);
+                }
+
+                returnValue = true;
+            }
+            catch (Exception e)
+            {
+                returnValue = false;
+            }
+
+            return returnValue;
         }
     }
 }
