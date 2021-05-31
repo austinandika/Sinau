@@ -104,5 +104,29 @@ namespace BusinessFacade
                 return false;
             }
         }
+
+        public bool UpdateComponentStatus(int componentID, int isActiveComponent)
+        {
+            try
+            {
+                return new GradeDA().UpdateComponentStatus(componentID, isActiveComponent);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateNewScoreInput(int scoreID, int score)
+        {
+            try
+            {
+                return new GradeDA().UpdateNewScoreInput(scoreID, score);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

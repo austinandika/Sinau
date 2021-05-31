@@ -238,6 +238,7 @@ namespace DataAccess
                         data._ComponentID = Convert.ToString(reader["ComponentID"]);
                         data._Component = Convert.ToString(reader["ComponentName"]);
                         data._MinScore = Convert.ToInt32(reader["MinScore"]);
+                        data._ScoreID = Convert.ToInt32(reader["ScoreID"]);
                         data._Score = Convert.ToInt32(reader["Score"]);
                         data._isActiveComponent = Convert.ToInt32(reader["IsActiveComponent"]);
 
@@ -303,6 +304,58 @@ namespace DataAccess
                     db.AddInParameter(cmd, "SubjectID", System.Data.DbType.String, subjectID);
                     db.AddInParameter(cmd, "CategoryID", System.Data.DbType.String, categoryID);
                     db.AddInParameter(cmd, "ComponentName", System.Data.DbType.String, componentName);
+
+                    db.ExecuteNonQuery(cmd);
+                }
+
+                returnValue = true;
+            }
+            catch (Exception e)
+            {
+                returnValue = false;
+            }
+
+            return returnValue;
+        }
+
+        public bool UpdateComponentStatus(int componentID, int isActiveComponent)
+        {
+            string spName = "SP_UpdateComponentStatus";
+            bool returnValue = false;
+
+            try
+            {
+                using (DbConnection connection = db.CreateConnection())
+                {
+                    DbCommand cmd = db.GetStoredProcCommand(spName);
+                    db.AddInParameter(cmd, "ComponentID", System.Data.DbType.Int32, componentID);
+                    db.AddInParameter(cmd, "isActiveComponent", System.Data.DbType.Int32, isActiveComponent);
+
+                    db.ExecuteNonQuery(cmd);
+                }
+
+                returnValue = true;
+            }
+            catch (Exception e)
+            {
+                returnValue = false;
+            }
+
+            return returnValue;
+        }
+
+        public bool UpdateNewScoreInput(int scoreID, int score)
+        {
+            string spName = "SP_UpdateNewScoreInput";
+            bool returnValue = false;
+
+            try
+            {
+                using (DbConnection connection = db.CreateConnection())
+                {
+                    DbCommand cmd = db.GetStoredProcCommand(spName);
+                    db.AddInParameter(cmd, "ScoreID", System.Data.DbType.Int32, scoreID);
+                    db.AddInParameter(cmd, "Score", System.Data.DbType.Int32, score);
 
                     db.ExecuteNonQuery(cmd);
                 }

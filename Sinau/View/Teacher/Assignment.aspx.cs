@@ -124,7 +124,12 @@ namespace Sinau.View.Teacher
 
             if (returnValueInsertAssignment)
             {
-                Response.Redirect(Request.RawUrl);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('SUCCESS: Successfully insert the assignment'); window.location ='Assignment.aspx';", true);
+                //Response.Redirect(Request.RawUrl);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR: Error to insert the assignment. Please try again'); window.location ='Assignment.aspx';", true);
             }
         }
 

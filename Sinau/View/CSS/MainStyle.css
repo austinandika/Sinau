@@ -22,3 +22,24 @@
         transition: 0.3s;
         background-color: dimgray;
     }
+
+
+/* ERROR MAIN LABEL */
+.error-main {
+    display: none;
+    width: 100%;
+    color: white;
+    font-size: 14px;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+    .error-main.success {
+        display: block;
+        background-color: #52c41a; /*green success*/
+    }
+
+    .error-main.error {
+        display: block;
+        background-color: #ff4d4f; /*red error*/
+    }

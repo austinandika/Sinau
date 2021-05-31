@@ -1,28 +1,63 @@
-﻿function editScoreMode(){
-    var btnEditId = document.getElementById('ContentPlaceHolder1_btnEdit');
-    var btnSubmitId = document.getElementById('ContentPlaceHolder1_btnSubmit');
-    var btnCancelId = document.getElementById('ContentPlaceHolder1_btnCancel');
-    var btnAddComponent = document.getElementById('ContentPlaceHolder1_btnAddComponent');
-    var txtScoreClass = document.getElementsByClassName('txt-score');
-    var cbIsActiveClass = document.getElementsByClassName('cb-is-active');
+﻿////function editScoreMode(){
+////    var btnEditId = document.getElementById('ContentPlaceHolder1_btnEdit');
+////    var btnSubmitId = document.getElementById('ContentPlaceHolder1_btnSubmit');
+////    var btnCancelId = document.getElementById('ContentPlaceHolder1_btnCancel');
+////    var btnAddComponent = document.getElementById('ContentPlaceHolder1_btnAddComponent');
+    //var txtScoreClass = document.getElementsByClassName('txt-score');
+    //var cbIsActiveClass = document.getElementsByClassName('cb-is-active');
 
-    for (i = 0; i < cbIsActiveClass.length; i++) {
-        // cb isActive become editable
-        cbIsActiveClass[i].removeAttribute('disabled');
-    }
+    //for (i = 0; i < cbIsActiveClass.length; i++) {
+    //    // cb isActive become editable
+    //    cbIsActiveClass[i].removeAttribute('disabled');
+    //}
+
+    //for (i = 0; i < txtScoreClass.length; i++) {
+    //    // txt become editable
+    //    txtScoreClass[i].removeAttribute('readonly');
+    //    txtScoreClass[i].classList.add("edit-mode");
+    //}
+
+    //btnEditId.classList.add("hide-button");
+    //btnAddComponent.classList.add("hide-button");
+    //btnSubmitId.classList.remove("hide-button");
+    //btnCancelId.classList.remove("hide-button");
+    //return true;
+//}
+
+var errorMainDiv = document.getElementById('ContentPlaceHolder1_errorMain');
+
+function editScoreMode() {
+    var txtScoreClass = document.getElementsByClassName('txt-score');
+    var isCorrect = true;
 
     for (i = 0; i < txtScoreClass.length; i++) {
-        // txt become editable
-        txtScoreClass[i].removeAttribute('readonly');
-        txtScoreClass[i].classList.add("edit-mode");
+        // validation for score
+        var txtScoreClassValueTemp = parseInt(txtScoreClass[i].value);
+
+        if (txtScoreClassValueTemp < 0 || txtScoreClassValueTemp > 100) {
+            txtScoreClass[i].classList.add("error");
+            isCorrect = false;
+        }
     }
 
-    btnEditId.classList.add("hide-button");
-    btnAddComponent.classList.add("hide-button");
-    btnSubmitId.classList.remove("hide-button");
-    btnCancelId.classList.remove("hide-button");
-    return false;
+
+    if (isCorrect == true) {
+        return true;
+    }
+    else {
+        errorMainDiv.classList.add("error");
+        errorMainDiv.innerHTML = "Score is not valid, please enter a score between 0 and 100";
+        return false;
+    }
 }
+
+// only can type number
+function ValidNumeric() {
+
+    var charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode >= 48 && charCode <= 57) { return true; }
+    else { return false; }
+}   
 
 
 var txtComponentName = document.getElementById('ContentPlaceHolder1_txtComponentName');

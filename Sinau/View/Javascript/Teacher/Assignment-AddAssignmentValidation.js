@@ -138,7 +138,7 @@ function fileUploadValidation() {
     else {
         var isValidFileExtensions = false;
         var fileSizeLimit = 20000; // 20.000kb = 20mb
-        var allowedExtensions = new Array('txt', 'pdf', 'ppt', 'xls', 'doc', 'pptx', 'xlsx', 'docx', 'rar', 'zip', 'jpg', 'jpeg', 'png', 'wav', 'mp3', 'mp4', 'avi', '3gp', 'mkv', 'mov', 'flv');
+        var allowedExtensions = new Array('txt', 'pdf', 'ppt', 'xls', 'doc', 'pptx', 'xlsx', 'docx', 'rar', 'zip', 'jpg', 'jpeg', 'png', 'wav', 'mp3', 'mp4', 'avi', '3gp', 'mkv', 'mov', 'flv', 'csv');
         var fileExtensions = fuQuestionFile.value.split('.').pop().toLowerCase(); // split function will split the filename by dot(.), and pop function will pop the last element from the array which will give you the extension as well. If there will be no extension then it will return the filename.
 
         for (var i = 0; i <= allowedExtensions.length; i++) {

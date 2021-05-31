@@ -86,7 +86,71 @@ namespace Sinau.View.Teacher
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            
+            Control headerItem = rptGradeMain.Controls[0].Controls[0];
+            bool isValidAll = true;
+
+            //iterate inner repeater from header
+            foreach (RepeaterItem categoryItem in ((Repeater)(headerItem.FindControl("rptIsActiveCategory"))).Items)
+            {
+                HiddenField hfComponentID = (HiddenField)categoryItem.FindControl("hfComponentID");
+                CheckBox cbIsActive = (CheckBox)categoryItem.FindControl("cbIsActive");
+
+                // extract values  
+                int hfComponentIDValue = Convert.ToInt32(hfComponentID.Value);
+                int isActiveComponent = -1;
+
+                if (cbIsActive.Checked)
+                {
+                    isActiveComponent = 1;
+                }
+                else
+                {
+                    isActiveComponent = 0;
+                }
+
+                bool isUpdated = new GradeSystem().UpdateComponentStatus(hfComponentIDValue, isActiveComponent);
+
+                if (isUpdated == false)
+                {
+                    isValidAll = false;
+                }
+            }
+
+            // iterate outer repeater   
+            foreach (RepeaterItem mainItem in rptGradeMain.Items)
+            {
+
+                // iterate inner repeater   
+                foreach (RepeaterItem scoreItem in ((Repeater)(mainItem.FindControl("rptComponentScoreItem"))).Items)
+                {
+                    // get reference to controls  
+                    HiddenField hfScoreID = (HiddenField)scoreItem.FindControl("hfScoreID");
+                    TextBox txtScore = (TextBox)scoreItem.FindControl("txtScore");
+
+
+                    // extract values  
+                    int hfScoreIDValue = Convert.ToInt32(hfScoreID.Value);
+                    int txtScoreValue = Convert.ToInt32(txtScore.Text.Trim());
+
+                    bool isInserted = new GradeSystem().UpdateNewScoreInput(hfScoreIDValue, txtScoreValue);
+
+                    if (isInserted == false)
+                    {
+                        isValidAll = false;
+                    }
+                }
+            }
+
+            if (isValidAll == false)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR: Error to update the score. Please try again'); window.location ='Grade.aspx';", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('SUCESS: Successfully update the score'); window.location ='Grade.aspx';", true);
+            }
+
+            //Response.Redirect(Request.RawUrl);
         }
 
         protected void ddlAcademicYear_SelectedIndexChanged(object sender, EventArgs e)
@@ -154,7 +218,7 @@ namespace Sinau.View.Teacher
             {
                 Repeater rptComponentHeader = e.Item.FindControl("rptComponentHeader") as Repeater;
 
-                List<GradeData> listComponentCategory = listGrade.Select(x => new GradeData { _Component = x._Component, _CategoryID = x._CategoryID, _isActiveComponent = x._isActiveComponent } ).DistinctBy(x => x._Component).ToList();
+                List<GradeData> listComponentCategory = listGrade.Select(x => new GradeData { _ComponentID = x._ComponentID, _Component = x._Component, _CategoryID = x._CategoryID, _isActiveComponent = x._isActiveComponent } ).DistinctBy(x => x._Component).ToList();
 
                 rptComponentHeader.DataSource = listComponentCategory;
                 rptComponentHeader.DataBind();
@@ -185,11 +249,46 @@ namespace Sinau.View.Teacher
                 rptComponentScoreItem.DataBind();
 
                 // average the score
+                int avgAssignmentScore;
+                int avgQuizScore;
+                int avgMidScore;
+                int avgFinalScore;
 
-                int avgAssignmentScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "ASG" && x._isActiveComponent == 1).Select(x => x._Score ).Average()));
-                int avgQuizScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "QUZ" && x._isActiveComponent == 1).Select(x => x._Score).Average()));
-                int avgMidScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "MID" && x._isActiveComponent == 1).Select(x => x._Score).Average()));
-                int avgFinalScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "FIN" && x._isActiveComponent == 1).Select(x => x._Score).Average()));
+                try
+                {
+                    avgAssignmentScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "ASG" && x._isActiveComponent == 1).Select(x => x._Score).Average()));
+                }
+                catch(Exception ex)
+                {
+                    avgAssignmentScore = 0;
+                }
+
+                try
+                {
+                    avgQuizScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "QUZ" && x._isActiveComponent == 1).Select(x => x._Score).Average()));
+                }
+                catch (Exception ex)
+                {
+                    avgQuizScore = 0;
+                }
+
+                try
+                {
+                    avgMidScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "MID" && x._isActiveComponent == 1).Select(x => x._Score).Average()));
+                }
+                catch (Exception ex)
+                {
+                    avgMidScore = 0;
+                }
+
+                try
+                {
+                    avgFinalScore = Convert.ToInt32(Math.Round(listScore.Where(x => x._CategoryID == "FIN" && x._isActiveComponent == 1).Select(x => x._Score).Average()));
+                }
+                catch (Exception ex)
+                {
+                    avgFinalScore = 0;
+                }
 
                 Label lblTotalAssignment = (rptGradeMain.FindControl("lblTotalAssignment") as Label);
                 Label lblTotalQuiz = (rptGradeMain.FindControl("lblTotalQuiz") as Label);
@@ -216,7 +315,15 @@ namespace Sinau.View.Teacher
                 int totalScore = totalAssignment + totalQuiz + totalMid + totalFinal;
 
                 Label lblTotalScore = (rptGradeMain.FindControl("lblTotalScore") as Label);
+                Label lblMinScore = (rptGradeMain.FindControl("lblMinScore") as Label);
+                int minScore = Convert.ToInt32(lblMinScore.Text);
+
                 lblTotalScore.Text = totalScore.ToString();
+
+                if(totalScore < minScore)
+                {
+                    lblTotalScore.CssClass += " not-pass";
+                }
             }
         }
 
@@ -295,11 +402,13 @@ namespace Sinau.View.Teacher
 
             if (isInserted)
             {
-                Response.Redirect(Request.RawUrl);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('SUCCESS: Success to insert new grade component'); window.location ='Grade.aspx';", true);
+                //Response.Redirect(Request.RawUrl);
             }
             else
             {
-                Response.Redirect(Request.RawUrl);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR: Failed to add grade component. Please try again'); window.location ='Grade.aspx';", true);
+                //Response.Redirect(Request.RawUrl);
             }
         }
 
@@ -313,6 +422,49 @@ namespace Sinau.View.Teacher
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect(Request.RawUrl);
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            Control headerItem = rptGradeMain.Controls[0].Controls[0];
+
+            //iterate inner repeater from header
+            foreach (RepeaterItem categoryItem in ((Repeater)(headerItem.FindControl("rptIsActiveCategory"))).Items)
+            {
+                CheckBox cbIsActive = (CheckBox)categoryItem.FindControl("cbIsActive");
+                cbIsActive.Enabled = true;
+            }
+
+            // iterate outer repeater   
+            foreach (RepeaterItem mainItem in rptGradeMain.Items)
+            {
+
+                //iterate inner repeater
+                //foreach (RepeaterItem scoreItem in ((Repeater)(mainItem.FindControl("rptIsActiveCategory"))).Items)
+                //{
+                //    CheckBox cbIsActive = (CheckBox)scoreItem.FindControl("cbIsActive");
+                //    cbIsActive.Enabled = true;
+                //}
+
+                // iterate inner repeater   
+                foreach (RepeaterItem scoreItem in ((Repeater)(mainItem.FindControl("rptComponentScoreItem"))).Items)
+                {
+                    // get reference to controls  
+                    TextBox txtScore = (TextBox)scoreItem.FindControl("txtScore");
+
+
+                    txtScore.ReadOnly = false;
+                    txtScore.CssClass += " edit-mode";
+                    btnEdit.CssClass += " hide-button";
+                    btnAddComponent.CssClass += " hide-button";
+                    //btnEdit.Attributes.Add("class", "hide-button");
+                    //btnAddComponent.Attributes.Add("class", "hide-button");
+                    btnSubmit.CssClass = btnSubmit.CssClass.Replace("hide-button", "");
+                    btnCancel.CssClass = btnSubmit.CssClass.Replace("hide-button", "");
+
+                }
+
+            }
         }
     }
 }

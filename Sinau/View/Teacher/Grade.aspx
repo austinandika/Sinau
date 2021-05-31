@@ -10,6 +10,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
+    <div class="error-main" runat="server" id="errorMain">
+        <asp:Label Text="" CssClass="lbl-error-main" ID="lblErrorMain" runat="server" Visible="false" />
+    </div>
 
     <div class="title-container">
         <div class="vertical-line">
@@ -44,21 +47,21 @@
                         </asp:DropDownList>
                     </td>
 
-                    <td>Category</td>
+                    <%--<td>Category</td>
                     <td>
                         <asp:DropDownList runat="server" ID="ddlSemester" CssClass="ddl">
                             <asp:ListItem Text="-" />
                         </asp:DropDownList>
-                    </td>
+                    </td>--%>
                 </tr>
             </table>
         </div>
 
         <div class="edit-score-container">
             <asp:Button Text="Add Grade Component" ID="btnAddComponent" CssClass="btn-modify-score button-design"  OnClientClick="return false;" runat="server" />
-            <asp:Button Text="Edit Score" ID="btnEdit" CssClass="btn-modify-score button-design"  OnClientClick="return editScoreMode();" runat="server" />
+            <asp:Button Text="Edit Score" ID="btnEdit" CssClass="btn-modify-score button-design"   OnClick="btnEdit_Click" runat="server" />
             <asp:Button Text="Cancel" ID="btnCancel" CssClass="btn-modify-score hide-button button-design" runat="server" OnClick="btnCancel_Click" />
-            <asp:Button Text="Submit Changes" ID="btnSubmit" CssClass="btn-modify-score hide-button button-design" OnClick="btnSubmit_Click" runat="server" />
+            <asp:Button Text="Submit Changes" ID="btnSubmit" CssClass="btn-modify-score hide-button button-design" OnClientClick="return editScoreMode();" OnClick="btnSubmit_Click" runat="server" />
         </div>
     </div>
 
@@ -114,7 +117,8 @@
                             <tr>
                                 <asp:Repeater runat="server" ID="rptIsActiveCategory" OnItemDataBound="rptIsActiveCategory_ItemDataBound">
                                     <ItemTemplate>
-                                        <th class="component-th">
+                                        <th class="component-th-2">
+                                            <asp:hiddenfield ID="hfComponentID" runat="server" value='<%# Eval("_componentid") %>'/>
                                             <asp:CheckBox Checked='<%#Convert.ToInt32(Eval("_isActiveComponent"))==1?true:false%>' ID="cbIsActive" Enabled="false" runat="server"/>
                                         </th>
                                     </ItemTemplate>
@@ -141,9 +145,8 @@
                                 <asp:Repeater runat="server" ID="rptComponentScoreItem">
                                     <ItemTemplate>
                                         <td class="student-score-td">
-                                            <asp:HiddenField ID="hfComponentID" runat="server" Value='<%# Eval("_ComponentID") %>'/>
                                             <asp:HiddenField ID="hfScoreID" runat="server" Value='<%# Eval("_ScoreID") %>'/>
-                                            <asp:TextBox ID="txtScore" runat="server" ReadOnly="true" CssClass="txt-score" Text='<%# Eval("_Score") %>'></asp:TextBox>
+                                            <asp:TextBox ID="txtScore" runat="server" ReadOnly="true" CssClass="txt-score" Text='<%# Eval("_Score") %>' onkeypress="return ValidNumeric()" ></asp:TextBox>
                                         </td>
                                     </ItemTemplate>
                                 </asp:Repeater>

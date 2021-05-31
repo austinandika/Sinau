@@ -50,13 +50,13 @@ namespace Sinau.View
                 }
                 else
                 {
-                    lblErrorServer.Text = "Incorrect email or password. Please make sure you have entered the email or password correctly.";
+                    lblErrorServer.Text = "Incorrect email or password";
                     errorServerContainer.Attributes["class"] += " active";
                 }
             }
             catch (Exception ex)
             {
-                lblErrorServer.Text = "Incorrect email or password. Please make sure you have entered the email or password correctly.";
+                lblErrorServer.Text = "Incorrect email or password";
                 errorServerContainer.Attributes["class"] += " active";
             }
         }
