@@ -89,6 +89,7 @@
     <Content Include="View\Assets\Test-Banner2.png" />
     <Content Include="View\Assets\Test-Banner.jpg" />
     <Content Include="View\CSS\ActivationFormStyle.css" />
+    <Content Include="View\CSS\Error\ErrorStyle.css" />
     <Content Include="View\CSS\MainStyle.css" />
     <Content Include="View\CSS\Student\AssignmentStyle.css" />
     <Content Include="View\CSS\Student\DashboardStyle.css" />
@@ -102,6 +103,8 @@
     <Content Include="View\CSS\Teacher\GradeStyle.css" />
     <Content Include="View\CSS\Teacher\MasterStyle.css" />
     <Content Include="View\CSS\Teacher\ScheduleStyle.css" />
+    <Content Include="View\Assets\Error\404.png" />
+    <Content Include="View\Error\404.aspx" />
     <Content Include="View\Javascript\ActivationForm-Validation.js" />
     <Content Include="View\Javascript\Dashboard-Slideshow.js" />
     <Content Include="View\Javascript\Login-Validation.js" />
@@ -140,6 +143,13 @@
     </Compile>
     <Compile Include="View\ActivationForm.aspx.designer.cs">
       <DependentUpon>ActivationForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Error\404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Error\404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Student\Assignment.aspx.cs">
       <DependentUpon>Assignment.aspx</DependentUpon>
@@ -234,6 +244,8 @@
     <Content Include="View\Assets\Font\Gilroy-Light.otf" />
     <Content Include="View\Teacher\Master.Master" />
     <Content Include="View\Javascript\jquery-3.5.1.min.js" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

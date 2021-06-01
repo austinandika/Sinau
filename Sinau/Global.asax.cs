@@ -32,31 +32,46 @@ namespace Sinau
         protected void Application_AcquireRequestState(Object sender, EventArgs e)
         {
             string absolutePath = HttpContext.Current.Request.Url.AbsolutePath;
+            string[] absolutePathSplit = absolutePath.Split('/');
 
             if (HttpContext.Current != null && HttpContext.Current.Session != null)
             {
                 var loginSession = HttpContext.Current.Session["LoggedIn"];
+
                 if (loginSession == null)
                 {
                     if( absolutePath != "/View/Login.aspx" &&
                         absolutePath != "/View/ActivationForm.aspx" &&
                         absolutePath != "/View/SuccessfullyActivated.aspx")
                     {
-                        Response.Redirect("~/View/Login.aspx");
+                        if (absolutePathSplit.Length > 2)
+                        {
+                            if(absolutePathSplit[2] != "Error")
+                            {
+                                Response.Redirect("~/View/Login.aspx");
+                            }
+                        }
+                        else
+                        {
+                            Response.Redirect("~/View/Login.aspx");
+                        }
                     }
                 }
                 else
                 {
                     string[] pathSplit = absolutePath.Split('/');
-                    if(pathSplit.Length > 3)
+                    if (pathSplit.Length > 3)
                     {
-                        string currentRole = pathSplit[2];
-                        string sessionRole = Session["Role"].ToString();
-
-                        // check if user authenticate to visit the role or no
-                        if (!sessionRole.Equals(currentRole, StringComparison.OrdinalIgnoreCase))
+                        if(pathSplit[2] != "Error")
                         {
-                            Response.Redirect("~/View/" + sessionRole + "/Dashboard.aspx");
+                            string currentRole = pathSplit[2];
+                            string sessionRole = Session["Role"].ToString();
+
+                            // check if user authenticate to visit the role or no
+                            if (!sessionRole.Equals(currentRole, StringComparison.OrdinalIgnoreCase))
+                            {
+                                Response.Redirect("~/View/" + sessionRole + "/Dashboard.aspx");
+                            }
                         }
                     }
                 }
