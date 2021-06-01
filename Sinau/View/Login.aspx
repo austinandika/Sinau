@@ -31,7 +31,8 @@
                         </div>
 
                         <div class="input-box">
-                            <asp:TextBox ID="txtEmail" runat="server" CssClass="textbox" Style="font-family: FontAwesome;" placeholder="&#xf007;&nbsp;&nbsp;&nbsp;Type your email"></asp:TextBox>
+                            <asp:TextBox ID="txtEmail" runat="server" CssClass="textbox" placeholder="Type your email"></asp:TextBox>
+                            <i class="fa fa-user"></i>
                         </div>
 
                         <div class="error-container">
@@ -45,7 +46,8 @@
                         </div>
 
                         <div class="input-box">
-                            <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" Style="font-family: FontAwesome;" CssClass="textbox" placeholder="&#xf023;&nbsp;&nbsp;&nbsp;Type your password"></asp:TextBox>
+                            <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" CssClass="textbox" placeholder="Type your password"></asp:TextBox>
+                            <i class="fa fa-lock"></i>
                         </div>
 
                         <div class="error-container">
