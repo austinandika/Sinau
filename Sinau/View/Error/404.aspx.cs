@@ -11,7 +11,10 @@ namespace Sinau.View.Error
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(Request.QueryString["aspxerrorpath"] == null)
+            {
+                Response.Redirect("~/Index.aspx");
+            }
         }
 
         protected void btnHome_Click(object sender, EventArgs e)
