@@ -78,7 +78,7 @@ namespace Sinau.View.Student
             {
                 if (listAssignmentTemp[i]._StatusID == 0 && listAssignmentTemp[i]._SubmissionStatusID == -1)
                 {
-                    // listAssignmentTemp[i]._SubmissionStatusID == -1 -> haven't subitted the answer
+                    // listAssignmentTemp[i]._SubmissionStatusID == -1 -> haven't submitted the answer
                     listAssignmentTemp[i]._SubmissionDate = "-";
 
                     DateTime assignDate = DateTime.ParseExact(listAssignmentTemp[i]._AssignDate, "MMM dd, yyyy", null);

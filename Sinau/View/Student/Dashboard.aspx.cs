@@ -74,6 +74,9 @@ namespace Sinau.View
                 {
                     listTeacherAssignmentAssigned = listStudentAssignment.Where(p => p._SubmissionStatusID != 1).ToList();  // 1 = submitted
 
+                    // eliminated waiting status in assignment
+                    listTeacherAssignmentAssigned = validateAssignmentStatus(listTeacherAssignmentAssigned);
+
                     if (listTeacherAssignmentAssigned.Count != 0)
                     {
                         //validateAssignmentStatus(listTeacherAssignment);
@@ -85,11 +88,78 @@ namespace Sinau.View
                         noAssignment.Attributes["class"] += " active";
                     }
                 }
+                else
+                {
+                    noAssignment.Attributes["class"] += " active";
+                }
             }
             catch (Exception ex)
             {
 
             }
+        }
+
+        private List<AssignmentData> validateAssignmentStatus(List<AssignmentData> listAssignmentTemp)
+        {
+            List<AssignmentData> returnList = new List<AssignmentData>();
+
+            for (int i = 0; i < listAssignmentTemp.Count; i++)
+            {
+                if (listAssignmentTemp[i]._StatusID == 0 && listAssignmentTemp[i]._SubmissionStatusID == -1)
+                {
+                    // listAssignmentTemp[i]._SubmissionStatusID == -1 -> haven't submitted the answer
+                    listAssignmentTemp[i]._SubmissionDate = "-";
+
+                    DateTime assignDate = DateTime.ParseExact(listAssignmentTemp[i]._AssignDate, "MMM dd, yyyy", null);
+                    DateTime dueDate = DateTime.ParseExact(listAssignmentTemp[i]._DueDate, "MMM dd, yyyy", null);
+
+                    DateTime todayDate = DateTime.Now;
+                    int assignDueCompare = DateTime.Compare(assignDate, dueDate);
+                    int assignTodayCompare = DateTime.Compare(assignDate, todayDate);
+                    int todayDueCompare = DateTime.Compare(todayDate, dueDate);
+
+                    // DateTime.Compare return:
+                    // date1 - date2
+                    // < 0 − If date1 is earlier than date2
+                    // 0 − If date1 is the same as date2
+                    // > 0 − If date1 is later than date2
+
+                    // waiting
+                    // assigned
+                    // done
+
+                    if (todayDueCompare > 0)
+                    {
+                        listAssignmentTemp[i]._Status = "Not-Submit";
+                        returnList.Add(listAssignmentTemp[i]);
+                    }
+                    else if (assignTodayCompare <= 0 && todayDueCompare <= 0)
+                    {
+                        listAssignmentTemp[i]._Status = "Assigned";
+                        returnList.Add(listAssignmentTemp[i]);
+                    }
+                    else if (assignTodayCompare > 0)
+                    {
+                        listAssignmentTemp[i]._Status = "Waiting";
+                    }
+                }
+                else if (listAssignmentTemp[i]._StatusID == 0 && listAssignmentTemp[i]._SubmissionStatusID != -1)
+                {
+                    listAssignmentTemp[i]._Status = listAssignmentTemp[i]._SubmissionStatus;
+                    returnList.Add(listAssignmentTemp[i]);
+                }
+
+                //if (listAssignmentTemp[i]._SubmissionStatusID == -1) // haven't submitted the answer
+                //{
+                //    listAssignmentTemp[i]._SubmissionDate = "-";
+
+                //    if(listAssignmentTemp[i]._Status == "Done")
+                //    {
+                //        listAssignmentTemp[i]._Status = "Not-Sumbit";
+                //    }
+                //}
+            }
+            return returnList;
         }
     }
 }
