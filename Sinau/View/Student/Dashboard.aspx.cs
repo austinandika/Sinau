@@ -68,7 +68,7 @@ namespace Sinau.View
 
                 List<AssignmentData> listStudentAssignment = new AssignmentSystem().GetStudentAssignmentByClassSubject(sessionUserID, studentClassID, "All", academicYearID);
 
-                List<AssignmentData> listTeacherAssignmentAssigned = null;  // due next 7 days
+                List<AssignmentData> listTeacherAssignmentAssigned = null; 
 
                 if (listStudentAssignment != null)
                 {
@@ -131,7 +131,6 @@ namespace Sinau.View
                     if (todayDueCompare > 0)
                     {
                         listAssignmentTemp[i]._Status = "Not-Submit";
-                        returnList.Add(listAssignmentTemp[i]);
                     }
                     else if (assignTodayCompare <= 0 && todayDueCompare <= 0)
                     {
