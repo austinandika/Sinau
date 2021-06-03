@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../CSS/Student/AssignmentStyle.css" rel="stylesheet" />
     <link href="../CSS/MainStyle.css" rel="stylesheet" type="text/css" />
-    <script src="../Javascript/jquery-3.5.1.min.js"></script>
+    <script src="../Javascript/jquery-3.5.1.min.js" defer></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 

@@ -191,7 +191,7 @@ namespace Sinau.View.Student
             Label lblErrorAnswerFile = item.FindControl("lblErrorAnswerFile") as Label;
 
 
-            var supportedTypes = new[] { "txt", "pdf", "ppt", "xls", "doc", "pptx", "xlsx", "docx", "rar", "zip", "jpg", "jpeg", "png", "wav", "mp3", "mp4", "avi", "3gp", "mkv", "mov", "flv" };
+            var supportedTypes = new[] { "txt", "pdf", "ppt", "xls", "doc", "pptx", "xlsx", "docx", "rar", "zip", "jpg", "jpeg", "png", "wav", "mp3", "mp4", "avi", "3gp", "mkv", "mov", "flv", "csv" };
             string fileExt;
             try
             {
