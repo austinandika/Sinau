@@ -24,6 +24,33 @@ namespace Sinau.View.Teacher
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorMain;
 
         /// <summary>
+        /// successIcon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl successIcon;
+
+        /// <summary>
+        /// errorIcon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorIcon;
+
+        /// <summary>
+        /// divErrorMain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divErrorMain;
+
+        /// <summary>
         /// lblErrorMain control.
         /// </summary>
         /// <remarks>

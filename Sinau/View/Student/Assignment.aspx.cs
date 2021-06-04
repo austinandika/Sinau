@@ -16,6 +16,24 @@ namespace Sinau.View.Student
         {
             if (!IsPostBack)
             {
+                // Query String
+                string queryString = Request.QueryString["success"];
+
+                if(queryString == "true")
+                {
+                    lblErrorMain.Text = "Your answer have been submitted";
+                    lblErrorMain.Visible = true;
+                    errorMain.Attributes["class"] += " success";
+                    successIcon.Attributes["class"] += " show";
+                }
+                else if(queryString == "false")
+                {
+                    lblErrorMain.Text = "Failed to upload your answer, please try again";
+                    lblErrorMain.Visible = true;
+                    errorMain.Attributes["class"] += " error";
+                    errorIcon.Attributes["class"] += " show";
+                }
+
                 string sessionUserID = Session["UserID"].ToString();
                 string sessionRole = Session["Role"].ToString();
                 string academicYearID = new SettingSystem().GetUserLatestAcademicYearByIdAndRole(sessionUserID, sessionRole)._AcademicYearID;
@@ -253,8 +271,12 @@ namespace Sinau.View.Student
 
                     if (isInserted)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('SUCCESS: Your answer have been submitted'); window.location ='Assignment.aspx';", true);
-                        //Response.Redirect(Request.RawUrl);
+                        //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('SUCCESS: Your answer have been submitted'); window.location ='Assignment.aspx';", true);
+                        Response.Redirect(Request.Url.AbsolutePath + "?success=true");
+                    }
+                    else
+                    {
+                        Response.Redirect(Request.Url.AbsolutePath + "?success=false");
                     }
                 }
                 catch (Exception ex)

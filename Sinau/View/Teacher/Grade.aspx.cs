@@ -18,6 +18,41 @@ namespace Sinau.View.Teacher
             string sessionRole = Session["Role"].ToString();
             if (!IsPostBack)
             {
+                // Query String
+                string queryStringComponent = Request.QueryString["successAddComponent"];
+                string queryStringUpdateGrade = Request.QueryString["successUpdateGrade"];
+
+                if (queryStringComponent == "true")
+                {
+                    lblErrorMain.Text = "Success to insert new grade component";
+                    lblErrorMain.Visible = true;
+                    errorMain.Attributes["class"] += " success";
+                    successIcon.Attributes["class"] += " show";
+                }
+                else if (queryStringComponent == "false")
+                {
+                    lblErrorMain.Text = "Failed to add grade component. Please try again";
+                    lblErrorMain.Visible = true;
+                    errorMain.Attributes["class"] += " error";
+                    errorIcon.Attributes["class"] += " show";
+                }
+
+                if (queryStringUpdateGrade == "true")
+                {
+                    lblErrorMain.Text = "Successfully update the score";
+                    lblErrorMain.Visible = true;
+                    errorMain.Attributes["class"] += " success";
+                    successIcon.Attributes["class"] += " show";
+                }
+                else if (queryStringUpdateGrade == "false")
+                {
+                    lblErrorMain.Text = "Error to update the score. Please try again";
+                    lblErrorMain.Visible = true;
+                    errorMain.Attributes["class"] += " error";
+                    errorIcon.Attributes["class"] += " show";
+                }
+
+
                 List<SettingData> academicYearList = new SettingSystem().GetUserAllAcademicYearByIdAndRole(sessionUserID, sessionRole);
                 ddlAcademicYear.DataSource = academicYearList;
                 ddlAcademicYear.DataTextField = "_AcademicYearName";
@@ -143,11 +178,15 @@ namespace Sinau.View.Teacher
 
             if (isValidAll == false)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR: Error to update the score. Please try again'); window.location ='Grade.aspx';", true);
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR: Error to update the score. Please try again'); window.location ='Grade.aspx';", true);
+
+                Response.Redirect(Request.Url.AbsolutePath + "?successUpdateGrade=false");
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('SUCESS: Successfully update the score'); window.location ='Grade.aspx';", true);
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('SUCESS: Successfully update the score'); window.location ='Grade.aspx';", true);
+
+                Response.Redirect(Request.Url.AbsolutePath + "?successUpdateGrade=true");
             }
 
             //Response.Redirect(Request.RawUrl);
@@ -402,13 +441,13 @@ namespace Sinau.View.Teacher
 
             if (isInserted)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('SUCCESS: Success to insert new grade component'); window.location ='Grade.aspx';", true);
-                //Response.Redirect(Request.RawUrl);
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('SUCCESS: Success to insert new grade component'); window.location ='Grade.aspx';", true);
+                Response.Redirect(Request.Url.AbsolutePath + "?successAddComponent=true");
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR: Failed to add grade component. Please try again'); window.location ='Grade.aspx';", true);
-                //Response.Redirect(Request.RawUrl);
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR: Failed to add grade component. Please try again'); window.location ='Grade.aspx';", true);
+                Response.Redirect(Request.Url.AbsolutePath + "?successAddComponent=false");
             }
         }
 
@@ -421,7 +460,7 @@ namespace Sinau.View.Teacher
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect(Request.RawUrl);
+            Response.Redirect(Request.Url.AbsolutePath);
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)

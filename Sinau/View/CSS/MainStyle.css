@@ -29,17 +29,30 @@
     display: none;
     width: 100%;
     color: white;
-    font-size: 14px;
+    font-size: 16px;
     padding: 10px 10px;
     border-radius: 10px;
 }
 
-    .error-main.success {
+.error-main i {
+    display: none;
+    color: white;
+}
+
+
+    .error-main i.show {
         display: block;
+        padding-right: 20px;
+    }
+
+    .error-main.success {
+        display: flex;
+        align-items: center;
         background-color: #52c41a; /*green success*/
     }
 
     .error-main.error {
-        display: block;
+        display: flex;
+        align-items: center;
         background-color: #ff4d4f; /*red error*/
     }

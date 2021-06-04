@@ -17,6 +17,24 @@ namespace Sinau.View.Teacher
         {
             if (!IsPostBack)
             {
+                // Query String
+                string queryStringInsertAsg = Request.QueryString["successCreateAsg"];
+
+                if (queryStringInsertAsg == "true")
+                {
+                    lblErrorMain.Text = "Successfully insert the assignment";
+                    lblErrorMain.Visible = true;
+                    errorMain.Attributes["class"] += " success";
+                    successIcon.Attributes["class"] += " show";
+                }
+                else if (queryStringInsertAsg == "false")
+                {
+                    lblErrorMain.Text = "Error to insert the assignment. Please try again";
+                    lblErrorMain.Visible = true;
+                    errorMain.Attributes["class"] += " error";
+                    errorIcon.Attributes["class"] += " show";
+                }
+
                 string sessionUserID = Session["UserID"].ToString();
                 string sessionRole = Session["Role"].ToString();
                 string academicYearID = new SettingSystem().GetUserLatestAcademicYearByIdAndRole(sessionUserID, sessionRole)._AcademicYearID;
@@ -124,12 +142,16 @@ namespace Sinau.View.Teacher
 
             if (returnValueInsertAssignment)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('SUCCESS: Successfully insert the assignment'); window.location ='Assignment.aspx';", true);
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('SUCCESS: Successfully insert the assignment'); window.location ='Assignment.aspx';", true);
+
+                Response.Redirect(Request.Url.AbsolutePath + "?successCreateAsg=true");
                 //Response.Redirect(Request.RawUrl);
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR: Error to insert the assignment. Please try again'); window.location ='Assignment.aspx';", true);
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR: Error to insert the assignment. Please try again'); window.location ='Assignment.aspx';", true);
+
+                Response.Redirect(Request.Url.AbsolutePath + "?successCreateAsg=false");
             }
         }
 

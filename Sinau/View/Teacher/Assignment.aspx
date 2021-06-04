@@ -6,8 +6,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../CSS/Teacher/AssignmentStyle.css" rel="stylesheet" />
     <link href="../CSS/MainStyle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <div class="error-main" runat="server" id="errorMain">
+        <i class="fa fa-check-circle-o" id="successIcon" runat="server" aria-hidden="true"></i>
+        <i class="fa fa-times-circle-o" id="errorIcon" runat="server" aria-hidden="true"></i>
+        <div class="divtext-error-main" runat="server" id="divErrorMain"></div>
+        <asp:Label Text="" CssClass="lbl-error-main" ID="lblErrorMain" runat="server" Visible="false" />
+    </div>
 
     <div class="title-container">
         <div class="vertical-line">

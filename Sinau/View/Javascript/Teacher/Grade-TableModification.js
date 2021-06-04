@@ -25,6 +25,9 @@
 //}
 
 var errorMainDiv = document.getElementById('ContentPlaceHolder1_errorMain');
+var errorMainDivText = document.getElementById('ContentPlaceHolder1_divErrorMain');
+var successIcon = document.getElementById('ContentPlaceHolder1_successIcon');
+var errorIcon = document.getElementById('ContentPlaceHolder1_errorIcon');
 
 function editScoreMode() {
     var txtScoreClass = document.getElementsByClassName('txt-score');
@@ -46,7 +49,8 @@ function editScoreMode() {
     }
     else {
         errorMainDiv.classList.add("error");
-        errorMainDiv.innerHTML = "Score is not valid, please enter a score between 0 and 100";
+        errorIcon.classList.add("show");
+        errorMainDivText.innerHTML = "Score is not valid, please enter a score between 0 and 100";
         return false;
     }
 }
