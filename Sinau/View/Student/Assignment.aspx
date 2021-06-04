@@ -6,6 +6,7 @@
     <link href="../CSS/Student/AssignmentStyle.css" rel="stylesheet" />
     <link href="../CSS/MainStyle.css" rel="stylesheet" type="text/css" />
     <script src="../Javascript/jquery-3.5.1.min.js" defer></script>
+    <script src="../Javascript/Student/Assignment-AddAssignmentValidation.js" defer></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -147,11 +148,10 @@
 
                             <div class="button-container">
                                 <asp:Button Text="Cancel" runat="server" ID="btnCancel" CssClass="button-create button-cancel" />
-                                <asp:Button Text="Submit" runat="server" ID="btnCreate" CssClass="button-create button-design" OnClick="btnCreate_Click" />
+                                <asp:Button Text="Submit" runat="server" ID="btnCreate" CssClass="button-create button-design" OnClick="btnCreate_Click" OnClientClick='<%# "return validateCreateAssignment(" +  Container.ItemIndex + ");"%>' />
                             </div>
                         </div>
                     </div>
-                    <script src="../Javascript/Student/Assignment-AddAssignmentValidation.js"></script>
                 </asp:Panel>
             </ItemTemplate>
             
