@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sinau.View.Student
+namespace Sinau.View.Teacher
 {
 
 

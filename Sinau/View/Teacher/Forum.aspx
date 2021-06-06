@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Student/Master.Master" AutoEventWireup="true" CodeBehind="Forum.aspx.cs" Inherits="Sinau.View.Student.Forum" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Teacher/Master.Master" AutoEventWireup="true" CodeBehind="Forum.aspx.cs" Inherits="Sinau.View.Teacher.Forum" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="AjaxControlToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="../CSS/Student/ForumStyle.css" rel="stylesheet" />
+    <link href="../CSS/Teacher/ForumStyle.css" rel="stylesheet" />
     <link href="../CSS/MainStyle.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </asp:Content>
@@ -235,7 +235,7 @@
 
 
             <%-- DISCUSSION --%>
-            <div class="discussion-content my-reply">
+            <div class="discussion-content other-reply">
                 <div class="top-side">
                     <div class="discussion-writer">
                         <asp:Label Text="Austin Andika Tanujaya" ID="lblDiscussionWriter" runat="server" />
@@ -293,7 +293,7 @@
                 </div>
             </div>
 
-            <div class="discussion-content other-reply">
+            <div class="discussion-content my-reply">
                 <div class="top-side">
                     <div class="discussion-writer">
                         <asp:Label Text="Brian Samuel" ID="Label31" runat="server" />
