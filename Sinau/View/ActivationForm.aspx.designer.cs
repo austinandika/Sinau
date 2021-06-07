@@ -42,6 +42,15 @@ namespace Sinau.View
         protected global::System.Web.UI.WebControls.Label lblErrorServer;
 
         /// <summary>
+        /// pnlValidateBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlValidateBtn;
+
+        /// <summary>
         /// lblUserID control.
         /// </summary>
         /// <remarks>
@@ -112,6 +121,15 @@ namespace Sinau.View
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl activationContainer;
+
+        /// <summary>
+        /// pnlActivationBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlActivationBtn;
 
         /// <summary>
         /// lblFullName control.

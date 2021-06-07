@@ -29,95 +29,99 @@
                     </div>
 
                     <div class="validation-container">
-                        <div class="row">
-                            <div class="input-command">
-                                <asp:Label Text="NISN/NIGN" runat="server" ID="lblUserID" />
+                        <asp:Panel runat="server" ID="pnlValidateBtn" DefaultButton="btnValidate">
+                            <div class="row">
+                                <div class="input-command">
+                                    <asp:Label Text="NISN/NIGN" runat="server" ID="lblUserID" />
+                                </div>
+
+                                <div class="input-box">
+                                    <asp:TextBox ID="txtUserID" runat="server" CssClass="textbox"></asp:TextBox>
+                                </div>
+
+                                <div class="error-container">
+                                    <asp:Label Text="" runat="server" CssClass="lbl-error" ID="lblErrorID" />
+                                </div>
                             </div>
 
-                            <div class="input-box">
-                                <asp:TextBox ID="txtUserID" runat="server" CssClass="textbox"></asp:TextBox>
+                            <div class="row">
+                                <div class="input-command">
+                                    <asp:Label Text="Activation Code" runat="server" ID="lblActivationCode" />
+                                </div>
+
+                                <div class="input-box">
+                                    <asp:TextBox ID="txtActivationCode" runat="server" CssClass="textbox"></asp:TextBox>
+                                </div>
+
+                                <div class="error-container">
+                                    <asp:Label Text="" runat="server" CssClass="lbl-error" ID="lblErrorActivationCode" />
+                                </div>
                             </div>
 
-                            <div class="error-container">
-                                <asp:Label Text="" runat="server" CssClass="lbl-error" ID="lblErrorID" />
+                            <div class="validate-button">
+                                <asp:Button Text="Validate" runat="server" ID="btnValidate" CssClass="button" OnClientClick="return validateUserValidation();" OnClick="btnValidate_Click" />
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="input-command">
-                                <asp:Label Text="Activation Code" runat="server" ID="lblActivationCode" />
-                            </div>
-
-                            <div class="input-box">
-                                <asp:TextBox ID="txtActivationCode" runat="server" CssClass="textbox"></asp:TextBox>
-                            </div>
-
-                            <div class="error-container">
-                                <asp:Label Text="" runat="server" CssClass="lbl-error" ID="lblErrorActivationCode" />
-                            </div>
-                        </div>
-
-                        <div class="validate-button">
-                            <asp:Button Text="Validate" runat="server" ID="btnValidate" CssClass="button" OnClientClick="return validateUserValidation();" OnClick="btnValidate_Click" />
-                        </div>
+                        </asp:Panel>
                     </div>
 
                     <div class="activation-container" id="activationContainer" runat="server">
-                        <div class="row">
-                            <div class="input-command">
-                                <asp:Label Text="Full Name" runat="server" ID="lblFullName" />
+                        <asp:Panel runat="server" ID="pnlActivationBtn" DefaultButton="btnActivate">
+                            <div class="row">
+                                <div class="input-command">
+                                    <asp:Label Text="Full Name" runat="server" ID="lblFullName" />
+                                </div>
+
+                                <div class="input-box">
+                                    <asp:TextBox ID="txtFullName" runat="server" CssClass="textbox" ReadOnly="true"></asp:TextBox>
+                                </div>
                             </div>
 
-                            <div class="input-box">
-                                <asp:TextBox ID="txtFullName" runat="server" CssClass="textbox" ReadOnly="true"></asp:TextBox>
-                            </div>
-                        </div>
+                            <div class="row">
+                                <div class="input-command">
+                                    <asp:Label Text="Email" runat="server" ID="lblEmail" />
+                                </div>
 
-                        <div class="row">
-                            <div class="input-command">
-                                <asp:Label Text="Email" runat="server" ID="lblEmail" />
-                            </div>
+                                <div class="input-box">
+                                    <asp:TextBox ID="txtEmail" runat="server" CssClass="textbox"></asp:TextBox>
+                                </div>
 
-                            <div class="input-box">
-                                <asp:TextBox ID="txtEmail" runat="server" CssClass="textbox"></asp:TextBox>
-                            </div>
-
-                            <div class="error-container">
-                                <asp:Label Text="" runat="server" CssClass="lbl-error" ID="lblErrorEmail" />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="input-command">
-                                <asp:Label Text="Password" runat="server" ID="lblPassword" />
+                                <div class="error-container">
+                                    <asp:Label Text="" runat="server" CssClass="lbl-error" ID="lblErrorEmail" />
+                                </div>
                             </div>
 
-                            <div class="input-box">
-                                <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" CssClass="textbox"></asp:TextBox>
+                            <div class="row">
+                                <div class="input-command">
+                                    <asp:Label Text="Password" runat="server" ID="lblPassword" />
+                                </div>
+
+                                <div class="input-box">
+                                    <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" CssClass="textbox"></asp:TextBox>
+                                </div>
+
+                                <div class="error-container">
+                                    <asp:Label Text="" runat="server" CssClass="lbl-error" ID="lblErrorPassword" />
+                                </div>
                             </div>
 
-                            <div class="error-container">
-                                <asp:Label Text="" runat="server" CssClass="lbl-error" ID="lblErrorPassword" />
-                            </div>
-                        </div>
+                            <div class="row">
+                                <div class="input-command">
+                                    <asp:Label Text="Confirm Password" runat="server" ID="lblConfirmPassword" />
+                                </div>
 
-                        <div class="row">
-                            <div class="input-command">
-                                <asp:Label Text="Confirm Password" runat="server" ID="lblConfirmPassword" />
+                                <div class="input-box">
+                                    <asp:TextBox ID="TxtConfirmPassword" TextMode="Password" runat="server" CssClass="textbox"></asp:TextBox>
+                                </div>
+
+                                <div class="error-container">
+                                    <asp:Label Text="" runat="server" CssClass="lbl-error" ID="lblErrorConfirmPassword" />
+                                </div>
                             </div>
 
-                            <div class="input-box">
-                                <asp:TextBox ID="TxtConfirmPassword" TextMode="Password" runat="server" CssClass="textbox"></asp:TextBox>
+                            <div class="activate-button">
+                                <asp:Button Text="Activate" OnClientClick="return validateUserActivation();" OnClick="btnActivate_Click" runat="server" ID="btnActivate" CssClass="button" />
                             </div>
-
-                            <div class="error-container">
-                                <asp:Label Text="" runat="server" CssClass="lbl-error" ID="lblErrorConfirmPassword" />
-                            </div>
-                        </div>
-
-                        <div class="activate-button">
-                            <asp:Button Text="Activate" OnClientClick="return validateUserActivation();" OnClick="btnActivate_Click" runat="server" ID="btnActivate" CssClass="button" />
-                        </div>
+                        </asp:Panel>
                     </div>
 
                     <div class="login-account">
