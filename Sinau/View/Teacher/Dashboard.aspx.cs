@@ -32,7 +32,7 @@ namespace Sinau.View.Teacher
             }
 
             // TODAY SCHEDULE
-            string todayDay = DateTime.Today.DayOfWeek.ToString();
+            string todayDay = GetCurrentTime().DayOfWeek.ToString();
             try
             {
                 List<ScheduleData> listSchedule = new ScheduleSystem().GetTeacherScheduleDataByID(sessionUserID);
@@ -87,6 +87,12 @@ namespace Sinau.View.Teacher
             {
 
             }
+        }
+        protected DateTime GetCurrentTime()
+        {
+            DateTime serverTime = DateTime.Now;
+            DateTime _localTime = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(serverTime, TimeZoneInfo.Local.Id, "SE Asia Standard Time");
+            return _localTime;
         }
     }
 }

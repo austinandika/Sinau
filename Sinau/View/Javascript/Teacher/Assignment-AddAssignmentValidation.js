@@ -50,6 +50,10 @@ function assignmentTitleValidation() {
 
 var isValidAssignDate = true;
 
+function convertTimeZone(date, tzString) {
+    return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", { timeZone: tzString }));
+}
+
 function assignDateValidation() {
     isValidAssignDate = true;
     var isValidDate = true;
@@ -69,7 +73,8 @@ function assignDateValidation() {
         var assignDateParts = txtAssignDate.value.split("/");
         var dateObjectAssign = new Date(+assignDateParts[2], assignDateParts[1] - 1, +assignDateParts[0]);
 
-        var today = getDateWithoutTime(new Date());
+        var todayLocal = new Date();
+        var today = getDateWithoutTime(convertTimeZone(todayLocal, "Asia/Jakarta"));
         
         //var dd = String(today.getDate()).padStart(2, '0');
         //var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!

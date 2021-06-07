@@ -32,7 +32,7 @@ namespace Sinau.View
             }
 
             // TODAY SCHEDULE
-            string todayDay = DateTime.Today.DayOfWeek.ToString();
+            string todayDay = GetCurrentTime().DayOfWeek.ToString();
             try
             {
                 List<ScheduleData> listSchedule = new ScheduleSystem().GetStudentScheduleDataByID(sessionUserID);
