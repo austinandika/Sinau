@@ -84,7 +84,6 @@
     <Content Include="Global.asax" />
     <Content Include="Index.aspx" />
     <Content Include="View\ActivationForm.aspx" />
-    <Content Include="View\Assets\ForumDiscussion.png" />
     <Content Include="View\Assets\DefaultProfilePic.jpg" />
     <Content Include="View\Assets\Logo\Logo.png" />
     <Content Include="View\Assets\Test-Banner2.png" />
@@ -95,14 +94,12 @@
     <Content Include="View\CSS\Student\AssignmentStyle.css" />
     <Content Include="View\CSS\Student\DashboardStyle.css" />
     <Content Include="View\CSS\LoginStyle.css" />
-    <Content Include="View\CSS\Student\ForumStyle.css" />
     <Content Include="View\CSS\Student\GradeStyle.css" />
     <Content Include="View\CSS\Student\MasterStyle.css" />
     <Content Include="View\CSS\Student\ScheduleStyle.css" />
     <Content Include="View\CSS\SuccessfullyActivatedStyle.css" />
     <Content Include="View\CSS\Teacher\AssignmentStyle.css" />
     <Content Include="View\CSS\Teacher\DashboardStyle.css" />
-    <Content Include="View\CSS\Teacher\ForumStyle.css" />
     <Content Include="View\CSS\Teacher\GradeStyle.css" />
     <Content Include="View\CSS\Teacher\MasterStyle.css" />
     <Content Include="View\CSS\Teacher\ScheduleStyle.css" />
@@ -119,13 +116,11 @@
     <Content Include="View\Student\Assignment.aspx" />
     <Content Include="View\Student\Dashboard.aspx" />
     <Content Include="View\Login.aspx" />
-    <Content Include="View\Student\Forum.aspx" />
     <Content Include="View\Student\Grade.aspx" />
     <Content Include="View\Student\Schedule.aspx" />
     <Content Include="View\SuccessfullyActivated.aspx" />
     <Content Include="View\Teacher\Assignment.aspx" />
     <Content Include="View\Teacher\Dashboard.aspx" />
-    <Content Include="View\Teacher\Forum.aspx" />
     <Content Include="View\Teacher\Grade.aspx" />
     <Content Include="View\Teacher\Schedule.aspx" />
     <Content Include="Web.config" />
@@ -177,13 +172,6 @@
     <Compile Include="View\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="View\Student\Forum.aspx.cs">
-      <DependentUpon>Forum.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="View\Student\Forum.aspx.designer.cs">
-      <DependentUpon>Forum.aspx</DependentUpon>
-    </Compile>
     <Compile Include="View\Student\Grade.aspx.cs">
       <DependentUpon>Grade.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -225,13 +213,6 @@
     </Compile>
     <Compile Include="View\Teacher\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="View\Teacher\Forum.aspx.cs">
-      <DependentUpon>Forum.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="View\Teacher\Forum.aspx.designer.cs">
-      <DependentUpon>Forum.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Teacher\Grade.aspx.cs">
       <DependentUpon>Grade.aspx</DependentUpon>

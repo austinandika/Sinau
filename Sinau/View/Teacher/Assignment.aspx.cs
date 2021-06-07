@@ -111,7 +111,12 @@ namespace Sinau.View.Teacher
             ddlSubjectPopup.DataValueField = "_SubjectID";
             ddlSubjectPopup.DataBind();
         }
-
+        protected DateTime GetCurrentTime()
+        {
+            DateTime serverTime = DateTime.Now;
+            DateTime _localTime = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(serverTime, TimeZoneInfo.Local.Id, "SE Asia Standard Time");
+            return _localTime;
+        }
         protected void btnCreate_Click(object sender, EventArgs e)
         {
             string sessionUserID = Session["UserID"].ToString();
@@ -126,7 +131,7 @@ namespace Sinau.View.Teacher
             string dueDateValue = dueDate.ToString("yyyy-MM-dd");
 
             string fileExtension = Path.GetExtension(fuQuestionFile.PostedFile.FileName);
-            DateTime today = DateTime.Now;
+            DateTime today = GetCurrentTime();
 
             string fileName = today.ToString("yyyy") + today.ToString("MM") + today.ToString("dd") + today.ToString("HH") + today.ToString("mm") + today.ToString("ss") + "_" + sessionUserID + "_" + "Assignment" + fileExtension;
 
@@ -164,7 +169,7 @@ namespace Sinau.View.Teacher
                     DateTime assignDate = DateTime.ParseExact(listAssignmentTemp[i]._AssignDate, "MMM dd, yyyy", null);
                     DateTime dueDate = DateTime.ParseExact(listAssignmentTemp[i]._DueDate, "MMM dd, yyyy", null);
 
-                    DateTime todayDate = DateTime.Now;
+                    DateTime todayDate = GetCurrentTime();
                     int assignDueCompare = DateTime.Compare(assignDate, dueDate);
                     int assignTodayCompare = DateTime.Compare(assignDate, todayDate);
                     int todayDueCompare = DateTime.Compare(todayDate, dueDate);

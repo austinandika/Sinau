@@ -87,7 +87,12 @@ namespace Sinau.View.Student
 
             viewStudentAssignment(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
         }
-
+        protected DateTime GetCurrentTime()
+        {
+            DateTime serverTime = DateTime.Now;
+            DateTime _localTime = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(serverTime, TimeZoneInfo.Local.Id, "SE Asia Standard Time");
+            return _localTime;
+        }
         private List<AssignmentData> validateAssignmentStatus(List<AssignmentData> listAssignmentTemp)
         {
             List<AssignmentData> returnList = new List<AssignmentData>();
@@ -102,7 +107,7 @@ namespace Sinau.View.Student
                     DateTime assignDate = DateTime.ParseExact(listAssignmentTemp[i]._AssignDate, "MMM dd, yyyy", null);
                     DateTime dueDate = DateTime.ParseExact(listAssignmentTemp[i]._DueDate, "MMM dd, yyyy", null);
 
-                    DateTime todayDate = DateTime.Now;
+                    DateTime todayDate = GetCurrentTime();
                     int assignDueCompare = DateTime.Compare(assignDate, dueDate);
                     int assignTodayCompare = DateTime.Compare(assignDate, todayDate);
                     int todayDueCompare = DateTime.Compare(todayDate, dueDate);
@@ -241,11 +246,11 @@ namespace Sinau.View.Student
             if (isValidFile)
             {
                 string sessionUserID = Session["UserID"].ToString();
-                string submissionDate = DateTime.Now.ToString("yyyy-MM-dd").ToString();
+                string submissionDate = GetCurrentTime().ToString("yyyy-MM-dd").ToString();
 
                 string fileExtension = Path.GetExtension(fuAnswerFile.PostedFile.FileName);
 
-                DateTime today = DateTime.Now;
+                DateTime today = GetCurrentTime();
                 string fileName = today.ToString("yyyy") + today.ToString("MM") + today.ToString("dd") + today.ToString("HH") + today.ToString("mm") + today.ToString("ss") + "_" + sessionUserID + "_" + "Answer" + fileExtension;
 
                 fuAnswerFile.PostedFile.SaveAs(Server.MapPath("~/Uploads/") + fileName);
@@ -327,7 +332,7 @@ namespace Sinau.View.Student
 
                 string dueDateText = (e.Item.FindControl("lblDueDate") as Label).Text;
                 DateTime dueDate = DateTime.ParseExact(dueDateText, "MMM dd, yyyy", null);
-                DateTime todayDate = DateTime.Now;
+                DateTime todayDate = GetCurrentTime();
                 int todayDueCompare = DateTime.Compare(todayDate, dueDate);
                 if (todayDueCompare <= 0)
                 {

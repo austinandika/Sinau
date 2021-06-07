@@ -99,6 +99,13 @@ namespace Sinau.View
             }
         }
 
+        protected DateTime GetCurrentTime()
+        {
+            DateTime serverTime = DateTime.Now;
+            DateTime _localTime = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(serverTime, TimeZoneInfo.Local.Id, "SE Asia Standard Time");
+            return _localTime;
+        }
+
         private List<AssignmentData> validateAssignmentStatus(List<AssignmentData> listAssignmentTemp)
         {
             List<AssignmentData> returnList = new List<AssignmentData>();
@@ -113,7 +120,7 @@ namespace Sinau.View
                     DateTime assignDate = DateTime.ParseExact(listAssignmentTemp[i]._AssignDate, "MMM dd, yyyy", null);
                     DateTime dueDate = DateTime.ParseExact(listAssignmentTemp[i]._DueDate, "MMM dd, yyyy", null);
 
-                    DateTime todayDate = DateTime.Now;
+                    DateTime todayDate = GetCurrentTime();
                     int assignDueCompare = DateTime.Compare(assignDate, dueDate);
                     int assignTodayCompare = DateTime.Compare(assignDate, todayDate);
                     int todayDueCompare = DateTime.Compare(todayDate, dueDate);
