@@ -38,6 +38,10 @@
                 <div class="menu" id="navbar-assignment">
                     <a href="Assignment.aspx"><i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Assignment</a>
                 </div>
+
+                <div class="menu" id="navbar-forum">
+                    <a href="Forum.aspx"><i class="fa fa-comments" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Forum</a>
+                </div>
             </div>
         </div>
 

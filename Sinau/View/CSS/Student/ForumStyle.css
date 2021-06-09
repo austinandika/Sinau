@@ -1,0 +1,473 @@
+﻿body {
+}
+
+
+/* Menu */
+#navbar-forum {
+    background-color: white;
+}
+
+    #navbar-forum a {
+        color: #5E3EC5;
+    }
+
+.title-container {
+    display: flex;
+    align-items: center;
+}
+
+    .title-container .vertical-line {
+        height: 40px;
+        border-left: 5px solid #ff6a00;
+        margin-right: 10px;
+    }
+
+    .title-container .title-name {
+        display: flex;
+        align-items: center;
+    }
+
+.search-bar-container {
+    position: relative;
+    margin: 10px 0;
+}
+
+    .search-bar-container .txt-search {
+        height: 30px;
+        width: 100%;
+        padding-left: 40px;
+        border: none;
+        background-color: #eee;
+        border-radius: 5px;
+    }
+
+    .search-bar-container i {
+        position: absolute;
+        left: 10px;
+        top: 20%;
+        color: gray;
+    }
+
+.upper-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forum-filter-container tr {
+    height: 40px;
+}
+
+    .forum-filter-container tr td:nth-child(odd) {
+        width: 70px;
+    }
+
+    .forum-filter-container tr td:nth-child(even) {
+        width: 150px;
+    }
+
+.forum-filter-container .ddl {
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.add-thread-container .btn-add-thread {
+    padding: 10px 10px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+/*#dadada*/
+.forum-container {
+    margin-top: 10px;
+    display: flex;
+}
+
+    .forum-container .left-thread-container {
+        background-color: #dadada; /*#dadada*/
+        width: 40%;
+        min-height: 450px;
+        max-height: 450px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        overflow: auto;
+    }
+
+    .forum-container .right-forum-container {
+        background-color: #eee;
+        width: 60%;
+        min-height: 450px;
+        max-height: 450px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        overflow: auto;
+    }
+
+    .forum-container .row {
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom: 2px solid gray;
+    }
+
+        .forum-container .row.selected {
+            box-shadow: 14px 10px 10px 0px darkgrey;
+            border-bottom: none;
+        }
+
+        .forum-container .row.selected {
+            background-color: #eee;
+        }
+
+
+    .forum-container .left-thread-container .thread-text {
+        text-decoration: none;
+    }
+
+    .forum-container .left-thread-container .left-thread {
+        margin-right: 20px;
+    }
+
+        .forum-container .left-thread-container .left-thread img {
+            width: 100px;
+            border-radius: 10px;
+        }
+
+    .forum-container .left-thread-container .right-thread {
+        width: 100%;
+    }
+
+
+        .forum-container .left-thread-container .right-thread .top-side {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: gray;
+        }
+
+            .forum-container .left-thread-container .right-thread .top-side .thread-writer {
+                display: flex;
+                align-items: center;
+            }
+
+                .forum-container .left-thread-container .right-thread .top-side .thread-writer .role {
+                    padding: 2px 5px;
+                    background-color: #dadada;
+                    margin-left: 10px;
+                    border-radius: 5px;
+                }
+
+                    .forum-container .left-thread-container .right-thread .top-side .thread-writer .role.teacher {
+                        color: #ff6a00;
+                    }
+
+        .forum-container .left-thread-container .right-thread .middle-side {
+            margin: 10px 0;
+            color: black;
+        }
+
+        .forum-container .left-thread-container .right-thread .bottom-side {
+            display: flex;
+            font-size: 12px;
+            color: gray;
+        }
+
+            .forum-container .left-thread-container .right-thread .bottom-side .count-reply {
+                width: 60px;
+            }
+
+
+
+    /*Thread right*/
+    .forum-container .right-forum-container {
+        padding: 30px;
+    }
+
+        .forum-container .right-forum-container .thread-content .top-side {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: gray;
+        }
+
+            .forum-container .right-forum-container .thread-content .top-side .thread-writer {
+                display: flex;
+                align-items: center;
+            }
+
+                .forum-container .right-forum-container .thread-content .top-side .thread-writer .role {
+                    padding: 2px 5px;
+                    background-color: #dadada;
+                    margin-left: 10px;
+                    border-radius: 5px;
+                }
+
+                    .forum-container .right-forum-container .thread-content .top-side .thread-writer .role.teacher {
+                        color: #ff6a00;
+                    }
+
+        .forum-container .right-forum-container .thread-content .middle-side {
+            margin: 10px 0;
+            color: black;
+        }
+
+            .forum-container .right-forum-container .thread-content .middle-side .thread-description {
+                margin: 10px 0;
+                font-size: 14px;
+                color: black;
+            }
+
+        .forum-container .right-forum-container .thread-content .bottom-side {
+            display: flex;
+            font-size: 12px;
+            color: gray;
+        }
+
+            .forum-container .right-forum-container .thread-content .bottom-side .count-reply {
+                margin-right: 30px;
+            }
+
+            .forum-container .right-forum-container .thread-content .bottom-side .thread-subject {
+                margin-right: 30px;
+            }
+
+            .forum-container .right-forum-container .thread-content .bottom-side .thread-reply .btn-reply-thread {
+                text-decoration: none;
+                color: gray;
+            }
+
+
+        /*DISCUSSION CONTAINER*/
+        .forum-container .right-forum-container .discussion-content {
+            margin: 20px 0;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+            .forum-container .right-forum-container .discussion-content.other-reply {
+                padding-left: 20px;
+                border-left: 10px solid #5E3EC5;
+            }
+
+            .forum-container .right-forum-container .discussion-content.my-reply {
+                padding-right: 20px;
+                border-right: 10px solid #5E3EC5;
+            }
+
+            .forum-container .right-forum-container .discussion-content .top-side {
+                display: flex;
+                justify-content: space-between;
+                font-size: 12px;
+                color: gray;
+            }
+
+                .forum-container .right-forum-container .discussion-content .top-side .discussion-writer {
+                    display: flex;
+                    align-items: center;
+                }
+
+                    .forum-container .right-forum-container .discussion-content .top-side .discussion-writer .role {
+                        padding: 2px 5px;
+                        background-color: #dadada;
+                        margin-left: 10px;
+                        border-radius: 5px;
+                    }
+
+                        .forum-container .right-forum-container .discussion-content .top-side .discussion-writer .role.teacher {
+                            color: #ff6a00;
+                        }
+
+            .forum-container .right-forum-container .discussion-content .middle-side {
+                margin: 10px 0;
+                color: black;
+            }
+
+                .forum-container .right-forum-container .discussion-content .middle-side .discussion-description {
+                    margin: 10px 0;
+                    font-size: 14px;
+                    color: black;
+                }
+
+            .forum-container .right-forum-container .discussion-content .bottom-side {
+                display: flex;
+                font-size: 12px;
+                color: gray;
+            }
+
+                .forum-container .right-forum-container .discussion-content .bottom-side .discussion-reply .btn-reply-discussion {
+                    text-decoration: none;
+                    color: gray;
+                }
+
+
+
+/* POPUP BACKGROUND */
+.popup-background {
+    background-color: gray;
+    /*filter: alpha(opacity=90);*/
+    opacity: 0.8;
+}
+
+
+/* POPUP STYLE */
+
+.popup-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-input {
+    border: 5px solid #5E3EC5;
+    width: 700px;
+    background-color: white;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 10px;
+}
+
+    .user-input .title {
+        padding-bottom: 20px;
+    }
+
+        .user-input .title h1 {
+            font-size: 20px;
+            color: black;
+            text-align: center;
+        }
+
+    .user-input .error-server-container {
+        width: 70%;
+        height: fit-content();
+        padding: 10px 10px;
+        margin-top: 10px;
+        margin-bottom: 30px;
+        border: 2px solid lightpink;
+        border-radius: 8px;
+        background-color: #F8D7DA;
+        color: darkred;
+        font-size: 14px;
+        display: none;
+        text-align: left;
+    }
+
+        .user-input .error-server-container.active {
+            display: block;
+        }
+
+    .user-input .form-table {
+        width: 95%;
+        margin: auto;
+    }
+
+        .user-input .form-table .row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+            .user-input .form-table .row .input-command {
+                width: 150px;
+                text-align: right;
+                margin-right: 20px;
+            }
+
+            .user-input .form-table .row .input-box .ddl {
+                width: 200px;
+                padding: 5px;
+                border-radius: 5px;
+                border: 2px solid gray;
+            }
+
+            .user-input .form-table .row .input-box .textbox {
+                width: 400px;
+                padding: 5px;
+                border-radius: 5px;
+                border: 2px solid gray;
+            }
+
+                .user-input .form-table .row .input-box .textbox.error {
+                    transition: 0.3s;
+                    border: 2px solid red;
+                    background-color: #F8D7DA;
+                }
+
+::placeholder {
+    color: lightgray;
+    font-size: smaller;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: lightgray;
+    font-size: smaller;
+    opacity: 1;
+}
+
+.user-input .form-table .row .input-error-box {
+    display: flex;
+    flex-direction: column;
+}
+
+    .user-input .form-table .row .input-error-box .error-box {
+        margin-top: 5px;
+        font-size: smaller;
+        color: red;
+        text-align: left;
+        width: 200px;
+    }
+
+.ajax__calendar_container {
+    z-index: 10000;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+    .button-container .button-create {
+        padding: 10px 10px;
+        border: none;
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        margin-left: 10px;
+        margin-right: 10px;
+        position: relative;
+    }
+
+    .button-container #ContentPlaceHolder1_btnCreate {
+        width: 70px;
+    }
+
+    .button-container .button-create.error {
+        animation-name: shakeAnim;
+        animation-duration: 5s;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in;
+    }
+
+    .button-container #ContentPlaceHolder1_btnCancel {
+        background-color: gray;
+    }
+
+        .button-container #ContentPlaceHolder1_btnCancel:hover {
+            background-color: dimgray;
+        }
+
+    .button-container #ContentPlaceHolder1_btnCancel2 {
+        background-color: gray;
+    }
+
+        .button-container #ContentPlaceHolder1_btnCancel2:hover {
+            background-color: dimgray;
+        }
