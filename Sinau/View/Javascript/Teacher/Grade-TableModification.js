@@ -26,12 +26,21 @@
 
 var errorMainDiv = document.getElementById('ContentPlaceHolder1_errorMain');
 var errorMainDivText = document.getElementById('ContentPlaceHolder1_divErrorMain');
+
+try {
+    var errorMainLbl = document.getElementById('ContentPlaceHolder1_lblErrorMain');
+} catch (e) {
+
+}
+
 var successIcon = document.getElementById('ContentPlaceHolder1_successIcon');
 var errorIcon = document.getElementById('ContentPlaceHolder1_errorIcon');
 
 function editScoreMode() {
     var txtScoreClass = document.getElementsByClassName('txt-score');
     var isCorrect = true;
+
+    
 
     for (i = 0; i < txtScoreClass.length; i++) {
         // validation for score
@@ -48,6 +57,17 @@ function editScoreMode() {
         return true;
     }
     else {
+        // reset style
+        try {
+            errorMainLbl.style.display = "none";
+        } catch (e) {
+
+        }
+
+        successIcon.classList.remove("show");
+        errorIcon.classList.remove("show");
+
+
         errorMainDiv.classList.add("error");
         errorIcon.classList.add("show");
         errorMainDivText.innerHTML = "Score is not valid, please enter a score between 0 and 100";
@@ -78,17 +98,17 @@ function validateCreateComponent() {
     resetAnimation();
 
     if (txtComponentName.value.length == 0) {
-        lblErrorComponentName.innerHTML = "Assignment title is required";
+        lblErrorComponentName.innerHTML = "Component title is required";
         txtComponentName.classList.add("error");
         createFlag = false;
     }
     else if (txtComponentName.value.length < 3) {
-        lblErrorComponentName.innerHTML = "Assignment title must be at least 3 characters";
+        lblErrorComponentName.innerHTML = "Component title must be at least 3 characters";
         txtComponentName.classList.add("error");
         createFlag = false;
     }
     else if (txtComponentName.value.length > 20) {
-        lblErrorComponentName.innerHTML = "Assignment title must be less than or equal to 20 characters";
+        lblErrorComponentName.innerHTML = "Component title must be less than or equal to 20 characters";
         txtComponentName.classList.add("error");
         createFlag = false;
     }
