@@ -95,6 +95,7 @@ namespace Sinau.View.Student
 
         protected void viewStudentGrade(string sessionUserID, string ddlAcademicYearSelected)
         {
+            noGradeDiv.Visible = false;
             List<GradeData> listStudentGrade = new GradeSystem().GetStudentScoreByUserIDAcademicYearID(sessionUserID, ddlAcademicYearSelected);
             List<GradeData> listStudentGradeDuplicate = new List<GradeData>();
 
@@ -105,6 +106,8 @@ namespace Sinau.View.Student
             
             if (listStudentGrade.Count == 0 || listStudentGrade == null)
             {
+                rptStudentGrade.DataSource = null;
+                rptStudentGrade.DataBind();
                 noGradeDiv.Visible = true;
             }
             else

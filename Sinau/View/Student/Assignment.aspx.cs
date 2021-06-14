@@ -160,6 +160,8 @@ namespace Sinau.View.Student
         {
             try
             {
+                noScheduleDiv.Visible = false;
+
                 List<AssignmentData> listStudentAssignment = new AssignmentSystem().GetStudentAssignmentByClassSubject(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
 
                 if (listStudentAssignment.Count != 0)
@@ -170,6 +172,8 @@ namespace Sinau.View.Student
                 }
                 else
                 {
+                    rptStudentAssignment.DataSource = null;
+                    rptStudentAssignment.DataBind();
                     noScheduleDiv.Visible = true;
                 }
             }

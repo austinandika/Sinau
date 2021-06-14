@@ -273,6 +273,7 @@ namespace Sinau.View.Teacher
         {
             try
             {
+                noScheduleDiv.Visible = false;
                 List<AssignmentData> listTeacherAssignment = new AssignmentSystem().GetTeacherAssignmentByIdClassSubject(sessionUserID, ddlClassValue, ddlSubjectValue, academicYearID);
 
                 if (listTeacherAssignment.Count != 0)
@@ -283,6 +284,8 @@ namespace Sinau.View.Teacher
                 }
                 else
                 {
+                    rptTeacherAssignment.DataSource = null;
+                    rptTeacherAssignment.DataBind();
                     noScheduleDiv.Visible = true;
                 }
             }
