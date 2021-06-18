@@ -39,12 +39,16 @@
                     <td>Class</td>
                     <td>
                         <asp:DropDownList runat="server" ID="ddlClass" CssClass="ddl" AutoPostBack="true">
+                            <asp:ListItem Text="XII SCIENCE 1" />
                         </asp:DropDownList>
                     </td>
 
                     <td>Subject</td>
                     <td>
                         <asp:DropDownList runat="server" ID="ddlSubjectFilter" AutoPostBack="true" CssClass="ddl">
+                            <asp:ListItem Text="Biology For XII" />
+                            <asp:ListItem Text="Mathematics For XII" />
+                            <asp:ListItem Text="Physics For XII" />
                         </asp:DropDownList>
                     </td>
                 </tr>

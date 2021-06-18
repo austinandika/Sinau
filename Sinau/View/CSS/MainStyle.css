@@ -1,4 +1,20 @@
-﻿/* BUTTON EFFECT OF ALL PAGE */
+﻿.title-container {
+    display: flex;
+    align-items: center;
+}
+
+    .title-container .vertical-line {
+        height: 40px;
+        border-left: 5px solid #5E3EC5;
+        margin-right: 10px;
+    }
+
+    .title-container .title-name {
+        display: flex;
+        align-items: center;
+    }
+
+/* BUTTON EFFECT OF ALL PAGE */
 .button-design {
     border: none;
     color: white;
