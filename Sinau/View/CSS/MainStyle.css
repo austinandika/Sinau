@@ -1,4 +1,20 @@
-﻿/* BUTTON EFFECT OF ALL PAGE */
+﻿.title-container {
+    display: flex;
+    align-items: center;
+}
+
+    .title-container .vertical-line {
+        height: 40px;
+        border-left: 5px solid #5E3EC5;
+        margin-right: 10px;
+    }
+
+    .title-container .title-name {
+        display: flex;
+        align-items: center;
+    }
+
+/* BUTTON EFFECT OF ALL PAGE */
 .button-design {
     border: none;
     color: white;
@@ -9,4 +25,50 @@
     .button-design:hover {
         transition: 0.3s;
         background-color: #CE2BA9;
+    }
+
+.button-cancel {
+    border: none;
+    color: white;
+    background-color: gray;
+    transition: 0.3s;
+}
+
+    .button-cancel:hover {
+        transition: 0.3s;
+        background-color: dimgray;
+    }
+
+
+/* ERROR MAIN LABEL */
+.error-main {
+    display: none;
+    width: 100%;
+    color: white;
+    font-size: 16px;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.error-main i {
+    display: none;
+    color: white;
+}
+
+
+    .error-main i.show {
+        display: block;
+        padding-right: 20px;
+    }
+
+    .error-main.success {
+        display: flex;
+        align-items: center;
+        background-color: #52c41a; /*green success*/
+    }
+
+    .error-main.error {
+        display: flex;
+        align-items: center;
+        background-color: #ff4d4f; /*red error*/
     }

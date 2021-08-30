@@ -1,20 +1,87 @@
-﻿function editScoreMode(){
-    var btnEditId = document.getElementById('ContentPlaceHolder1_btnEdit');
-    var btnSubmitId = document.getElementById('ContentPlaceHolder1_btnSubmit');
-    var btnCancelId = document.getElementById('ContentPlaceHolder1_btnCancel');
-    var btnAddComponent = document.getElementById('ContentPlaceHolder1_btnAddComponent');
+﻿////function editScoreMode(){
+////    var btnEditId = document.getElementById('ContentPlaceHolder1_btnEdit');
+////    var btnSubmitId = document.getElementById('ContentPlaceHolder1_btnSubmit');
+////    var btnCancelId = document.getElementById('ContentPlaceHolder1_btnCancel');
+////    var btnAddComponent = document.getElementById('ContentPlaceHolder1_btnAddComponent');
+    //var txtScoreClass = document.getElementsByClassName('txt-score');
+    //var cbIsActiveClass = document.getElementsByClassName('cb-is-active');
+
+    //for (i = 0; i < cbIsActiveClass.length; i++) {
+    //    // cb isActive become editable
+    //    cbIsActiveClass[i].removeAttribute('disabled');
+    //}
+
+    //for (i = 0; i < txtScoreClass.length; i++) {
+    //    // txt become editable
+    //    txtScoreClass[i].removeAttribute('readonly');
+    //    txtScoreClass[i].classList.add("edit-mode");
+    //}
+
+    //btnEditId.classList.add("hide-button");
+    //btnAddComponent.classList.add("hide-button");
+    //btnSubmitId.classList.remove("hide-button");
+    //btnCancelId.classList.remove("hide-button");
+    //return true;
+//}
+
+var errorMainDiv = document.getElementById('ContentPlaceHolder1_errorMain');
+var errorMainDivText = document.getElementById('ContentPlaceHolder1_divErrorMain');
+
+try {
+    var errorMainLbl = document.getElementById('ContentPlaceHolder1_lblErrorMain');
+} catch (e) {
+
+}
+
+var successIcon = document.getElementById('ContentPlaceHolder1_successIcon');
+var errorIcon = document.getElementById('ContentPlaceHolder1_errorIcon');
+
+function editScoreMode() {
     var txtScoreClass = document.getElementsByClassName('txt-score');
+    var isCorrect = true;
+
+    
+
     for (i = 0; i < txtScoreClass.length; i++) {
-        txtScoreClass[i].removeAttribute('readonly');
-        txtScoreClass[i].classList.add("edit-mode");
+        // validation for score
+        var txtScoreClassValueTemp = parseInt(txtScoreClass[i].value);
+
+        if (txtScoreClassValueTemp < 0 || txtScoreClassValueTemp > 100) {
+            txtScoreClass[i].classList.add("error");
+            isCorrect = false;
+        }
     }
 
-    btnEditId.classList.add("hide-button");
-    btnAddComponent.classList.add("hide-button");
-    btnSubmitId.classList.remove("hide-button");
-    btnCancelId.classList.remove("hide-button");
-    return false;
+
+    if (isCorrect == true) {
+        return true;
+    }
+    else {
+        // reset style
+        try {
+            errorMainLbl.style.display = "none";
+        } catch (e) {
+
+        }
+
+        successIcon.classList.remove("show");
+        errorIcon.classList.remove("show");
+
+
+        errorMainDiv.classList.add("error");
+        errorIcon.classList.add("show");
+        errorMainDivText.innerHTML = "Score is not valid, please enter a score between 0 and 100";
+        return false;
+    }
 }
+
+// only can type number
+function ValidNumeric() {
+
+    var charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode >= 48 && charCode <= 57) { return true; }
+    else { return false; }
+}   
 
 
 var txtComponentName = document.getElementById('ContentPlaceHolder1_txtComponentName');
@@ -31,17 +98,17 @@ function validateCreateComponent() {
     resetAnimation();
 
     if (txtComponentName.value.length == 0) {
-        lblErrorComponentName.innerHTML = "Assignment title is required";
+        lblErrorComponentName.innerHTML = "Component title is required";
         txtComponentName.classList.add("error");
         createFlag = false;
     }
     else if (txtComponentName.value.length < 3) {
-        lblErrorComponentName.innerHTML = "Assignment title must be at least 3 characters";
+        lblErrorComponentName.innerHTML = "Component title must be at least 3 characters";
         txtComponentName.classList.add("error");
         createFlag = false;
     }
     else if (txtComponentName.value.length > 20) {
-        lblErrorComponentName.innerHTML = "Assignment title must be less than or equal to 20 characters";
+        lblErrorComponentName.innerHTML = "Component title must be less than or equal to 20 characters";
         txtComponentName.classList.add("error");
         createFlag = false;
     }

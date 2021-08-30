@@ -1,10 +1,22 @@
-﻿<%@ Page Title="Assignment - SINAU" Language="C#" MasterPageFile="~/View/Student/Master.Master" AutoEventWireup="true" CodeBehind="Assignment.aspx.cs" Inherits="Sinau.View.Student.Assignmennt" %>
+﻿<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
+<%@ Page Title="Assignment - SINAU" Language="C#" MasterPageFile="~/View/Student/Master.Master" AutoEventWireup="true" CodeBehind="Assignment.aspx.cs" Inherits="Sinau.View.Student.Assignmennt" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../CSS/Student/AssignmentStyle.css" rel="stylesheet" />
-    <link href="../CSS/MainStyle.css" rel="stylesheet" type="text/css"/>
+    <link href="../CSS/MainStyle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="../Javascript/jquery-3.5.1.min.js" defer></script>
+    <script src="../Javascript/Student/Assignment-AddAssignmentValidation.js" defer></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <div class="error-main" runat="server" id="errorMain">
+        <i class="fa fa-check-circle-o" id="successIcon" runat="server" aria-hidden="true"></i>
+        <i class="fa fa-times-circle-o" id="errorIcon" runat="server" aria-hidden="true"></i>
+        <div class="divtext-error-main" runat="server" id="divErrorMain"></div>
+        <asp:Label Text="" CssClass="lbl-error-main" ID="lblErrorMain" runat="server" Visible="false" />
+    </div>
 
     <div class="title-container">
         <div class="vertical-line">
@@ -18,11 +30,15 @@
     <div class="assignment-filter-container">
         <table>
             <tr>
+                <td>Class</td>
+                <td>
+                    <asp:DropDownList runat="server" ID="ddlClass" CssClass="ddl" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged" AutoPostBack="true">
+                    </asp:DropDownList>
+                </td>
+
                 <td>Subject</td>
                 <td>
-                    <asp:DropDownList runat="server" ID="ddlSubjectFilter" CssClass="ddl">
-                        <asp:ListItem Text="All" />
-                        <asp:ListItem Text="Biology" />
+                    <asp:DropDownList runat="server" ID="ddlSubjectFilter" OnSelectedIndexChanged="ddlSubjectFilter_SelectedIndexChanged" AutoPostBack="true" CssClass="ddl">
                     </asp:DropDownList>
                 </td>
             </tr>
@@ -41,155 +57,114 @@
             <div class="action-column">Action</div>
         </div>
 
-        <div class="assignment-table-content">
-            <div class="subject-column">
-                <asp:Label Text="Biology" runat="server" ID="lblSubject" />
-            </div>
+        <div class="assignment-table-content no-assignment" id="noScheduleDiv" runat="server" visible="false">You have no assignment</div>
 
-            <div class="title-column">
-                <asp:Label Text="DNA Structure" runat="server" ID="lblAssignmentTitle" />
-            </div>
+        <asp:Repeater runat="server" ID="rptStudentAssignment" OnItemDataBound="rptStudentAssignment_ItemDataBound">
+            <ItemTemplate>
+                <%-- <div class="assignment-table-content" runat="server" visible='<%# Eval("_Status").ToString() != "Waiting" %>'> --%>
+                <div class="assignment-table-content">
 
-            <div class="download-question-column">
-                <asp:LinkButton ID="btnDownloadQuestion" runat="server">
+                    <asp:HiddenField Value='<%# Eval("_ClassSubAssignID") %>' ID="lblClassSubAssignID" runat="server" />
+
+                    <div class="subject-column">
+                        <asp:Label Text='<%# Eval("_Subject") %>' runat="server" ID="lblSubject" />
+                    </div>
+
+                    <div class="title-column">
+                        <asp:Label Text='<%# Eval("_AssignmentTitle") %>' runat="server" ID="lblAssignmentTitle" />
+                    </div>
+
+                    <div class="download-question-column">
+                        <asp:LinkButton ID="btnDownloadQuestion" runat="server" OnClick="btnDownloadQuestion_Click">
                     <div class="btn-download-question">
                         <i class="fa fa-floppy-o" aria-hidden="true" title="Download the assignment question"></i>
                     </div>
-                </asp:LinkButton>
-            </div>
-
-            <%-- Assign Date --%>
-            <div class="date-column">
-                <asp:Label Text="May 1, 2021" runat="server" ID="lblAssignDate" />
-            </div>
-
-            <%-- Due Date --%>
-            <div class="date-column">
-                <asp:Label Text="May 7, 2021" runat="server" ID="lblDueDate" />
-            </div>
-
-            <%-- Submission Date --%>
-            <div class="date-column">
-                <asp:Label Text="-" runat="server" ID="lblSubmissionDate" />
-            </div>
-
-            <div class="status-column">
-                <asp:Label Text="Waiting" runat="server" ID="lblStatus" />
-            </div>
-
-            <div class="action-column">
-                <label class="upload-answer">
-                    <i class="fa fa-upload" aria-hidden="true" title="Upload your answer"></i>
-                    <asp:FileUpload ID="fuAnswer" runat="server" />
-                </label>
-
-                <asp:LinkButton ID="btnDownloadAnswer" runat="server">
-                    <div class="btn-download-answer">
-                        <i class="fa fa-download" aria-hidden="true" title="Download your last submitted answer"></i>
+                        </asp:LinkButton>
                     </div>
-                </asp:LinkButton>
-            </div>
-        </div>
 
-        <div class="assignment-table-content">
-            <div class="subject-column">
-                <asp:Label Text="Biology" runat="server" ID="Label1" />
-            </div>
-
-            <div class="title-column">
-                <asp:Label Text="RNA Multiplication" runat="server" ID="Label2" />
-            </div>
-
-            <div class="download-question-column">
-                <asp:LinkButton ID="LinkButton1" runat="server">
-                    <div class="btn-download-question">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    <%-- Assign Date --%>
+                    <div class="date-column">
+                        <asp:Label Text='<%# Eval("_AssignDate") %>' runat="server" ID="lblAssignDate" />
                     </div>
-                </asp:LinkButton>
-            </div>
 
-            <%-- Assign Date --%>
-            <div class="date-column">
-                <asp:Label Text="May 2, 2021" runat="server" ID="Label3" />
-            </div>
-
-            <%-- Due Date --%>
-            <div class="date-column">
-                <asp:Label Text="May 7, 2021" runat="server" ID="Label4" />
-            </div>
-
-            <%-- Submission Date --%>
-            <div class="date-column">
-                <asp:Label Text="May 1, 2021" runat="server" ID="Label5" />
-            </div>
-
-            <div class="status-column">
-                <asp:Label Text="Submitted" runat="server" ID="Label6" />
-            </div>
-
-            <div class="action-column">
-                <label class="upload-answer">
-                    <i class="fa fa-upload" aria-hidden="true"></i>
-                    <asp:FileUpload ID="FileUpload1" runat="server" />
-                </label>
-
-                <asp:LinkButton ID="LinkButton2" runat="server">
-                    <div class="btn-download-answer">
-                        <i class="fa fa-download" aria-hidden="true"></i>
+                    <%-- Due Date --%>
+                    <div class="date-column">
+                        <asp:Label Text='<%# Eval("_DueDate") %>' runat="server" ID="lblDueDate" />
                     </div>
-                </asp:LinkButton>
-            </div>
-        </div>
 
-        <div class="assignment-table-content">
-            <div class="subject-column">
-                <asp:Label Text="Computer" runat="server" ID="Label7" />
-            </div>
-
-            <div class="title-column">
-                <asp:Label Text="Powerpoint Effects" runat="server" ID="Label8" />
-            </div>
-
-            <div class="download-question-column">
-                <asp:LinkButton ID="LinkButton3" runat="server">
-                    <div class="btn-download-question">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    <%-- Submission Date --%>
+                    <div class="date-column">
+                        <asp:Label Text='<%# Eval("_SubmissionDate") %>' runat="server" ID="lblSubmissionDate" />
                     </div>
-                </asp:LinkButton>
-            </div>
 
-            <%-- Assign Date --%>
-            <div class="date-column">
-                <asp:Label Text="May 1, 2021" runat="server" ID="Label9" />
-            </div>
-
-            <%-- Due Date --%>
-            <div class="date-column">
-                <asp:Label Text="June 5, 2021" runat="server" ID="Label10" />
-            </div>
-
-            <%-- Submission Date --%>
-            <div class="date-column">
-                <asp:Label Text="-" runat="server" ID="Label11" />
-            </div>
-
-            <div class="status-column">
-                <asp:Label Text="Waiting" runat="server" ID="Label12" />
-            </div>
-
-            <div class="action-column">
-                <label class="upload-answer">
-                    <i class="fa fa-upload" aria-hidden="true"></i>
-                    <asp:FileUpload ID="FileUpload2" runat="server" />
-                </label>
-
-                <asp:LinkButton ID="LinkButton4" runat="server">
-                    <div class="btn-download-answer">
-                        <i class="fa fa-download" aria-hidden="true"></i>
+                    <div class="status-column">
+                        <asp:Label Text='<%# Eval("_Status") %>' runat="server" ID="lblStatus" />
                     </div>
-                </asp:LinkButton>
-            </div>
-        </div>
+
+                    <div class="action-column">
+                        <asp:LinkButton ID="btnUploadAnswer" runat="server" OnClientClick="return false;" Visible="false">
+                            <label class="upload-answer">
+                                <i class="fa fa-upload" aria-hidden="true" title="Upload your answer"></i>
+                                <%--<asp:FileUpload ID="fuAnswer" runat="server" />--%>
+                            </label>
+                        </asp:LinkButton>
+
+                        <asp:LinkButton ID="btnDownloadAnswer" runat="server" OnClick="btnDownloadAnswer_Click" Visible="false">
+                            <div class="btn-download-answer">
+                                <i class="fa fa-download" aria-hidden="true" title="Download your last submitted answer"></i>
+                            </div>
+                        </asp:LinkButton>
+                    </div>
+                </div>
+
+                <%-- POPUP ADD ASSIGNMENT --%>
+                <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="pnlAddAssignment" TargetControlID="btnUploadAnswer"
+                    CancelControlID="btnCancel" BackgroundCssClass="popup-background">
+                </cc1:ModalPopupExtender>
+
+                <asp:Panel ID="pnlAddAssignment" runat="server" align="center" Style="display: none">
+
+                    <div class="popup-container">
+                        <div class="user-input">
+                            <div class="title">
+                                <h1>Add Answer File</h1>
+                            </div>
+
+                            <div class="error-server-container">
+                                <asp:Label Text="" runat="server" ID="lblErrorServer" />
+                            </div>
+
+
+                            <div class="form-table">
+                                <div class="row">
+                                    <div class="input-command">
+                                        <asp:Label Text="Add File" runat="server" ID="lblAnswerFile" />
+                                    </div>
+
+                                    <div class="input-error-box">
+                                        <div class="input-box">
+                                            <asp:FileUpload ID="fuAnswerFile" runat="server" CssClass="fu-answer-file" />
+                                        </div>
+
+                                        <div class="error-box">
+                                            <asp:Label Text="" runat="server" ID="lblErrorAnswerFile" CssClass="lbl-error-answer-file" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="button-container">
+                                <asp:Button Text="Cancel" runat="server" ID="btnCancel" CssClass="button-create button-cancel" />
+                                <asp:Button Text="Submit" runat="server" ID="btnCreate" CssClass="button-create button-design" OnClick="btnCreate_Click" OnClientClick='<%# "return validateCreateAssignment(" +  Container.ItemIndex + ");"%>' />
+                            </div>
+                        </div>
+                    </div>
+                </asp:Panel>
+            </ItemTemplate>
+            
+        </asp:Repeater>
     </div>
 
+    
 </asp:Content>

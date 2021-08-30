@@ -19,9 +19,7 @@
             <tr>
                 <td>Grade</td>
                 <td>
-                    <asp:DropDownList runat="server" ID="ddlGrade" CssClass="ddl">
-                        <asp:ListItem Text="9" />
-                        <asp:ListItem Text="10" />
+                    <asp:DropDownList runat="server" ID="ddlGrade" CssClass="ddl" OnSelectedIndexChanged="ddlGrade_SelectedIndexChanged" AutoPostBack="true">
                     </asp:DropDownList>
                 </td>
             </tr>
@@ -29,9 +27,7 @@
             <tr>
                 <td>Semester</td>
                 <td>
-                    <asp:DropDownList runat="server" ID="ddlSemester" CssClass="ddl">
-                        <asp:ListItem Text="1 (Odd)" />
-                        <asp:ListItem Text="2 (Even)" />
+                    <asp:DropDownList runat="server" ID="ddlSemester" CssClass="ddl" OnSelectedIndexChanged="ddlSemester_SelectedIndexChanged" AutoPostBack="true">
                     </asp:DropDownList>
                 </td>
             </tr>
@@ -52,31 +48,43 @@
             <div class="grade-column-grade">Grade</div>
         </div>
 
-        <div class="score-table-content">
-            <div class="grade-column-no">1</div>
-            <div class="grade-column-class">XII MIPA 1</div>
-            <div class="grade-column-subjectid">PHY6049</div>
-            <div class="grade-column-subjectname">Physics</div>
-            <div class="grade-column-teachername">Thomas Alfa Edison</div>
-            <div class="grade-column-category">ASG</div>
-            <div class="grade-column-component">Newton 1 Experiment</div>
-            <div class="grade-column-minscore">70</div>
-            <div class="grade-column-score">85</div>
-            <div class="grade-column-grade">B+</div>
-        </div>
+        <div class="score-table-content no-grade" id="noGradeDiv" runat="server" visible="false">Your score has not been inputted yet.</div>
 
-        <div class="score-table-content">
-            <div class="grade-column-no"></div>
-            <div class="grade-column-class"></div>
-            <div class="grade-column-subjectid"></div>
-            <div class="grade-column-subjectname"></div>
-            <div class="grade-column-teachername"></div>
-            <div class="grade-column-category">MID</div>
-            <div class="grade-column-component">Newton 1 and 2</div>
-            <div class="grade-column-minscore">70</div>
-            <div class="grade-column-score">90</div>
-            <div class="grade-column-grade">A</div>
-        </div>
-
+        <asp:Repeater ID="rptStudentGrade" runat="server">
+            <ItemTemplate>
+                <div class="score-table-content">
+                    <div class="grade-column-no">
+                        <asp:Label ID="lblDataNo" Text='<%# Eval("_seqViewNo") %>' runat="server" />
+                    </div>
+                    <div class="grade-column-class">
+                        <asp:Label ID="lblClass" Text='<%# Eval("_Class") %>' runat="server" />
+                    </div>
+                    <div class="grade-column-subjectid">
+                        <asp:Label ID="lblSubjectID" Text='<%# Eval("_SubjectID") %>' runat="server" />
+                    </div>
+                    <div class="grade-column-subjectname">
+                        <asp:Label ID="lblSubjectName" Text='<%# Eval("_Subject") %>' runat="server" />
+                    </div>
+                    <div class="grade-column-teachername">
+                        <asp:Label ID="lblTeacherName" Text='<%# Eval("_TeacherName") %>' runat="server" />
+                    </div>
+                    <div class="grade-column-category">
+                        <asp:Label ID="lblCategory" Text='<%# Eval("_CategoryID") %>' runat="server" />
+                    </div>
+                    <div class="grade-column-component">
+                        <asp:Label ID="lblComponent" Text='<%# Eval("_Component") %>' runat="server" />
+                    </div>
+                    <div class="grade-column-minscore">
+                        <asp:Label ID="lblMinScore" Text='<%# Eval("_MinScore") %>' runat="server" />
+                    </div>
+                    <div class="grade-column-score">
+                        <asp:Label ID="lblScore" Text='<%# Eval("_Score") %>' runat="server" />
+                    </div>
+                    <div class="grade-column-grade">
+                        <asp:Label ID="lblGrade" Text='<%# Eval("_GradeLetter") %>' runat="server" />
+                    </div>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
     </div>
 </asp:Content>

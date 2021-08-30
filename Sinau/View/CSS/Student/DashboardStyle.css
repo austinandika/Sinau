@@ -113,7 +113,7 @@ body {
             border-radius: 20px;
             width: 100%;
             height: 280px;
-            background-color: #FDEDCF;
+            background-color: #dadada /*#FDEDCF*/;
         }
 
             .content .left-content .upcoming-assignment-container .inside-container {
@@ -147,14 +147,17 @@ body {
 
                     .content .left-content .upcoming-assignment-container .inside-container .assignment-table-container td:nth-child(1) {
                         width: 150px;
+                        padding: 0 5px;
                     }
 
                     .content .left-content .upcoming-assignment-container .inside-container .assignment-table-container td:nth-child(2) {
                         width: 250px;
+                        padding: 0 5px;
                     }
 
                     .content .left-content .upcoming-assignment-container .inside-container .assignment-table-container td:nth-child(3) {
                         width: 150px;
+                        padding: 0 5px;
                     }
 
                     .content .left-content .upcoming-assignment-container .inside-container .assignment-table-container .view-assignment-button {
@@ -164,6 +167,22 @@ body {
                         cursor: pointer;
                     }
 
+.assignment-table-container .no-assignment-div {
+    display: none;
+    text-align: center;
+}
+
+    .assignment-table-container .no-assignment-div h3 {
+        font-size: 16px;
+        font-weight: normal;
+    }
+
+    .assignment-table-container .no-assignment-div.active {
+        display: block;
+    }
+
+
+
     .content .right-content {
         width: 400px;
         margin-left: 20px;
@@ -171,7 +190,7 @@ body {
 
         .content .right-content .upcoming-course-container {
             border-radius: 20px;
-            background-color: #EBF7E7;
+            background-color: #dadada /*#EBF7E7*/;
             height: 100%;
         }
 
@@ -191,10 +210,34 @@ body {
                     margin-top: 20px;
                 }
 
-                    .content .right-content .upcoming-course-container .inside-container .course-table-container td {
+.course-table-container .no-schedule-div {
+    display: none;
+    text-align: center;
+}
+
+    .course-table-container .no-schedule-div h3 {
+        font-size: 16px;
+        font-weight: normal;
+    }
+
+    .course-table-container .no-schedule-div.active {
+        display: block;
+    }
+
+                    .content .right-content .upcoming-course-container .inside-container .course-table-container tr:nth-child(even) td {
                         vertical-align: central;
                         height: 50px;
                     }
+
+                    .content .right-content .upcoming-course-container .inside-container .course-table-container tr:nth-child(odd) td {
+                        vertical-align: central;
+                        height: fit-content;
+                    }
+
+                    /*.content .right-content .upcoming-course-container .inside-container .course-table-container td {
+                        vertical-align: central;
+                        height: 50px;
+                    }*/
 
                     .content .right-content .upcoming-course-container .inside-container .course-table-container tr {
                         display: list-item;
@@ -204,12 +247,21 @@ body {
                         vertical-align: baseline;
                     }
 
+                        .content .right-content .upcoming-course-container .inside-container .course-table-container tr:nth-child(even) {
+                            display: block;
+                            margin-left: 20px;
+                            vertical-align: baseline;
+                        }
+
                     .content .right-content .upcoming-course-container .inside-container .course-table-container td:nth-child(1) {
                         width: 200px;
+                        padding: 0 5px;
                     }
 
                     .content .right-content .upcoming-course-container .inside-container .course-table-container td:nth-child(2) {
                         width: 150px;
+                        text-align: center;
+                        padding: 0 5px;
                     }
 
                     .content .right-content .upcoming-course-container .inside-container .course-table-container .join-class-button {

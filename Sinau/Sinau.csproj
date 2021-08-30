@@ -47,7 +47,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Documents\ASP.NET AJAX Control Toolkit\Bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="Ionic.Zip.Reduced, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MoreLinq, Version=3.3.2.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.3.3.2\lib\net451\MoreLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -75,26 +85,34 @@
     <Content Include="Index.aspx" />
     <Content Include="View\ActivationForm.aspx" />
     <Content Include="View\Assets\DefaultProfilePic.jpg" />
+    <Content Include="View\Assets\ForumDiscussion.png" />
+    <Content Include="View\Assets\Loading-1s-200px.gif" />
     <Content Include="View\Assets\Logo\Logo.png" />
     <Content Include="View\Assets\Test-Banner2.png" />
     <Content Include="View\Assets\Test-Banner.jpg" />
     <Content Include="View\CSS\ActivationFormStyle.css" />
+    <Content Include="View\CSS\Error\ErrorStyle.css" />
     <Content Include="View\CSS\MainStyle.css" />
     <Content Include="View\CSS\Student\AssignmentStyle.css" />
     <Content Include="View\CSS\Student\DashboardStyle.css" />
     <Content Include="View\CSS\LoginStyle.css" />
+    <Content Include="View\CSS\Student\ForumStyle.css" />
     <Content Include="View\CSS\Student\GradeStyle.css" />
     <Content Include="View\CSS\Student\MasterStyle.css" />
     <Content Include="View\CSS\Student\ScheduleStyle.css" />
     <Content Include="View\CSS\SuccessfullyActivatedStyle.css" />
     <Content Include="View\CSS\Teacher\AssignmentStyle.css" />
     <Content Include="View\CSS\Teacher\DashboardStyle.css" />
+    <Content Include="View\CSS\Teacher\ForumStyle.css" />
     <Content Include="View\CSS\Teacher\GradeStyle.css" />
     <Content Include="View\CSS\Teacher\MasterStyle.css" />
     <Content Include="View\CSS\Teacher\ScheduleStyle.css" />
+    <Content Include="View\Assets\Error\404.png" />
+    <Content Include="View\Error\404.aspx" />
     <Content Include="View\Javascript\ActivationForm-Validation.js" />
     <Content Include="View\Javascript\Dashboard-Slideshow.js" />
     <Content Include="View\Javascript\Login-Validation.js" />
+    <Content Include="View\Javascript\Student\Assignment-AddAssignmentValidation.js" />
     <Content Include="View\Javascript\Student\Master-DropdownNotificationProfile.js" />
     <Content Include="View\Javascript\Teacher\Assignment-AddAssignmentValidation.js" />
     <Content Include="View\Javascript\Teacher\Grade-TableModification.js" />
@@ -102,11 +120,13 @@
     <Content Include="View\Student\Assignment.aspx" />
     <Content Include="View\Student\Dashboard.aspx" />
     <Content Include="View\Login.aspx" />
+    <Content Include="View\Student\Forum.aspx" />
     <Content Include="View\Student\Grade.aspx" />
     <Content Include="View\Student\Schedule.aspx" />
     <Content Include="View\SuccessfullyActivated.aspx" />
     <Content Include="View\Teacher\Assignment.aspx" />
     <Content Include="View\Teacher\Dashboard.aspx" />
+    <Content Include="View\Teacher\Forum.aspx" />
     <Content Include="View\Teacher\Grade.aspx" />
     <Content Include="View\Teacher\Schedule.aspx" />
     <Content Include="Web.config" />
@@ -130,6 +150,13 @@
     <Compile Include="View\ActivationForm.aspx.designer.cs">
       <DependentUpon>ActivationForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\Error\404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Error\404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\Student\Assignment.aspx.cs">
       <DependentUpon>Assignment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -150,6 +177,13 @@
     </Compile>
     <Compile Include="View\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Student\Forum.aspx.cs">
+      <DependentUpon>Forum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Student\Forum.aspx.designer.cs">
+      <DependentUpon>Forum.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Student\Grade.aspx.cs">
       <DependentUpon>Grade.aspx</DependentUpon>
@@ -193,6 +227,13 @@
     <Compile Include="View\Teacher\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\Teacher\Forum.aspx.cs">
+      <DependentUpon>Forum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Teacher\Forum.aspx.designer.cs">
+      <DependentUpon>Forum.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\Teacher\Grade.aspx.cs">
       <DependentUpon>Grade.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -223,6 +264,8 @@
     <Content Include="View\Assets\Font\Gilroy-Light.otf" />
     <Content Include="View\Teacher\Master.Master" />
     <Content Include="View\Javascript\jquery-3.5.1.min.js" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -231,7 +274,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
+    <Folder Include="Uploads\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessFacade\BusinessFacade.csproj">
+      <Project>{d9d8cd7f-b9fc-4c84-8507-88b25e3cf3b0}</Project>
+      <Name>BusinessFacade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{2e2794c8-dceb-460e-81cc-49845d7a8cf9}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

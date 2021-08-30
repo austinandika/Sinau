@@ -10,21 +10,6 @@
         color: #5E3EC5;
     }
 
-
-.title-container {
-    display: flex;
-    align-items: center;
-}
-
-    .title-container .vertical-line {
-        height: 40px;
-        border-left: 5px solid #ff6a00;
-        margin-right: 10px;
-    }
-
-    .title-container .title-name {
-    }
-
 .grade-filter-container tr {
     height: 40px;
 }
@@ -44,6 +29,7 @@
 
 .score-table-container {
     margin-top: 20px;
+    margin-bottom: 50px;
 }
 
     .score-table-container .score-table-header {
@@ -64,44 +50,70 @@
         word-wrap: break-word;
     }
 
+        .score-table-container .score-table-content.no-grade {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
     .score-table-container .grade-column-no {
-        width: 50px;
+        /*width: 50px;*/
+        width: 3%;
+        padding: 0 5px;
     }
 
     .score-table-container .grade-column-class {
-        width: 90px;
+        /*width: 90px;*/
+        width: 10%;
+        padding: 0 5px;
     }
 
     .score-table-container .grade-column-subjectid {
-        width: 130px;
+        /*width: 130px;*/
+        width: 8%;
+        padding: 0 5px;
     }
 
     .score-table-container .grade-column-subjectname {
-        width: 150px;
+        /*width: 150px;*/
+        width: 15%;
+        padding: 0 5px;
     }
 
     .score-table-container .grade-column-teachername {
-        width: 200px;
+        /*width: 200px;*/
+        width: 20%;
+        padding: 0 5px;
     }
 
     .score-table-container .grade-column-category {
-        width: 90px;
+        /*width: 90px;*/
+        width: 7%;
+        padding: 0 5px;
     }
 
     .score-table-container .grade-column-component {
-        width: 250px;
+        /*width: 250px;*/
+        width: 25%;
+        padding: 0 5px;
     }
 
     .score-table-container .grade-column-minscore {
-        width: 70px;
+        /*width: 70px;*/
+        width: 5%;
+        padding: 0 5px;
     }
 
     .score-table-container .grade-column-score {
-        width: 70px;
+        /*width: 70px;*/
+        width: 5%;
+        padding: 0 5px;
     }
 
     .score-table-container .grade-column-grade {
-        width: 70px;
+        /*width: 70px;*/
+        width: 5%;
+        padding: 0 5px;
     }
 
     .score-table-container .score-table-content .grade-column-minscore {

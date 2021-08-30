@@ -118,13 +118,13 @@ body {
             }
 
                 .head-container .right-container .notification-container .notification-dropdown-content .no-notification {
-                    display: none;
+                    display: block;
                     text-align: center;
                     margin: 20px 0;
                 }
 
                 .head-container .right-container .notification-container .notification-dropdown-content .new-notification {
-                    display: block;
+                    display: none;
                     text-align: left;
                 }
 

@@ -44,20 +44,6 @@
         color: #5E3EC5;
     }
 
-.title-container {
-    display: flex;
-    align-items: center;
-}
-
-    .title-container .vertical-line {
-        height: 40px;
-        border-left: 5px solid #ff6a00;
-        margin-right: 10px;
-    }
-
-    .title-container .title-name {
-    }
-
 .upper-container {
     display: flex;
     justify-content: space-between;
@@ -81,7 +67,7 @@
         padding: 5px;
     }
 
-    .upper-container .edit-score-container .btn-add-assignment {
+    .upper-container .edit-assignment-container .btn-add-assignment {
         padding: 10px 10px;
         border: none;
         border-radius: 8px;
@@ -116,16 +102,29 @@
         word-wrap: break-word;
     }
 
+        .assignment-table-container .assignment-table-content.no-assignment {
+            display: block;
+            text-align: center;
+        }
+
+    .assignment-table-container .class-column {
+        width: 130px;
+        padding: 0 5px;
+    }
+
     .assignment-table-container .subject-column {
         width: 200px;
+        padding: 0 5px;
     }
 
     .assignment-table-container .title-column {
         width: 250px;
+        padding: 0 5px;
     }
 
     .assignment-table-container .download-question-column {
         width: 50px;
+        padding: 0 5px;
     }
 
         .assignment-table-container .download-question-column .btn-download-question {
@@ -134,14 +133,17 @@
 
     .assignment-table-container .date-column {
         width: 150px;
+        padding: 0 5px;
     }
 
     .assignment-table-container .status-column {
         width: 150px;
+        padding: 0 5px;
     }
 
     .assignment-table-container .action-column {
-        width: 100px;
+        width: 70px;
+        padding: 0 5px;
     }
 
     .assignment-table-container .assignment-table-content .title-column {

@@ -50,6 +50,10 @@ function assignmentTitleValidation() {
 
 var isValidAssignDate = true;
 
+function convertTimeZone(date, tzString) {
+    return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", { timeZone: tzString }));
+}
+
 function assignDateValidation() {
     isValidAssignDate = true;
     var isValidDate = true;
@@ -64,6 +68,27 @@ function assignDateValidation() {
         lblErrorAssignDate.innerHTML = "Assign date must be follow 'dd/MM/yyyy' format";
         txtAssignDate.classList.add("error");
         isValidDate = false;
+    }
+    else {
+        var assignDateParts = txtAssignDate.value.split("/");
+        var dateObjectAssign = new Date(+assignDateParts[2], assignDateParts[1] - 1, +assignDateParts[0]);
+
+        var todayLocal = new Date();
+        var today = getDateWithoutTime(convertTimeZone(todayLocal, "Asia/Jakarta"));
+        
+        //var dd = String(today.getDate()).padStart(2, '0');
+        //var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        //var yyyy = today.getFullYear();
+
+        //today = mm + '/' + dd + '/' + yyyy;
+
+        var diffDays = dateObjectAssign.getTime() - today.getTime();
+
+        if (diffDays < 0) {
+            lblErrorAssignDate.innerHTML = "Assign date must be same or greater than today date";
+            txtAssignDate.classList.add("error");
+            isValidDate = false;
+        }
     }
 
     if (isValidDate == false) {
@@ -94,9 +119,9 @@ function dueDateValidation() {
         var dueDateParts = txtDueDate.value.split("/");
         var dateObjectDue = new Date(+dueDateParts[2], dueDateParts[1] - 1, +dueDateParts[0]);
 
-        var diffDays = dateObjectDue.getDate() - dateObjectAssign.getDate();
+        var diffDays = dateObjectDue.getTime() - dateObjectAssign.getTime();
 
-        if (diffDays < 0) {
+        if (diffDays <= 0) {
             lblErrorDueDate.innerHTML = "Due date must be greater than assign date";
             txtDueDate.classList.add("error");
             isValidDate = false;
@@ -118,7 +143,7 @@ function fileUploadValidation() {
     else {
         var isValidFileExtensions = false;
         var fileSizeLimit = 20000; // 20.000kb = 20mb
-        var allowedExtensions = new Array('txt', 'pdf', 'ppt', 'xls', 'doc', 'pptx', 'xlsx', 'docx', 'rar', 'zip', 'jpg', 'jpeg', 'png', 'wav', 'mp3', 'mp4', 'avi', '3gp', 'mkv', 'mov', 'flv');
+        var allowedExtensions = new Array('txt', 'pdf', 'ppt', 'xls', 'doc', 'pptx', 'xlsx', 'docx', 'rar', 'zip', 'jpg', 'jpeg', 'png', 'wav', 'mp3', 'mp4', 'avi', '3gp', 'mkv', 'mov', 'flv', 'csv');
         var fileExtensions = fuQuestionFile.value.split('.').pop().toLowerCase(); // split function will split the filename by dot(.), and pop function will pop the last element from the array which will give you the extension as well. If there will be no extension then it will return the filename.
 
         for (var i = 0; i <= allowedExtensions.length; i++) {
@@ -160,4 +185,10 @@ function resetErrorEffect() {
 
 function resetAnimation() {
     void btnCreate.offsetWidth;
+}
+
+function getDateWithoutTime(dateTime) {
+    var date = new Date(dateTime.getTime());
+    date.setHours(0, 0, 0, 0);
+    return date;
 }

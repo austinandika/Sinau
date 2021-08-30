@@ -46,20 +46,6 @@
     }
 
 
-.title-container {
-    display: flex;
-    align-items: center;
-}
-
-    .title-container .vertical-line {
-        height: 40px;
-        border-left: 5px solid #ff6a00;
-        margin-right: 10px;
-    }
-
-    .title-container .title-name {
-    }
-
 .upper-container {
     display: flex;
     justify-content: space-between;
@@ -70,8 +56,14 @@
         height: 40px;
     }
 
-        .upper-container tr td:nth-child(odd) {
+        /* Academic year and subject filter */
+        .upper-container tr td:nth-child(1) {
             width: 120px;
+        }
+
+        /* class filter */
+        .upper-container tr td:nth-child(3) {
+            width: 70px;
         }
 
         .upper-container tr td:nth-child(even) {
@@ -160,6 +152,10 @@
         min-width: 100px;
     }
 
+    .score-table-container .total-td .not-pass {
+        color: red;
+    }
+
 
     .score-table-container thead tr th {
         background-color: #5E3EC5;
@@ -204,6 +200,11 @@
         border: 1px solid black;
     }
 
+    .score-table-container .txt-score.error {
+        border: 3px solid red;
+        background-color: white;
+    }
+
     /*Scrollable table*/
 
     .score-table-container table th, .component-th {
@@ -219,6 +220,14 @@
         top: 200px;
         z-index: 2;
     }
+
+    .score-table-container table .component-th-2 {
+        text-align: center;
+        position: sticky;
+        top: 223.2px;
+        z-index: 2;
+    }
+
 
     .score-table-container table #no-th {
         left: 0;

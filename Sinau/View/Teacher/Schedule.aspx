@@ -4,7 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../CSS/Teacher/ScheduleStyle.css" rel="stylesheet" type="text/css" />
-    <link href="../CSS/MainStyle.css" rel="stylesheet" type="text/css"/>
+    <link href="../CSS/MainStyle.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -24,323 +24,193 @@
             FadeTransitions="true" TransitionDuration="100" FramesPerSecond="60" RequireOpenedPane="false">
 
             <Panes>
-                <ajaxToolkit:AccordionPane ID="AccordionPane1" runat="server">
-                    <Header>Monday
-                        </Header>
+                <ajaxToolkit:AccordionPane ID="AccordionPaneMonday" runat="server">
+                    <Header>Monday</Header>
 
                     <Content>
+                        <div class="no-schedule-div" id="noScheduleDay1" runat="server">
+                            <h3>It's FREE. You have no class schedule for this day &#129303</h3>
+                        </div>
+
                         <table class="tbl">
-                            <tr>
-                                <td class="coursename">
-                                    <asp:Label ID="lblCourseName" runat="server" Text="Mathematics"></asp:Label>
-                                </td>
+                            <asp:Repeater runat="server" ID="rptScheduleMonday">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td class="course-name-td">
+                                            <asp:Label ID="lblCourseName" runat="server" Text='<%# Eval("_SubjectName") %>'></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lblCourseClass" runat="server" Text='<%# Eval("_Class") %>'></asp:Label>
+                                        </td>
+                                        <td class="course-time-td">
+                                            <asp:Label ID="lblCourseTime" runat="server" Text='<%# Eval("_TimeStart") + " - " + Eval("_TimeEnd") %>'></asp:Label>
+                                        </td>
 
-                                <td>
-                                    <asp:Label ID="lblCourseClass" runat="server" Text="XII MIPA 1"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="lblCourseTime" runat="server" Text="07:00-09:30"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Button Text="Join" runat="server" ID="btnJoinClass" CssClass="join-class-button button-design" />
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="coursename">
-                                    <asp:Label ID="Label1" runat="server" Text="English"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label29" runat="server" Text="XII MIPA 2"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label2" runat="server" Text="10:00-11:30"></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td class="coursename">
-                                    <asp:Label ID="Label3" runat="server" Text="Biology"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label30" runat="server" Text="XI MIPA 3"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label4" runat="server" Text="12:00-13:30"></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-
-                            </tr>
-
+                                        <td class="join-button-td">
+                                            <asp:Button Text="Join" runat="server" ID="btnJoinClass" CssClass="join-class-button button-design" PostBackUrl='<%# Eval("_LinkVidcon") %>' OnClientClick="window.document.forms[0].target='_blank'; setTimeout(function(){window.document.forms[0].target='';}, 500);" />
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </table>
-
-
-
                     </Content>
 
                 </ajaxToolkit:AccordionPane>
 
-                <ajaxToolkit:AccordionPane ID="AccordionPane2" runat="server">
+                <ajaxToolkit:AccordionPane ID="AccordionPaneTuesday" runat="server">
                     <Header>Tuesday</Header>
                     <Content>
+                        <div class="no-schedule-div" id="noScheduleDay2" runat="server">
+                            <h3>It's FREE. You have no class schedule for this day &#129303</h3>
+                        </div>
+
                         <table class="tbl">
-                            <tr>
-                                <td class="coursename">
-                                    <asp:Label ID="Label5" runat="server" Text="Social Studies"></asp:Label>
-                                </td>
+                            <asp:Repeater runat="server" ID="rptScheduleTuesday">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td class="course-name-td">
+                                            <asp:Label ID="lblCourseName" runat="server" Text='<%# Eval("_SubjectName") %>'></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lblCourseClass" runat="server" Text='<%# Eval("_Class") %>'></asp:Label>
+                                        </td>
+                                        <td class="course-time-td">
+                                            <asp:Label ID="lblCourseTime" runat="server" Text='<%# Eval("_TimeStart") + " - " + Eval("_TimeEnd") %>'></asp:Label>
+                                        </td>
 
-                                <td>
-                                    <asp:Label ID="Label31" runat="server" Text="X IIS 3"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label6" runat="server" Text="07:00-09:30"></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="coursename">
-                                    <asp:Label ID="Label7" runat="server" Text="Physics"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label32" runat="server" Text="XII MIPA 2"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label8" runat="server" Text="10:00-11:30"></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td class="coursename">
-                                    <asp:Label ID="Label9" runat="server" Text="Chemistry"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label33" runat="server" Text="XII MIPA 3"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label10" runat="server" Text="12:00-13:30"></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-
-                            </tr>
-
+                                        <td class="join-button-td">
+                                            <asp:Button Text="Join" runat="server" ID="btnJoinClass" CssClass="join-class-button button-design" PostBackUrl='<%# Eval("_LinkVidcon") %>' OnClientClick="window.document.forms[0].target='_blank'; setTimeout(function(){window.document.forms[0].target='';}, 500);" />
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </table>
                     </Content>
                 </ajaxToolkit:AccordionPane>
 
-                <ajaxToolkit:AccordionPane ID="AccordionPane3" runat="server">
+                <ajaxToolkit:AccordionPane ID="AccordionPaneWednesday" runat="server">
                     <Header>Wednesday</Header>
                     <Content>
+                        <div class="no-schedule-div" id="noScheduleDay3" runat="server">
+                            <h3>It's FREE. You have no class schedule for this day &#129303</h3>
+                        </div>
+
                         <table class="tbl">
-                            <tr>
-                                <td class="coursename">
-                                    <asp:Label ID="Label11" runat="server" Text="Social Studies"></asp:Label>
-                                </td>
+                            <asp:Repeater runat="server" ID="rptScheduleWednesday">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td class="course-name-td">
+                                            <asp:Label ID="lblCourseName" runat="server" Text='<%# Eval("_SubjectName") %>'></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lblCourseClass" runat="server" Text='<%# Eval("_Class") %>'></asp:Label>
+                                        </td>
+                                        <td class="course-time-td">
+                                            <asp:Label ID="lblCourseTime" runat="server" Text='<%# Eval("_TimeStart") + " - " + Eval("_TimeEnd") %>'></asp:Label>
+                                        </td>
 
-                                <td>
-                                    <asp:Label ID="Label34" runat="server" Text="XII MIPA 1"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label12" runat="server" Text="07:00-09:30"></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="coursename">
-                                    <asp:Label ID="Label13" runat="server" Text="Physics"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label35" runat="server" Text="XII MIPA 2"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label14" runat="server" Text="10:00-11:30"></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td class="coursename">
-                                    <asp:Label ID="Label15" runat="server" Text="Chemistry"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label36" runat="server" Text="XII MIPA 1"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label16" runat="server" Text="12:00-13:30"></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-
-                            </tr>
-
+                                        <td class="join-button-td">
+                                            <asp:Button Text="Join" runat="server" ID="btnJoinClass" CssClass="join-class-button button-design" PostBackUrl='<%# Eval("_LinkVidcon") %>' OnClientClick="window.document.forms[0].target='_blank'; setTimeout(function(){window.document.forms[0].target='';}, 500);" />
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </table>
                     </Content>
                 </ajaxToolkit:AccordionPane>
 
-                <ajaxToolkit:AccordionPane ID="AccordionPane4" runat="server">
+                <ajaxToolkit:AccordionPane ID="AccordionPaneThursday" runat="server">
                     <Header>Thursday</Header>
                     <Content>
+                        <div class="no-schedule-div" id="noScheduleDay4" runat="server">
+                            <h3>It's FREE. You have no class schedule for this day &#129303</h3>
+                        </div>
+
                         <table class="tbl">
-                            <tr>
-                                <td class="coursename">
-                                    <asp:Label ID="Label17" runat="server" Text="Social Studies"></asp:Label>
-                                </td>
+                            <asp:Repeater runat="server" ID="rptScheduleThursday">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td class="course-name-td">
+                                            <asp:Label ID="lblCourseName" runat="server" Text='<%# Eval("_SubjectName") %>'></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lblCourseClass" runat="server" Text='<%# Eval("_Class") %>'></asp:Label>
+                                        </td>
+                                        <td class="course-time-td">
+                                            <asp:Label ID="lblCourseTime" runat="server" Text='<%# Eval("_TimeStart") + " - " + Eval("_TimeEnd") %>'></asp:Label>
+                                        </td>
 
-                                <td>
-                                    <asp:Label ID="Label37" runat="server" Text="XII MIPA 2"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label18" runat="server" Text="07:00-09:30"></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="coursename">
-                                    <asp:Label ID="Label19" runat="server" Text="Physics"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label38" runat="server" Text="XII MIPA 2"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label20" runat="server" Text="10:00-11:30"></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td class="coursename">
-                                    <asp:Label ID="Label21" runat="server" Text="Chemistry"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label39" runat="server" Text="XII MIPA 2"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label22" runat="server" Text="12:00-13:30"></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-
-                            </tr>
-
+                                        <td class="join-button-td">
+                                            <asp:Button Text="Join" runat="server" ID="btnJoinClass" CssClass="join-class-button button-design" PostBackUrl='<%# Eval("_LinkVidcon") %>' OnClientClick="window.document.forms[0].target='_blank'; setTimeout(function(){window.document.forms[0].target='';}, 500);" />
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </table>
                     </Content>
                 </ajaxToolkit:AccordionPane>
 
-                <ajaxToolkit:AccordionPane ID="AccordionPane5" runat="server">
+                <ajaxToolkit:AccordionPane ID="AccordionPaneFriday" runat="server">
                     <Header>Friday</Header>
                     <Content>
+                        <div class="no-schedule-div" id="noScheduleDay5" runat="server">
+                            <h3>It's FREE. You have no class schedule for this day &#129303</h3>
+                        </div>
+
                         <table class="tbl">
-                            <tr>
-                                <td class="coursename">
-                                    <asp:Label ID="Label23" runat="server" Text="Social Studies"></asp:Label>
-                                </td>
+                            <asp:Repeater runat="server" ID="rptScheduleFriday">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td class="course-name-td">
+                                            <asp:Label ID="lblCourseName" runat="server" Text='<%# Eval("_SubjectName") %>'></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lblCourseClass" runat="server" Text='<%# Eval("_Class") %>'></asp:Label>
+                                        </td>
+                                        <td class="course-time-td">
+                                            <asp:Label ID="lblCourseTime" runat="server" Text='<%# Eval("_TimeStart") + " - " + Eval("_TimeEnd") %>'></asp:Label>
+                                        </td>
 
-                                <td>
-                                    <asp:Label ID="Label40" runat="server" Text="XII MIPA 2"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label24" runat="server" Text="07:00-09:30"></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="coursename">
-                                    <asp:Label ID="Label25" runat="server" Text="Physics"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label41" runat="server" Text="XII MIPA 2"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label26" runat="server" Text="10:00-11:30"></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td class="coursename">
-                                    <asp:Label ID="Label27" runat="server" Text="Chemistry"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label42" runat="server" Text="XII MIPA 2"></asp:Label>
-                                </td>
-
-                                <td>
-                                    <asp:Label ID="Label28" runat="server" Text="12:00-13:30"></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Button Text="Join" runat="server" CssClass="join-class-button button-design" />
-                                </td>
-
-                            </tr>
-
+                                        <td class="join-button-td">
+                                            <asp:Button Text="Join" runat="server" ID="btnJoinClass" CssClass="join-class-button button-design" PostBackUrl='<%# Eval("_LinkVidcon") %>' OnClientClick="window.document.forms[0].target='_blank'; setTimeout(function(){window.document.forms[0].target='';}, 500);" />
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </table>
                     </Content>
                 </ajaxToolkit:AccordionPane>
 
+                <ajaxToolkit:AccordionPane ID="AccordionPaneSaturday" runat="server">
+                    <Header>Saturday</Header>
+                    <Content>
+                        <div class="no-schedule-div" id="noScheduleDay6" runat="server">
+                            <h3>It's FREE. You have no class schedule for this day &#129303</h3>
+                        </div>
+
+                        <table class="tbl">
+                            <asp:Repeater runat="server" ID="rptScheduleSaturday">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td class="course-name-td">
+                                            <asp:Label ID="lblCourseName" runat="server" Text='<%# Eval("_SubjectName") %>'></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lblCourseClass" runat="server" Text='<%# Eval("_Class") %>'></asp:Label>
+                                        </td>
+                                        <td class="course-time-td">
+                                            <asp:Label ID="lblCourseTime" runat="server" Text='<%# Eval("_TimeStart") + " - " + Eval("_TimeEnd") %>'></asp:Label>
+                                        </td>
+
+                                        <td class="join-button-td">
+                                            <asp:Button Text="Join" runat="server" ID="btnJoinClass" CssClass="join-class-button button-design" PostBackUrl='<%# Eval("_LinkVidcon") %>' OnClientClick="window.document.forms[0].target='_blank'; setTimeout(function(){window.document.forms[0].target='';}, 500);" />
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </table>
+                    </Content>
+                </ajaxToolkit:AccordionPane>
             </Panes>
 
         </ajaxToolkit:Accordion>
